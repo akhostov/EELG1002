@@ -2,10 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from astropy.io import fits
 from scipy.integrate import simps
-from scipy.interpolate import interp1d
 import os
-import pdb
 from astropy.convolution import Gaussian2DKernel,convolve
+import util
 
 
 def get_fluxcorr():
@@ -19,12 +18,11 @@ def get_fluxcorr():
 	data = fits.open("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_sci.fits")
 	wht = fits.open("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_RMS.fits")
 
-
 	# Now let's do Aperture Photometry with Sextractor
 	os.system("cd ../data/cutouts/ACS/; sex 1002_HST_ACS_F814W_10arcsec_unrot_sci.fits -c original_HST.sex")
 
-	original_flux = pow(10,-0.4*(fits.open("../data/cutouts/ACS/original_HST.fits")[1].data["MAG_APER"]+48.6))*1e6*1e23
-
+	# Get the original flux
+	original_flux = util.ab_mag_to_fnu(fits.open("../data/cutouts/ACS/original_HST.fits")[1].data["MAG_APER"],unit="uJy")
 
 	# Range of the GMOS Slit
 	dx = (168-round(0.25/0.03),168+round(0.25/0.03))
@@ -32,15 +30,14 @@ def get_fluxcorr():
 
 	# Smooth out the images
 	data[0].data = convolve(data[0].data, gaussian_2D_kernel)
-	data.writeto("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_sci_ground_PSF.fits",overwrite=True)
+	#data.writeto("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_sci_ground_PSF.fits",overwrite=True)
 
 	# Calculate Original Flux
-	mag_new = -2.5*np.log10(np.sum(data[0].data[dx[0]:dx[1],dy[0]:dy[1]])) + 25.936
-	flux_new = pow(10,-0.4*(mag_new+48.6))*1e6*1e23
+	mag_new = util.fnu_to_ab_mag(np.sum(data[0].data[dx[0]:dx[1],dy[0]:dy[1]]),unit="custom",ZP=25.936)
+	flux_new = util.ab_mag_to_fnu(mag_new,unit="uJy")
 
-
+	# Calculate the Correction Factor
 	corr_factor = 1. - flux_new/original_flux
-
 
 	print(f"Original Flux: {original_flux} uJy")
 	print(f"Smoothed Flux: {flux_new} uJy")
@@ -62,7 +59,6 @@ def apply_correction():
 	spec1d["OPT_FLAM"] = spec1d["OPT_FLAM"]*(1.+corr_factor)
 	spec1d["OPT_FLAM_SIG"] = spec1d["OPT_FLAM_SIG"]*(1.+corr_factor)
 
-
 	# Write this out
 	table_hdu = fits.BinTableHDU(spec1d)
 	table_hdu.header = hdr
@@ -70,6 +66,9 @@ def apply_correction():
 	new_hdulist = fits.HDUList([fits.PrimaryHDU(), table_hdu])
 	new_hdulist.writeto("../data/flux_corr_spectra/EELG1002_1dspec_slitloss_corrected.fits", overwrite=True)
 
+def main():
+	get_fluxcorr()
+	apply_correction()
 
-get_fluxcorr()
-apply_correction()
+if __name__ == "__main__":
+	main()

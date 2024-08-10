@@ -31,13 +31,46 @@ def calzetti(lam):
     lam = lam/1e4
     return (2.659*(-2.156 + 1.509/lam - 0.198/(lam**2.) + 0.011/(lam**3.)) + 4.05)
 
-def ab_mag_to_fnu(mag, magerr, unit="mJy"):
+def fnu_to_ab_mag(fnu, fnuerr = None, unit="cgs", ZP = None):
+    
+    # Check if the input unit is valid
+    valid_units = ["mJy", "uJy", "Jy", "cgs", "SI", "custom"]
+    if unit not in valid_units:
+        raise ValueError(f"Unit must be one of {valid_units}")
+
+    if unit == "cgs":
+        ZP = -48.6
+    if unit == "SI":
+        ZP =  -56.1
+    if "Jy" in unit:
+        ZP = 8.90
+        if unit == "mJy":
+            ZP += 7.5
+        elif unit == "uJy":
+            ZP += 15.0       
+
+    # Ensure that the Zero Point is specified if the unit is 'custom'
+    if "unit" == "custom" and ZP is None:
+        raise ValueError("ZP must be specified if unit is 'custom'")
+
+    # Convert flux density to AB magnitude
+    mag = -2.5*np.log10(fnu) + ZP
+
+    if fnuerr is not None:
+        # Convert error in flux density to error in AB magnitude
+        magerr = 2.5/np.log(10) * fnuerr / fnu
+    else:
+        magerr = None
+    
+    return (mag,magerr) if magerr is not None else mag
+
+def ab_mag_to_fnu(mag, magerr = None, unit="mJy"):
     """
     Converts an AB magnitude to flux density.
 
     Args:
         mag (float or array-like): The AB magnitude(s) to be converted.
-        magerr (float or array-like): The error in the AB magnitude(s).
+        magerr (float or array-like, optional): The error in the AB magnitude(s). Defaults to None.
         unit (str, optional): The unit of the flux density. Defaults to "mJy".
 
     Returns:
@@ -54,31 +87,33 @@ def ab_mag_to_fnu(mag, magerr, unit="mJy"):
 
     # Convert magnitude to flux density in Jy
     fnu = pow(10, -0.4 * (mag - 8.9))
-    dfnu = 0.4 * np.log(10) * magerr * fnu
 
     # Convert flux density to different units
     if "Jy" in unit:
         if unit == "mJy":
             fnu *= 1e3
-            dfnu *= 1e3
         elif unit == "uJy":
             fnu *= 1e6
-            dfnu *= 1e6
     elif "cgs" in unit:
         fnu = pow(10, -0.4 * (mag + 48.60))
-        dfnu = 0.4 * np.log(10) * magerr * fnu
     elif "SI" in unit:
         fnu = pow(10, -0.4 * (mag + 56.1))
-        dfnu = 0.4 * np.log(10) * magerr * fnu
+
+
+    # Calculate the error only if magerr is defined
+    if magerr is not None:
+        dfnu = 0.4*np.log(10)*magerr*fnu
+    else:
+        dfnu = None
 
     # Handle non-detections
     try:
         fnu[np.abs(mag) > 80.] = -99.
         dfnu[np.abs(mag) > 80.] = -99.
     except:
-        None
+        pass
 
-    return (fnu, dfnu)
+    return (fnu, dfnu) if dfnu is not None else fnu
 
 
 def write_with_newline(table, text):

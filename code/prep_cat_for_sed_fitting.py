@@ -233,3 +233,10 @@ def run_catalog_conversion(sed_code="cigale"):
 	np.savetxt("../data/catalogs/EELG_OIII_GMOS_%s.txt" % sed_code,np.column_stack(data),header=header,fmt="%s")
 
 
+def main():
+	run_catalog_conversion(sed_code="cigale")
+	run_catalog_conversion(sed_code="bagpipes")
+
+if __name__ == "__main__":
+	main()
+
