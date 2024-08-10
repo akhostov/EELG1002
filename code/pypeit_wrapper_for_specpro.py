@@ -1,10 +1,7 @@
 import numpy as np
 from astropy.io import fits
-from astropy.visualization import imshow_norm,LinearStretch,ZScaleInterval
-from astropy.stats import sigma_clip
 import argparse
 import os
-import pdb
 
 
 # This will check to see if the filename does exist
@@ -38,9 +35,6 @@ outdir = args.outdir
 # Load the 1D and 2D FITS files
 data_1D = fits.open(fname_1D)
 data_2D = fits.open(fname_2D)
-
-# Now let's get the Slit Information from the 2D FITS file EXT = 10
-#slitname = data_2D[10].data["maskdef_id"]
 
 # Get the total numnber of nspecs
 nspec = data_1D[0].header["NSPEC"]
@@ -91,8 +85,6 @@ for ii in range(nspec):
 	flux_2D_source[mask] = np.nan
 	ivar_2D_source[mask] = np.nan
 
-	#flux_2D_source = sigma_clip(flux_2D_source, sigma=np.std(flux_2D_source), axis=None).data
-
 	# Define Sizes For Formatting Purposes
 	shape_2D = flux_2D_source.shape[::-1]
 	nele = flux_2D_source.size
@@ -115,8 +107,6 @@ for ii in range(nspec):
 
 	# COUNTS NOT FLUX CALIBRATED SPECTRA WHICH CAN CAUSE SOME UNUSUAL YLIMS
 	lambda_1D = spec1d["OPT_WAVE"]
-	#flux_1d = spec1d["OPT_FLAM"]*1e-17 # erg/s/cm2/AA
-	#ivar_1d = spec1d["OPT_FLAM_IVAR"]/(1e-17)**2.
 	flux_1d = spec1d["OPT_COUNTS"]
 	ivar_1d = spec1d["OPT_COUNTS_IVAR"]
 
@@ -152,12 +142,5 @@ for ii in range(nspec):
 		file.write('RA {}\n'.format(data_1D[ii+1].header["RA"]))
 		file.write('DEC {}\n'.format(data_1D[ii+1].header["DEC"]))
 
-
-
-	#data = fits.open("spec2d.41099882085246065.000.2004.fits")
-	#data.info()
-	#print(data[1].header["TDIM1"])
-	#print(data[1].header["TFORM1"])
-	#exit()
 data_1D.close()
 data_2D.close()

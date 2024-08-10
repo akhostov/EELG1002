@@ -1,10 +1,9 @@
-import glob, os,sys,timeit
-import matplotlib
+import os
+import timeit
 import numpy as np
 from pyqsofit.PyQSOFit import QSOFit
 from astropy.io import fits
 from astropy.table import Table
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 

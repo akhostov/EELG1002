@@ -1,10 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import pyneb as pn
 from astropy.io import fits
 import pickle
-import pdb
-
 import util
 
 # Load in the Emission Line Fluxes
