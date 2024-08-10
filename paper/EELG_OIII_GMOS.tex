@@ -1,0 +1,1192 @@
+%% using aastex version 6.3
+\documentclass[twocolumn,tighten,times]{aastex631}
+
+
+\usepackage{graphicx}	% Including figure files
+\usepackage{color,soul}
+
+%%%% My Added Packages
+\usepackage{amsmath}	% Advanced maths commands
+\usepackage{amssymb}	% Extra maths symbols
+\usepackage{amsbsy}	% Extra maths symbols
+\usepackage{newtxtt,newtxmath}
+\usepackage[T1]{fontenc}
+\usepackage{catchfile}
+
+
+
+%% The default is a single spaced, 10 point font, single spaced article.
+%% There are 5 other style options available via an optional argument. They
+%% can be invoked like this:
+%%
+%% \documentclass[arguments]{aastex631}
+%% 
+%% where the layout options are:
+%%
+%%  twocolumn   : two text columns, 10 point font, single spaced article.
+%%                This is the most compact and represent the final published
+%%                derived PDF copy of the accepted manuscript from the publisher
+%%  manuscript  : one text column, 12 point font, double spaced article.
+%%  preprint    : one text column, 12 point font, single spaced article.  
+%%  preprint2   : two text columns, 12 point font, single spaced article.
+%%  modern      : a stylish, single text column, 12 point font, article with
+%% 		  wider left and right margins. This uses the Daniel
+%% 		  Foreman-Mackey and David Hogg design.
+%%  RNAAS       : Supresses an abstract. Originally for RNAAS manuscripts 
+%%                but now that abstracts are required this is obsolete for
+%%                AAS Journals. Authors might need it for other reasons. DO NOT
+%%                use \begin{abstract} and \end{abstract} with this style.
+%%
+%% Note that you can submit to the AAS Journals in any of these 6 styles.
+%%
+%% There are other optional arguments one can invoke to allow other stylistic
+%% actions. The available options are:
+%%
+%%   astrosymb    : Loads Astrosymb font and define \astrocommands. 
+%%   tighten      : Makes baselineskip slightly smaller, only works with 
+%%                  the twocolumn substyle.
+%%   times        : uses times font instead of the default
+%%   linenumbers  : turn on lineno package.
+%%   trackchanges : required to see the revision mark up and print its output
+%%   longauthor   : Do not use the more compressed footnote style (default) for 
+%%                  the author/collaboration/affiliations. Instead print all
+%%                  affiliation information after each name. Creates a much 
+%%                  longer author list but may be desirable for short 
+%%                  author papers.
+%% twocolappendix : make 2 column appendix.
+%%   anonymous    : Do not show the authors, affiliations and acknowledgments 
+%%                  for dual anonymous review.
+%%
+%% these can be used in any combination, e.g.
+%%
+%% \documentclass[twocolumn,linenumbers,trackchanges]{aastex631}
+%%
+%% AASTeX v6.* now includes \hyperref support. While we have built in specific
+%% defaults into the classfile you can manually override them with the
+%% \hypersetup command. For example,
+%%
+%% \hypersetup{linkcolor=red,citecolor=green,filecolor=cyan,urlcolor=magenta}
+%%
+%% will change the color of the internal links to red, the links to the
+%% bibliography to green, the file links to cyan, and the external links to
+%% magenta. Additional information on \hyperref options can be found here:
+%% https://www.tug.org/applications/hyperref/manual.html#x1-40003
+%%
+%% Note that in v6.3 "bookmarks" has been changed to "true" in hyperref
+%% to improve the accessibility of the compiled pdf file.
+%%
+%% If you want to create your own macros, you can do so
+%% using \newcommand. Your macros should appear before
+%% the \begin{document} command.
+	%%
+	\newcommand{\vdag}{(v)^\dagger}
+	\newcommand\aastex{AAS\TeX}
+	\newcommand\latex{La\TeX}
+	\newcommand{\lya}{Ly$\alpha$}	
+	\newcommand{\halpha}{H$\alpha$}
+	\newcommand{\hbeta}{H$\beta$}
+	\newcommand{\hgamma}{H$\gamma$}
+	\newcommand{\hdelta}{H$\delta$}
+	\newcommand{\nii}{[N{\sc ii}]}
+	\newcommand{\oii}{[O{\sc ii}]}
+	\newcommand{\oiii}{[O{\sc iii}]}
+	\newcommand{\neiii}{[Ne{\sc iii}]}
+	\newcommand{\celsius}{$^\circ$C}
+	\newcommand{\ms}{m s$^{-1}$}
+	\newcommand{\msol}{M$_\odot$}
+	\newcommand{\zsol}{$Z_\odot$}	
+	\newcommand{\pypeit}{\texttt{Pypeit}}
+	\newcommand{\pyqsofit}{\texttt{PyQSOFit}}
+	\newcommand{\pyneb}{\texttt{PyNeb}}
+	\newcommand{\xiion}{$\xi_{ion}$}
+	\newcommand{\xiionHtwo}{$\xi_{ion}^\textrm{H{\sc ii}}$}
+	\newcommand{\zzz}{{\color{red} ZZZ}}
+	
+	%% Reintroduced the \received and \accepted commands from AASTeX v5.2
+	%\received{March 1, 2021}
+	%\revised{April 1, 2021}
+	%\accepted{\today}
+	
+	%% Command to document which AAS Journal the manuscript was submitted to.
+	%% Adds "Submitted to " the argument.
+	%\submitjournal{PSJ}
+	
+	%% For manuscript that include authors in collaborations, AASTeX v6.31
+	%% builds on the \collaboration command to allow greater freedom to 
+	%% keep the traditional author+affiliation information but only show
+	%% subsets. The \collaboration command now must appear AFTER the group
+	%% of authors in the collaboration and it takes TWO arguments. The last
+	%% is still the collaboration identifier. The text given in this
+	%% argument is what will be shown in the manuscript. The first argument
+	%% is the number of author above the \collaboration command to show with
+	%% the collaboration text. If there are authors that are not part of any
+	%% collaboration the \nocollaboration command is used. This command takes
+	%% one argument which is also the number of authors above to show. A
+	%% dashed line is shown to indicate no collaboration. This example manuscript
+	%% shows how these commands work to display specific set of authors 
+	%% on the front page.
+	%%
+	%% For manuscript without any need to use \collaboration the 
+	%% \AuthorCollaborationLimit command from v6.2 can still be used to 
+	%% show a subset of authors.
+	%
+	%\AuthorCollaborationLimit=2
+	%
+	%% will only show Schwarz & Muench on the front page of the manuscript
+	%% (assuming the \collaboration and \nocollaboration commands are
+	%% commented out).
+	%%
+	%% Note that all of the author will be shown in the published article.
+	%% This feature is meant to be used prior to acceptance to make the
+	%% front end of a long author article more manageable. Please do not use
+	%% this functionality for manuscripts with less than 20 authors. Conversely,
+	%% please do use this when the number of authors exceeds 40.
+	%%
+	%% Use \allauthors at the manuscript end to show the full author list.
+	%% This command should only be used with \AuthorCollaborationLimit is used.
+	
+	%% The following command can be used to set the latex table counters.  It
+	%% is needed in this document because it uses a mix of latex tabular and
+	%% AASTeX deluxetables.  In general it should not be needed.
+	%\setcounter{table}{1}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%
+	%% The following section outlines numerous optional output that
+	%% can be displayed in the front matter or as running meta-data.
+	%%
+	%% If you wish, you may supply running head information, although
+	%% this information may be modified by the editorial offices.
+	%\shorttitle{AASTeX v6.3.1 Sample article}
+	%\shortauthors{Schwarz et al.}
+	%%
+	%% You can add a light gray and diagonal water-mark to the first page 
+	%% with this command:
+	%% \watermark{text}
+	%% where "text", e.g. DRAFT, is the text to appear.  If the text is 
+	%% long you can control the water-mark size with:
+	%% \setwatermarkfontsize{dimension}
+	%% where dimension is any recognized LaTeX dimension, e.g. pt, in, etc.
+	%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%\graphicspath{{./}{figures/}}
+	%% This is the end of the preamble.  Indicate the beginning of the
+	%% manuscript itself with \begin{document}.
+		
+		\begin{document}
+			
+			\title{EELGs in GMOS ZZZ}
+			
+			%% LaTeX will automatically break titles if they run longer than
+			%% one line. However, you may use \\ to force a line break if
+			%% you desire. In v6.31 you can include a footnote in the title.
+			
+			%% A significant change from earlier AASTEX versions is in the structure for 
+			%% calling author and affiliations. The change was necessary to implement 
+			%% auto-indexing of affiliations which prior was a manual process that could 
+			%% easily be tedious in large author manuscripts.
+			%%
+			%% The \author command is the same as before except it now takes an optional
+			%% argument which is the 16 digit ORCID. The syntax is:
+			%% \author[xxxx-xxxx-xxxx-xxxx]{Author Name}
+			%%
+			%% This will hyperlink the author name to the author's ORCID page. Note that
+			%% during compilation, LaTeX will do some limited checking of the format of
+			%% the ID to make sure it is valid. If the "orcid-ID.png" image file is 
+			%% present or in the LaTeX pathway, the OrcID icon will appear next to
+			%% the authors name.
+			%%
+			%% Use \affiliation for affiliation information. The old \affil is now aliased
+			%% to \affiliation. AASTeX v6.31 will automatically index these in the header.
+			%% When a duplicate is found its index will be the same as its previous entry.
+			%%
+			%% Note that \altaffilmark and \altaffiltext have been removed and thus 
+			%% can not be used to document secondary affiliations. If they are used latex
+			%% will issue a specific error message and quit. Please use multiple 
+			%% \affiliation calls for to document more than one affiliation.
+			%%
+			%% The new \altaffiliation can be used to indicate some secondary information
+			%% such as fellowships. This command produces a non-numeric footnote that is
+			%% set away from the numeric \affiliation footnotes.  NOTE that if an
+			%% \altaffiliation command is used it must come BEFORE the \affiliation call,
+			%% right after the \author command, in order to place the footnotes in
+			%% the proper location.
+			%%
+			%% Use \email to set provide email addresses. Each \email will appear on its
+			%% own line so you can put multiple email address in one \email call. A new
+			%% \correspondingauthor command is available in V6.31 to identify the
+			%% corresponding author of the manuscript. It is the author's responsibility
+			%% to make sure this name is also in the author list.
+			%%
+			%% While authors can be grouped inside the same \author and \affiliation
+			%% commands it is better to have a single author for each. This allows for
+			%% one to exploit all the new benefits and should make book-keeping easier.
+			%%
+			%% If done correctly the peer review system will be able to
+			%% automatically put the author and affiliation information from the manuscript
+			%% and save the corresponding author the trouble of entering it by hand.
+			
+			\correspondingauthor{Ali Ahmad Khostovan}
+			\email{akhostov@gmail.com}
+			
+			\author[0000-0002-0101-336X]{Ali Ahmad Khostovan}
+			\affiliation{School of Physics and Astronomy, Rochester Institute of Technology, 84 Lomb Memorial Drive, Rochester, NY 14623, USA}
+			\affiliation{Astrophysics Division, NASA Goddard Space Flight Center, Greenbelt, MD 20771, United States of America}
+			
+			\author[0000-0001-9187-3605]{Jeyhan Kartaltepe}
+			\affiliation{School of Physics and Astronomy, Rochester Institute of Technology, 84 Lomb Memorial Drive, Rochester, NY 14623, USA}
+			
+			\author{et al.}
+			
+			
+			
+			
+			%% Note that the \and command from previous versions of AASTeX is now
+			%% depreciated in this version as it is no longer necessary. AASTeX 
+			%% automatically takes care of all commas and "and"s between authors names.
+			
+			%% AASTeX 6.31 has the new \collaboration and \nocollaboration commands to
+			%% provide the collaboration status of a group of authors. These commands 
+			%% can be used either before or after the list of corresponding authors. The
+			%% argument for \collaboration is the collaboration identifier. Authors are
+			%% encouraged to surround collaboration identifiers with ()s. The 
+			%% \nocollaboration command takes no argument and exists to indicate that
+			%% the nearby authors are not part of surrounding collaborations.
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			%% Don't change these lines
+			%
+			%	
+			%	% Title of the paper, and the short title which is used in the headers.
+			%	% Keep the title short and informative.
+			%	\title[Short title, max. 45 characters]{COSMOS Legacy Archival Spectroscopic Survey (CLASS)?: }
+			%	
+			%	% The list of authors, and the short list which is used in the headers.
+			%	% If you need two or more lines of authors, add an extra line using \newauthor
+			%	\author[]{Ali~Ahmad~Khostovan}
+			%		\affiliation{School of Physics and Astronomy, Rochester Institute of Technology, 84 Lomb Memorial Drive, Rochester, NY 14623, USA}
+			%		\affiliation{Astrophysics Division, NASA Goddard Space Flight Center, Greenbelt, MD 20771, United States of America}
+			%	\author[]{Jeyhan~Kartaltepe}
+			%		\affiliation{School of Physics and Astronomy, Rochester Institute of Technology, 84 Lomb Memorial Drive, Rochester, NY 14623, USA}
+			%		
+			%%		Ali~Ahmad~Khostovan,$^{1,2}$\thanks{E-mail: akhostov@gmail.com}
+			%%		Jeyhan~Kartaltepe,$^{1}$,
+			%%		et al.
+			%%		\\
+			%%		% List of institutions
+			%%		$^{1}$School of Physics and Astronomy, Rochester Institute of Technology, 84 Lomb Memorial Drive, Rochester, NY 14623, USA\\
+			%%		$^{2}$Astrophysics Division, NASA Goddard Space Flight Center, Greenbelt, MD 20771, United States of America\\
+			%%	}
+		%	
+		%	%\label{firstpage}
+		%	%\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+		%	\maketitle
+		
+		% Abstract of the paper
+		\begin{abstract}
+			
+		\end{abstract}
+		
+		% Select between one and six entries from the list of approved keywords.
+		% Don't make up new ones.
+		\keywords{ZZZ}
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+		
+		\section{Introduction}
+		
+	
+		\section{Data}
+		\label{sec:data}
+		
+		The program GS-2017A-FT-9 (PI: Kiyoto Yabe) is a Fast Turnaround program  that was found within the Gemini Science Archive as part of a larger search of all spectroscopic data that were taken within the COSMOS field ({\color{red} Khostovan et al, in prep ZZZ}). The main focus of the program was to target extremely strong emission line galaxies at $z > 0.3$ that were identified by strong nebular excess in the Subaru/HSC broadband filters. These sources are expected to have strong \oiii~EW of $>2000$\AA~and are metal-poor with the possibility of \oiii4363\AA~detection. 
+		
+		\subsection{GMOS Spectroscopy}
+		
+		GS-2017A-FT-9 consisted of three masks with only one in COSMOS which is the focus of this paper. Observations were taken in 2017 April 23 on Gemini-South using the Gemini Multi-Object Spectrograph (GMOS) with the Hamamatsu Detector, R150 grating, and GG455 blocking filter. This allows for spectral coverage from {\color{red} ZZZ} to {\color{red} ZZZ} with the blocking filter ensuring second-order {\color{red} ZZZ}. Table \ref{table:obslog} shows the observation log identifying the frame ID as found in the Gemini Science Archive, along with the frame type, exposure time, and central wavelength (dispangle). Seeing conditions were reported as $0.9''$ throughout the observing time and humidity levels were somewhat elevated at $\sim 40\%$. A total of 3 individual exposures were pointed at GS2017AFT009-02 (mask design file) with the central wavelengths of each exposure being 8070\AA, 8200\AA, and 8330\AA, respectively, which when 2D Coadded would take into account the GMOS detector chip gaps allowing for continuous spectral coverage in the final 1D and 2D spectra. Each science exposure was 1200 seconds resulting in an on-source integration time of 3600 seconds. Slit widths were set to $0.5''$ for the science targets and box slits of $2''$ sizes were used for alignment stars. Calibration frames consisted of a single 5 second twilight flat taken in the beginning of the night, a single 1 second dome flat (GCALflat) for each dispangle, and a 20 second CuAr lamp exposure for wavelngth calibration per each dispangle. Bias frames were taken on 2017 April 29 (last night of the program) and consisted of 5 frames each 1 second in exposure time.
+
+		
+		The standard star LTT7379 (G0 star) that we use for flux calibration purposes was observed on 2017 April 29 with the same configuration and central wavelength of 8200\AA. Conditions were reported with seeing as $1.08''$ and humidity levels of $14\%$. Observations of the standard star were done using a $0.5''$ wide longslit for an on-source integration time of 10 seconds. Associated CuAr lamp and Dome Flat frames were observed in 1 second exposures with the same configuration and slit widths.
+		
+		
+		\begin{table}
+			\centering
+			\caption{Observation Log for GS-2017A-FT-9 and mask GS2017AFT009-03. Dispangle is the central wavelength of the observation. No bias frame was take on 2017 April 23 which is why we use the bias associated with this program that was taken on 2017 April 29.}
+			\label{table:obslog} 
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}  l l c c }
+				\hline
+				Frame ID            & Frame Type    & Exposure Time              & Dispangle   \\
+				                    &               & (sec)                      & (\AA)       \\ \hline
+				\multicolumn{3}{l}{{\bf Science \& Associated Calibrations}}            \\
+				S20170423S0039 & Science       & 1200.0                     & 8070       \\
+				S20170423S0038 & Science       & 1200.0                     & 8200       \\
+				S20170423S0041 & Science       & 1200.0                     & 8330       \\
+				S20170423S0113 & CuAr Lamp     & 20.0                       & 8070       \\
+				S20170423S0112 & CuAr Lamp     & 20.0                       & 8200       \\
+				S20170423S0114 & CuAr Lamp     & 20.0                       & 8330       \\
+				S20170423S0040 & Dome Flat     & 1.0                        & 8070       \\
+				S20170423S0037 & Dome Flat     & 1.0                        & 8200       \\
+				S20170423S0042 & Dome Flat     & 1.0                        & 8330       \\
+				S20170423S0014 & Twilight Flat & 5.0                        & 8070       \\
+				S20170423S0014 & Twilight Flat & 5.0                        & 8200       \\
+				S20170423S0014 & Twilight Flat & 5.0                        & 8330       \\
+				S20170429S0198 & Bias          & 1.0                        & --          \\
+				S20170429S0199 & Bias          & 1.0                        & --         \\
+				S20170429S0200 & Bias          & 1.0                        & --         \\
+				S20170429S0201 & Bias          & 1.0                        & --         \\
+				S20170429S0202 & Bias          & 1.0                        & --         \\
+				\hline
+				\multicolumn{3}{l}{\textbf{Standard Star \& Associated Calibrations}}  \\
+				S20170429S0169 & Standard      & 10.0                       & 8200       \\
+				S20170429S0180 & CuAr Lamp     & 1.0                        & 8200       \\
+				S20170429S0170 & Dome Flat     & 1.0                        & 8200       \\
+				S20170429S0243 & Bias          & 1.0                        & --          \\
+				S20170429S0244 & Bias          & 1.0                        & --          \\
+				S20170429S0245 & Bias          & 1.0                        & --         \\
+				S20170429S0246 & Bias          & 1.0                        & --          \\
+				S20170429S0247 & Bias          & 1.0                        & --          \\ \hline
+			\end{tabular*}
+		\end{table}
+		
+		\subsection{COSMOS2020 Classic}
+		
+		We match sources within the COSMOS GS-2017A-FT-9 mask to COSMOS2020 Classic \citep{Weaver2022} which has high-quality, multi-wavelength photometry enabling us to study spectral energy distributions of the targets. A total of 38 photometric bands are included from space-based missions (\textit{GALEX}, \textit{HST}, \textit{Spitzer}) and ground-based obseratories (CFHT/MegaCam, Subaru/SuprimeCam, Subaru/HyperSuprimeCam, Paranal/VISTA). {\color{red}{ZZZ}}
+		
+		\begin{table}
+			\centering
+			\caption{Multiwavelength photometry of EELG1002 used in our SED fitting. All data are drawn from the COSMOS2020 Classic catalog \citep{Weaver2022} except for the CFHT/WIRCam (from COSMOS2015; \citealt{Laigle2016}) and \textit{HST}/WFC3 F140W (see \S\ref{sec:WFC3}). Auto magnitudes are Both \textit{GALEX}/FUV and NUV photometry does exist for EELG1002 and is available in the COSMOS2020 catalog; however, it is affected by blending issues with 2 nearby sources. Same is true for \textit{Spitzer}/IRAC photometry. We ignore those measurements in our SED fitting process.}
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lccc}
+				\hline
+				Band & $\lambda_c$ & FWHM & Magnitude \\
+				          & (\AA) & (\AA) & (AB mag) \\
+				\hline
+%				\multicolumn{4}{l}{\textbf{GALEX}} \\
+%				\textit{FUV} & & & $26.25\pm0.34$ \\
+%				\textit{NUV} & & & $23.77\pm0.07$ \\
+				\multicolumn{4}{l}{\textbf{CFHT/MegaCam}} \\
+				$u^*$ & & & $23.93\pm0.01$\\	
+				$u$ & & & $23.84\pm0.01$\\			
+				\multicolumn{4}{l}{\textbf{Subaru/HyperSuprimeCam}} \\	
+			    $g$ & & & $23.84\pm0.01$\\			
+			    $r$ & & & $23.82\pm0.01$\\			
+			    $i$ & & & $23.82\pm0.01$\\		
+			    $z$ & & & $22.12\pm0.01$\\
+			    $y$ & & & $24.20\pm0.04$\\	
+				\multicolumn{4}{l}{\textbf{Subaru/SuprimeCam}} \\						
+				$B$ & & & $24.06\pm0.01$\\
+				$g^+$ & & & $23.87\pm0.01$\\
+				$V$ & & & $23.78\pm0.02$\\
+				$r^+$ & & & $23.84\pm0.02$\\
+				$i^+$ & & & $23.84\pm0.03$\\
+				$z^+$ & & & $22.56\pm0.02$\\
+				$z^{++}$ & & & $22.54\pm0.01$\\
+				$IB427$ & & & $23.93\pm0.04$\\
+				$IB464$ & & & $23.76\pm0.04$\\
+				$IA484$ & & & $23.99\pm0.04$\\
+				$IB505$ & & & $23.78\pm0.04$\\
+				$IA527$ & & & $23.93\pm0.03$\\
+				$IB574$ & & & $24.00\pm0.05$\\
+				$IA624$ & & & $23.76\pm0.04$\\
+				$IA679$ & & & $23.43\pm0.03$\\
+				$IB709$ & & & $23.68\pm0.03$\\
+				$IA738$ & & & $23.83\pm0.05$\\
+				$IA767$ & & & $24.38\pm0.08$\\
+				$IA827$ & & & $24.31\pm0.07$\\
+				$NB711$ & & & $23.26\pm0.06$\\
+				$NB816$ & & & $24.11\pm0.06$ \\
+				\multicolumn{4}{l}{\textbf{\textit{HST}}} \\
+				ACS/F814W & & & $23.37\pm0.01$\\
+				WFC3/F140W & & & $23.89\pm0.08$\\
+				\multicolumn{4}{l}{\textbf{CFHT/WIRCam}} \\
+				$H$ & & & $23.82\pm0.26$\\	
+				$K_s$ & & & $24.39\pm0.44$ \\				
+%				\multicolumn{4}{l}{\textbf{\textit{Spitzer}/IRAC}} \\
+%				Ch1 & & & \\	
+%				Ch2 & & & \\	
+%				Ch3 & & & \\
+%				Ch4 & & & \\																																			
+				\hline
+			\end{tabular*}
+		\end{table}
+		
+		\subsection{Ancillary F140W imaging}
+		\label{sec:WFC3}
+			
+		We also include ancillary \textit{HST}/WFC3 F140W imaging in our analysis found within MAST archive that includes our main source of interest. The ancillary imaging is part of \textit{HST} PID \#15115 (PI: John Silverman; \citet{Silverman2018}) that targeted a sample of $z \sim 1.5$ broad-line AGN to study supermassive black hole properties and how it relates to galaxy mass. Our main source of interest was in close proximity their main target (LID360) with the F140W image having an exposure time of 2400 seconds and $3\sigma$ depth of {\color{red} ZZZ}. 
+		
+
+		
+		
+		\textit{HST} Program 15115 -- PI: John Silverman
+		Focused on a $z \sim 1.5$ AGN
+		
+		Post in a cutout image 
+		%https://archive.stsci.edu/proposal_search.php?mission=hst&id=15115
+		
+		\section{Methodology}
+		\subsection{Data Reduction}
+	We reduce all raw spectroscopic data using \pypeit~(\citealt{Prochaska2020}; \texttt{v1.10dev} -- \texttt{gemini\_gmos\_mask\_ingestion} branch), a \texttt{python} semi-automated data reduction pipeline that supports many ground- and space-based facilities. The pipeline starts by reading setup files which list the location of the science/standard \& associated calibration frames. These setup files are made available via the linked github repository\footnote{ZZZ GITHUB LINK} for any one to reproduce the final spectra shown in this work. The first main script of the pipeline automatically does bias \& overscan subtraction, slit edge detections, flat fielding, removal of cosmic rays, wavelength calibrations, tilt corrections, sky subtraction, flexure corrections, and a first pass on object extraction using the optimal extraction \cite{Horne1986} and boxcar approach. 
+		
+		At the time that data was reduced, \pypeit~officially supported the use of slit mask designs for Keck instruments to identify slit edges and object positions along the sit. This was not officially supported for Gemini/GMOS but was available in the \texttt{gemini\_gmos\_mask\_ingestion} development branch which is why we reduced all our data using this specific branch. Currently this has now been merged into the official \pypeit~release versions.
+		
+		The second step in the pipeline is to 2D coadd all 3 reduced science frames of varying central wavelengths (accounts for GMOS chip gaps in final 2D coadded spectra). To account for potential drift during observations, we define the offsets by using the brightest object in the mask. \pypeit~models the spatial profile of the object and calculates the spatial shift in reference to the first science frame in our 2D coadd list. These were {\color{red} $0.05$ and $0.56$ pixels for science frames 38 and 41, respectively (check UNITS ZZZ)}. This is then stacked with weights corresponding to the S/N of our brightest object. 
+	
+		\subsubsection{Flux Calibration \& Slitloss Corrections}
+		
+		Flux calibration is done by first reducing our standard star LTT7379 (G0) using the same \pypeit~reduction as mentioned above. We then use the wavelength-calibrated, reduced spectra to measure the sensitivity curve that converts raw counts into physical flux units. \pypeit~does this by comparing the observed 1D GMOS spectra against archival spectra drawn, in this case, from ESO Optical and UV Spectrophotometric Standard Stars library. The observed resolving power ($R \sim 2100$) is also provided in the sensitivity function configuration file which \pypeit~uses to match the archived LTT7379 spectra to the same resolution as our GMOS observation. The final sensitivity curve is then applied to each of our science targets.
+		
+		An additional correction is also necessary to account for aperture/slitloss where a percentage of the total flux of an object falls outsides of the slit resulting in a reduction in observed flux that can not be corrected with the flux calibration approach listed above. As such, we apply a slitloss correction using \textit{HST} ACS/F814W imaging of our targets as a starting point taking advantage of the high spatial resolution ($\sim 0.03''$/pixel). We then smooth out the F814W image using a Gaussian Kernel set to a FWHM of $\sim ${\color{red} ZZZ} (seeing) to best match the ground-based conditions at the time of observations. The smoothed F814W image is then used to calculate the total flux of our main targets within a slit with $0.5''$ width. This is compared to the total F814W flux which gives a percentage of the total flux that fell within the slit. The remaining fraction of flux missing is then accounted for by simply multiplying the 1D flux-calibrated spectra $1+f$ with $f = 0.456$ being the ratio of missing-to-total flux.
+		
+
+		
+		
+		
+%		Aperture Correction:
+%			Step 1: Measure the amount of flux in ACS F814W that encompasses the full source (1'' aperture)
+%			Step 2: Smooth out the F814W image to seeing 
+%			Step 3: Calculate amount of flux within the slit region (0.5'' width) and compare with total flux of the object. Correction is missing flux
+%		
+%		
+%		The program consisted of 3 masks with only one in COSMOS (focus of this paper). 
+%		
+%		COSMOS observations were 2017/04/23 with individual exposures of 1200 seconds using GMOS-S, R150 grating, and GG455 blocking filter. 
+%		Seeing conditions were 0.9''  during time of observation. Humidity levels were about 40\%.
+%		Total of 3 individual exposures with each having a different dispangle (8070\AA, 8200\AA, and 8330\AA) which is to take into account chip gaps
+%		
+%		Observations of Standard Star for Flux Calibration LTT7379 on 2019-04-29 (seeing 1.08''; humidity 14\%; 4.5 m/s winds) with dispangle of 8200\AA.
+%	
+		\subsection{Spectroscopic Redshift \& Emission Line Profile Fitting}
+		\label{sec:specz_line_profile}
+		
+		We use \pyqsofit~\citep{Guo2018} for fitting the profiles of all emission lines observed in the GMOS spectra which requires an initial estimate of the spectroscopic redshift visually measured as $z = 0.8275$ using {\sc SpecPro} {\color{red} SPECPRO PAPER}. Each detected emission line is fit by a single Gaussian profile centered on the expected rest-frame wavelength assuming our initial redshift. The center of each Gaussian is allowed to vary up to $\sim 2.7$\AA~allowing for variations in the final measured spectroscopic redshift. Table \ref{table:line_fits} shows the best-fit redshifts about the line centers consistent with $z = 0.8275^{+ZZZ}_{-ZZZ}$.
+		
+		Line widths of each emission line is set to be constant among other associated lines within the atomic specie (e.g., Balmer line FWHMs are the same from \hbeta~to H$\eta$). This allows us to deblend lines from different atomic species that are in close wavelength proximity to one another (e.g., \neiii3968\AA~and H$\epsilon$ separated by 2.6\AA; rest-frame) and are not fully resolved given the GMOS wavelength resolution limit. The \oii3726,3729\AA~doublet is also not resolved for which we fit two Gaussians assuming the FWHM from \oiii5007\AA~to deblend the doublet which is important to measuring electron density. Line fluxes are measured by integrating the best-fit Gaussian profiles.
+		
+		Uncertainty measurements in the emission line profiles are measured via Markov Chain Monte Carlo (MCMC) where \pyqsofit~samples the error spectrum a total of 1000 times and perturbs the 1D spectra accordingly in each realization. We ignore the first 200 samples in the MCMC (20\% burn-in)  which is done to ensure that starting points do not affect the underlying probability distribution functions and uncertainty measurements. Overall, each emission line detected has an associated probability distribution that will be used throughout this work to measure line ratios and associated uncertainties. 
+		
+		
+		
+
+	
+		\subsection{Measuring ISM Properties}
+		In this section, we will describe how we use nebular emission line ratios in conjunction with \verb|PyNeb| \citep{Luridiana2015} to measure key ISM properties. Below are the main key definitions and conventions that we adopt in defining key line ratios:
+		\begin{itemize}
+			\item O3HB: $\textrm{\oiii}5007\textrm{\AA}/\textrm{\hbeta}$
+			\item O32: $ \textrm{\oiii}5007\textrm{\AA}/\textrm{\oii}3726,3729\textrm{\AA}$
+			\item Ne3O2: $ \textrm{\neiii}3869\textrm{\AA}/\textrm{\oii}3726,3729\textrm{\AA}$
+			\item Ne3O3: $ \textrm{\neiii}3869\textrm{\AA}/\textrm{\oiii}5007\textrm{\AA}$
+			\item $R2$:  $\textrm{\oii}/\textrm{\hbeta}$
+			\item $R3$:  $(\textrm{\oiii}5007\textrm{\AA} + \textrm{\oiii}4959\textrm{\AA})/\textrm{\hbeta}$			
+			\item $R23$: $(\textrm{\oiii}5007\textrm{\AA} + \textrm{\oiii}4959\textrm{\AA} + \textrm{\oii})/\textrm{\hbeta}$
+			\
+		\end{itemize}		
+				
+		\subsubsection{Dust Extinction}
+		
+		Balmer decrements (e.g., \halpha/\hbeta) trace the level of dust extinction within H{\sc ii} regions and are used to dust-correct observed line fluxes when coupled with an assumed dust attenuation curve. The reddening is measured by comparing the observed-to-intrinsic Balmer ratios as shown below:
+		\begin{eqnarray}
+			E(B-V) = \frac{2.5}{k(\textrm{\hgamma}) - k(\textrm{\hbeta})} \log_{10} \Bigg(\frac{ [\textrm{\hbeta}/\textrm{\hgamma}]_\textrm{\scriptsize obs} }{[\textrm{\hbeta}/\textrm{\hgamma}]_\textrm{\scriptsize int}}\Bigg)
+		\end{eqnarray}
+		coupled with the dust attenuation curve evaluated at the wavelength of each Balmer line used, $k(\lambda)$, which we assume the \citet{Calzetti2000} attenuation curve. Amount of dust extinction is then measured as $A_\lambda = k(\lambda) E(B-V)$ at any given wavelength. We use both the \hbeta/\hgamma~and \hbeta/\hdelta~ratios observed in the GMOS spectra to measure $E(B-V)$ and $A_\lambda$ and use \pyneb~to determine the intrinsic line ratios, \hbeta/\hgamma~$ = 2.11$ and \hbeta/\hdelta~$ = 3.82$, assuming case B recombination, $T_e = 15000$ K (electron temperature), and $n_e = 100$ cm$^{-3}$ (electron density). Varying these assumptions marginally changes the intrinsic ratios (e.g., \hbeta/\hdelta~$ = 3.81$ for $n_e = 1000$ cm$^{-3}$ and $T_e = 15000$ K) and does not affect our dust extinction measurements. Uncertainties in $E(B-V)$ are measured via each MCMC realization used in the emission line profile fitting (see \S\ref{sec:specz_line_profile}).
+		
+		
+		%are the reddening curves evaluated at a given wavelength (e.g., \hgamma) and the dust extinction in magnitude measured as $A_\lambda = k(\lambda) E(B-V)$ at any given wavelength. We assume \cite{Calzetti2000} dust attenuation law and use each MCMC realization in the emission line profile fitting to measure the best-fit $A_\textrm{\halpha}$ and its associated uncertainties. We find EELG1002 to be virtually dust-free with $A_\textrm{\halpha} = $ ZZZ {\color{red} FILL THIS PART LATER}. As such, no dust correction is applied to any of the emission lines and ratios listed below.
+		
+		
+		% \halpha/\hbeta~is the main Balmer decrement used; however, GMOS wavelength coverage for EELG1002 does not extend red enough to observe \halpha. Figure \ref{fig:spectra} does show multiple Balmer line detections such that we use \hbeta/\hgamma~and \hbeta/\hdelta~to measure the level of dust extinction. We use \pyneb~to determine the intrinsic line ratios as \hbeta/\hgamma~$ = 2.11$ and \hbeta/\hdelta~$ = 3.82$ assuming case B recombination, $T_e = 15000$ K (electron temperature), and $n_e = 100$ cm$^{-3}$ (electron density). Varying these assumptions marginally changes the intrinsic ratios (e.g., \hbeta/\hdelta~$ = 3.81$ for $n_e = 1000$ cm$^{-3}$ and $T_e = 15000$ K) and does not affect our dust extinction measurements. 
+	
+		\subsubsection{Electron Temperature \& Density}
+		\label{sec:ne_and_te}
+		The electron temperature is measured using a two-zone H{\sc ii} region model due to \oiii~(doubly ionized oxygen) tracing the (high ionizing) zone closest to the ionizing source and \oii~(single ionized oxygen) being able to trace the outer (low ionizing) zone of an H{\sc ii} region. Electron temperature traced via \oiii~, $T_e(\rm{O}^{++})$, is measured using the auroral \oiii4363/\oiii5007\AA~line ratio at a fixed $n_e = 1000$ cm$^{-3}$ and the \texttt{getTemDen} function in \pyneb. The fixed $n_e$ is done arbitrarily as $T_e$ is essentially independent of electron density up to $\sim 10^4$ cm$^{-3}$ (which is not expected for the ISMs of galaxy populations) but is an input in \texttt{getTemDen}.% hence the reason of assuming a fixed density. 
+		
+		Tracing the low ionizing zone electron temperature requires O$^+$ auroral lines (e.g., \oii7322,7332\AA) which is outside our GMOS coverage. Instead, we estimate O$^+$ electron temperature using the \citet{Izotov2006} calibration:
+		\begin{eqnarray}
+			\centering
+			t_e(\textrm{O}^+) = t_e(\textrm{O}^{++}) \times (2.065 - 0.498 t_e(\textrm{O}^{++}))  - 0.577
+		\end{eqnarray}
+		where $T_e (\textrm{O}^+) = t_e(\textrm{O}^+) \times 10^4$ K and $T_e (\textrm{O}^{++}) = t_e(\textrm{O}^{++}) \times 10^4$ K. We note that this is the low metallicity calibration which we later show in this paper to be appropriate for EELG1002.  % with the calibration drawn from photoionization models and found to be consistent with observations \citep{Izotov2006}.
+		
+		We then measure the electron density using the \oii3726,3729\AA~doublet which is sensitive to $T_e$. For example, $n_e$ can vary from $\sim 500$ cm$^{-3}$ to $\sim 640$ cm$^{-3}$ by increasing $T_e$ from 10000 K to 20000 K assuming the \oii~doublet ratio is of order unity. Therefore, it is crucial that we first measure the electron temperature as described above and then measure electron density. We use \pyneb~\texttt{getTemDen} function with the estimated $T_e(\rm{O}^{+})$ and the observed \oii3729/\oii3726\AA~ratio.
+		
+		
+%		Both the electron temperature ($T_e$) and density ($n_e$) are key properties that regulate the strength of collisionally excited lines and o. We use the \oiii4363/\oiii5007\AA~line ratio 
+%		
+%		
+%		Electron temperature for O$^{++}$ is measured using \oiii4363/\oiii5007\AA~line ratio. The O$^{+}$ temperature is measured using the Campbell 1986  calibration. We first measure electron temperatures using \pyneb~and an assumed $n_e = 1000$ cm$^{-3}$. Note that $T_e$ measurements using \oiii4363/\oiii5007\AA~is insensitive to electron density until {\color{red} ZZZ} which is not expected in star-forming galaxy populations. After $T_e$  is measured, we use the \oii3726,3729\AA~doublet ratio in \pyneb~with the measured $T_e$ to measure $n_e$. 
+%		
+%		
+%		
+%		All assumptions on ISM property measurements are based on the assumption of electron temperature and electron density. However, many diagnostics used can be sensitive to both assumptions making it crucial that both are well-constrained.
+%		
+%		We start by measuring $T_e$ using the \oiii4363\AA/\oiii4959,5007\AA~ratio. This is independent of electron density up to $10^4$ cm$^{-3}$. \oii3729,3726\AA~doublet ratio is sensitive to assumption of $T_e$. (Give example of what electron density would be given a range of temperatures at fixed ratio).
+		
+		\subsubsection{Gas-Phase Abundance}
+		
+		Abundances associated with Oxygen and Neon are measured using \pyneb~and its \texttt{getIonAbundance} feature assuming the electron temperatures in both the high and low ionizing zones. Our approach also assumes that the electron density as measured from \oii~is constant throughout the ionizing zones. Below we describe how the ionic and total abundances are measured. %that are also highlighted in Table {\color{red} ZZZ}.
+		
+		Oxygen abundance is measured with the formalism:
+		\begin{eqnarray}
+			\frac{\textrm{O}}{\textrm{H}} \approx \frac{\textrm{O}^+}{\textrm{H}}  + \frac{\textrm{O}^{++}}{\textrm{H}} 
+			\label{eqn:oxygen_abundance}
+		\end{eqnarray}
+		where additional abundance contribution from O$^{+++}$ is not expected to contribute significantly to the overall O/H abundance. Specifically, to have O$^{+++}$ requires $54.9$ eV and, therefore, we would also expect Helium recombination line detections within the GMOS spectra (e.g., He{\sc i}4686\AA) for which we find none. \cite{Berg2018} investigated $z \sim 2$ lensed source with O{\sc iv} detection and found that O$^{+++}/$H contribution only accounted for a $\sim 5$\% increase ($+0.02$ dex) in the total O/H abundance. We therefore continue measuring O/H abundance as defined in Equation \ref{eqn:oxygen_abundance}. The $\textrm{O}^{++}/\textrm{H}$ abundance is measured using $R3$ with $n_e$ and $T_e(\rm{O}^{++})$ measured in \S\ref{sec:ne_and_te} and $\textrm{O}^{+}/\textrm{H}$ is measured using $R2$, $n_e$, and $T_e(\rm{O}^{+})$. %Note that assuming $T_e(\rm{O}^{+})$ is equivalent to $T_e(\rm{O}^{++})$ does not significantly change $\textrm{O}^{+}/\textrm{H}$ {\color{red} BY HOW MUCH? ZZZ}.
+
+		Figure \ref{fig:spectra} also shows clear detections of both the \neiii3869\AA~and \neiii3968\AA~lines, although the latter is affected by H$\epsilon$ contribution. Therefore, we can also investigate the Ne/H abundance, as well as Ne/O abundance ratios. We define the Neon-to-Hydrogen abundance as:
+			\begin{eqnarray}
+				\frac{\textrm{Ne}}{\textrm{H}} \approx \frac{\textrm{Ne}^{++}}{\textrm{H}} \times \textrm{ICF}
+			\end{eqnarray}	
+		where the ionization contribution fraction (ICF) traces the relative contribution from other Neon ionization states (e.g., Ne$^+$). We adopt the ICF formalism of \citet{Izotov2006}: 
+		\begin{equation}
+				\textrm{ICF} = 1.365 -0.385\frac{\textrm{O}^{++}}{\textrm{O}^{+} + \textrm{O}^{++}} + 0.022\frac{\textrm{O}^{+} + \textrm{O}^{++}}{\textrm{O}^{++}}
+		\end{equation}		
+		which assumes a low metallicity system (consistent with EELG1002; see \S\zzz). The Ne$^{++}$/H abundance is measured using the \neiii3869\AA/\hbeta~ratio along with our measured $n_e$ and $T_e(\rm{O}^{++})$ as \neiii~requires 41 eV comparable to the 35 eV needed for \oiii~emission. %However, \neiii~also traces a wider ionization zone compared to \oiii~given that it has a critical density an order-of-magnitude greater than \oiii~{\color{red} CITATION ZZZ}.
+	
+	
+%		Note: Electron Temperature measurement is independent of electron density up to $\sim 10^4$ cm$^{-3}$. Therefore, to use PyNeb, we need to first get electron temperature. Then we can get Electron Density.
+%		
+%		Rebecca Larson's paper
+%		
+%		\citep{Asplund2021} $8.69\pm0.04$
+
+		\subsubsection{Ionization Parameter}
+		
+		The ionization parameter is defined as:
+		\begin{equation}
+			U = \frac{Q_{H^0}}{4 \pi  R_S^2 c n_H}
+		\end{equation}
+		where $Q_H^0$ is the number of hydrogen ionizing photons per unit time, $R_S$ is the Str\"{o}mgen radius, $c$ is the speed of light, and $n_H$ is the hydrogen number density. Essentially it traces how many ionizing photons are produced within an H{\sc ii} region in comparison to the present number of hydrogen atoms. The higher the ionization parameter would signify more ionizing photons and/or less hydrogen atoms that can be interpreted as energetic ISM conditions caused by: harder ionizing radiation field (\zzz), electron density (\zzz), higher SFR (\zzz), lower metallicities (\zzz), and higher SFR surface densities (e.g., \zzz~NAVEEN). 
+		
+		The classical diagnostic used to trace $U$ is the O32 ratio given that O$^{++}$ requires 35 eV compared to O$^{+}$ which requires 13.6 eV such that it is sensitive to the ionization state of gas within the H{\sc ii} region (\zzz). Another diagnostic typically used is the Ne3O2 ratio where Ne$^{++}$ requires $\sim 41$ eV and is insensitive to dust attenuation given the $\sim 140$\AA~separation between the two lines \citep{Levesque2014}. However, such diagnostics are limited in range of $U$ and gas-phase metallicities \citep{Kewley2019}. Therefore, we measure ionization parameters using three methods that include photoionization modeling with $U$ as an input:  {\sc HCM} \citep{PerezMontero2014}, {\sc Bagpipes} \citep{Carnall2018}, and {\sc Cigale} \citep{Boquien2019}.
+		
+		We use {\sc HCM} v5.3 (latest version) which uses {\sc Cloudy} v17 (\zzz Ferland2017) with a fixed $n_e = 100$ cm$^{-3}$ to model the nebular gas. This is coupled with {\sc BPASS} v2.1 (\zzz Eldrige2017) that assumes an instantaneous burst of star formation with an age of 1 Myr, IMF with slope $-1.35$, upper mass limit of $300$ \msol, and includes binary stellar populations. The combination of both forms a grid of modeled line ratios (e.g., \oiii/\oii) as a function of O/H, N/O, and $U$. The observed line fluxes and ratio are then compared to the modeled grid and used to measure the best-fit gas-phase abundances and $U$. We refer the reader to \S\ref{sec:cigale} and \ref{sec:bagpipes} for details on how {\sc Cigale} and {\sc Bagpipes}, respectively, is used to measure $U$ via simultaneously fitting the observed GMOS 1D spectra and multi-wavelength photometry.
+	
+		\subsection{Spectral Energy Distribution Fitting}
+		
+		In this section, we describe how spectrophotometric spectral energy distribution (SED) fitting was done using two main codes: {\sc Cigale} and {\sc Bagpipes} where GMOS spectra and all ancillary multi-wavelength photometry described in \S\ref{sec:data} are fitted simultaneously. We do note that GALEX/FUV and NUV and \textit{Spitzer}/IRAC photometry are not included in the SED fitting process given contamination due to blending issues by 2 nearby sources (FIG\zzz). Lastly, all photometry used in the SED fitting process have an additional 10\% uncertainity included in quadrature to account for underestimated errors.
+		
+		\subsubsection{{\sc Cigale}}
+		\label{sec:cigale}
+		
+	
+		
+		We use the latest version of \texttt{Cigale} \citep{Boquien2019,Yang2022}, a template grid-based SED fitting code, and provide a brief overview of assumptions made in the SED fitting process which are highlighted in Table \ref{table:cigale}. Setup files are also made available within the {\sc github} repository \footnote{HTML LINK \zzz}. Briefly, we assume a \cite{Bruzual2003} stellar population synthesis model coupled with a \cite{Chabrier2003} IMF and consider stellar metallicities within the range of 0.005 and 1 $Z_\odot$. Nebular emission is modeled using the \cite{Inoue2011} templates which were generated using {\sc Cloudy} v13.01 (\zzz Ferland1998,2013) with $U$ considered in the range of $-2.6$ to $-1.0$. Gas-phase metallicity is fixed given \zzz. {\sc Cigale} only allows for three different fixed values for $n_e$ for which we assume $100$ and $1000$ cm$^{-3}$ given $n_e = $ \zzz~as measured in \S\ref{sec:ne_and_te}. Given that GALEX photometry is contaminated by 2 nearby sources, we have no constraint on potential LyC emission and therefore keep both $f_{esc} $ (LyC escape fraction) and $f_{dust}$ (fraction of LyC photons absorbed by dust) fixed to $0$\%. All emission lines in the model have fixed FWHM to $370$ km s$^{-1}$, consistent with the observed FWHM of each line (\zzz TABLE). Dust attenuation in both stellar and nebular reddening are evaluated in the range of $E(B - V) = 0.0 - 0.15$ mag with a stellar-nebular reddening ratio order unity; however, we note that Balmer Decrements suggest no dust attenuation in EELG1002 at least within H{\sc ii} regions.
+
+		We assume a delayed-$\tau$ star formation history with a burst described as 
+		\begin{eqnarray}
+			\textrm{SFR}(t) \propto  t/\tau_{main}^2 \exp^{-t/\tau_{main}} + \exp^{-(t-t_0)/\tau_{burst}}
+			%\textrm{SFR}_d \propto t/\tau_{main}^2 \exp^{-t/\tau_{main}}\\
+			%\textrm{SFR}_b \propto \exp^{-(t-t_0)/\tau_{burst}}
+		\end{eqnarray}
+where SFR$(t)$ is the star-formation rate at a given time starting at formation time, $\tau_{main}$ and $\tau_{burst}$ are the e-folding times of the old and young stellar populations, respectively, where $t_0$ describes the onset of bursty star formation activity. For the main stellar population (first term), we consider $\tau_{main} \sim 50$ Myr to $7.5$ Gyr and ages of $50$ Myr to $6.6$ Gyr. The upper range for main population age is defined as the age of the Universe at $z_{spec} = $ \zzz~and $\tau_{main} > 6.6$ Gyr would describe a continuously rising SFH. The late burst is considered with $\tau_{burst} \sim 1$ to 100 Myr and ages of $\sim 1$ to 50 Myr. The total mass contribution of the late burst is defined by $f_{burst}$ which we consider between 0 to 99\%. 
+
+	
+	
+	 
+%		\begin{eqnarray}
+%			
+%			\textrm{SFR}_{d}(t) \propto t/\tau_{main}^2 e^{-t/\tau_{main}}
+%		\end{eqnarray}
+%		where SFR$_d(t)$ is the star-formation rate at a given time starting at formation time, $\tau_{main}$ is the e-folding time of the older stellar population. A bursty component is also included in the SFH modeling described as an exponential SFH:
+%		\begin{eqnarray}
+%			\textrm{SFR}_{b}(t) \propto e^{-(t-t_0)/\tau_{burst}}
+%		\end{eqnarray}		
+%		
+				
+%		Table \ref{table:cigale}
+%		\citep{Boquien2019}
+%		\citep{Yang2022} -- AGN
+		
+		
+%		Star Formation History is assumed to be a delayed-$\tau$ model with a single burst of star formation of the form:
+%		\begin{eqnarray}
+%			\rm{SFR}(t) = SFR_{delayed}(t) + SFR_{burst}(t)\\
+%			SFR_{delayed} \propto t/\tau_{main}^2 \exp^{-t/\tau_{main}}\\
+%			SFR_{burst} \propto \exp^{-(t-t_0)/\tau_{burst}}
+%		\end{eqnarray}
+%		where $t_0$ is the onset of star-formation activity. 
+		
+%		Note that Noll2009 and Malek2018 are finding that in cases of bursts, the old population is not well constrained by cigale. 
+%		
+%		Probably the reason for the poor tau measurements and main age measurement is that the burst is very recent so tauburst is not well constrained either. The age of the late burst is 5 Myr (test lower values ZZZ) whjch would suggest this galaxy is just recently undergoing a burst in SF activity.
+
+		\subsubsection{Bagpipes}
+		\label{sec:bagpipes}
+	
+		{\sc Bagpipes} is a SED suite that allows for the simultaneous fitting of 1D spectra and multi-wavelength photometry as well as parametric and nonparametric star formation history (SFH) modeling. It uses bayesian inference along with nested sampling of the parameter space using {\sc MultiNest} to measure best-fit properties. Table \zzz~highlights the range in parameter space we allow for {\sc Bagpipes} to explore and briefly describe them here. We use the BPASS v2.2.1 SED templates \citep{Stanway2018} which includes the contribution of binary stellar populations. This assumes a broken power law IMF with a $0.1 - 0.5$ \msol~slope of $-1.35$ followed by a steeper IMF slope of $-2.35$ up to an upper mass limit of $300$ \msol. The broken power law shape allows for an increased contribution of older, low-mass stellar populations compared to the \cite{Chabrier2003} IMF which exponentially cuts off at $0.1$ to $1$ \msol. We assume metallicities from 0.0001 to 5 \zsol~that is sampled using a logarithmic prior. The \cite{Calzetti2000} dust attenuation curve is assumed with $A_V$ between 0 to 10 mag and the ratio of nebular-to-stellar reddening set to unity. Templates for the nebular component is recomputed using the BPASS stellar grid and {\sc Cloudy v17.03} to cover the ionization parameter range of $\log_{10} U = -4$ to $-1$ in order to consider cases of extreme energetic ISM conditions. 
+		
+		We use the \cite{Leja2019} continuity non-parametric SFH implementation in {\sc Bagpipes} to better understand how past star-formation activity could have occurred in EELG1002 based on the available spectrophotometric data. The time bins assumed in the SFH modeling starts with short duration and increases with each successive bin: 0, 1.5, 3, 10, 30, 100, 300, 1000, 3000, and 6000 Myr. The shorter time scales are to gauge how rapidly the recent burst of star formation formed and is constrained primarily by the multiple strong Balmer line detections that directly trace instantaneous star formation activity. The longer timescales are primarily constrained by photometry that well constrains the stellar continuum and is sensitive to past star-formation activity that occurred at older lookback times. 
+%		Compared to the \cite{Chabrier2003} IMF, this broken power law IMF
+%		
+%		we use Bagpipes with BPASS 2.2.1 model IMF of slope $-1.35$ and upper mass limit of $300$ \msol.
+%		
+%		regenerated cloudy models to include upper $U$
+%		
+%		BPASS models included
+%		
+
+	
+		
+	\subsection{Measuring Equivalent Width}
+	
+	Equivalent width (EW) is measured as the ratio between emission line flux and its associated continuum flux density. We measure the emission line flux using the best-fit emission line profile as described in \S\ref{sec:specz_line_profile}. The continuum flux density is drawn from the best-fit SEDs as measured by both {\sc Cigale} and {\sc Bagpipes}. Although a stellar-nebular reddening ratio of order unity is assumed in the SED fitting process, we note that Balmer Decrements suggest an $E(B-V)_{nebular} \sim 0$ mag while both {\sc Cigale} and {\sc Bagpipes} suggest slight stellar reddening. To account for this attenuation difference, we only correct the best-fit observed continuum flux densities using the {\sc Cigale}-measured $E(B - V)_{stellar}$ along with a \cite{Calzetti2000} dust attenuation curve and compute the equivalent widths for each line. We do not make any dust correction for the nebular emission given that our Balmer Decrement measurements show $E(B - V)_{nebular} \sim 0$ mag.
+	
+	\subsection{Ionizing Photon Production Efficiency}
+	
+	The ionizing photon production efficiency, \xiion, traces how well a galaxy can produce ionizing photons (e.g., $> 13.6$ eV that can ionize H{\sc i}) and is defined as:
+	\begin{eqnarray}
+		\textrm{\xiion} = \frac{N(H^0)}{L_{UV}^{int}}
+	\end{eqnarray}
+	where $N(H^0)$ represents the production rate of hydrogen ionizing photons and $L_{UV}^{int}$ is the intrinsic, rest-frame, dust-corrected $1500$\AA~continuum luminosity. The definition of $\xi_{ion}$ is slightly varied where we refer the reader to \S3.2 of \cite{Chevallard2018} for a detailed discussion. Some studies use the monochromatic UV luminosity attributed only to the stellar continuum (typically cited as $\xi_{ion}^\star$) and ignores the emission and absorption caused by neutral and ionized gas. Other studies incorporate the nebular and stellar continuum in measuring the $1500$\AA~monochromatic luminosity ($L_{UV}^\textrm{H{\sc ii}}$) and measure the ionizing photon production efficiency (\xiionHtwo). We adopt this definition throughout this paper using \xiion~as our defined notation for the nebular + stellar continuum contributions.
+	
+	We use the best-fit combined stellar and nebular continuum fits from {\sc Cigale} to measure $L_{UV}$ using a tophat filter centered at $1500$\AA~with a width of 100\AA. We use the \cite{Leitherer1995} calibration:
+	\begin{eqnarray}
+		N(H^0) = 2.1\times10^{12} L_{int}(\textrm{H}\beta)~\textrm{[s$^{-1}$]}
+	\end{eqnarray}
+	to measure the ionizing photon production rate, $N(H^0)$, with dust-corrected \hbeta~luminosity from our observed GMOS spectra. Given that Balmer Decrements show $E(B-V)_{nebular} \sim 0$ mag, we do not apply any dust correction to the \hbeta~luminosity. However, our best-fit {\sc Cigale} measurements find $E(B-V)_{stellar} \sim$ \zzz~mag such that we need to apply a dust-correction to our $L_{UV}$ measurement. This is done by assuming a \cite{Calzetti2000} dust attenuation curve with $A_{1500\textrm{\AA}} = $ \zzz~mag. 
+		
+	
+	
+%		\subsection{Star Formation Histories}
+%		
+%			Main points here: Assumed SFH can affect the resulting stellar mass and other SED-derived measurements and is also dependent on the photometric wavelength coverage where $>1$ \micron~(rest-frame) is needed to better constrain stellar mass and older stellar populations. We have this based on COSMOS2020, \textit{CFHT}/Wircam, \textit{HST}/WFC3, and \textit{Spitzer}/IRAC photometry. 
+%	
+%			\subsubsection{Parametric}
+%		
+%				Assumed delayed-$\tau$ and delayed-$\tau$ with burst component
+%				Assumed double power-law in BAGPIPES as well
+%			
+%			\subsubsection{Nonparametric}
+%				Used BAGPIPES assuming continuity (Leja19). Explain how this works
+%			
+%			
+%			\subsubsection{Illustris-TNG Star Formation Histories}
+%	
+%				Find analogs of low-mass, high SFR systems reminiscent of this source. Use SFH from these sources
+%				Note that one thing that is common is the gas masses are high!
+%				TNG300-1:
+%				Snapshot 54: 496683 (recently formed as only one snapshot back)
+%				Snapshot 54: 1092570 (recently formed as only one snapshot back)				
+%				
+%				TNG300-2:
+%				Snapshot 55: 443206 (formation time as at $z \sim 6$ and undergone several mergers
+%				Snapshot 55: 420014 (formation time as at $z \sim 6$ and undergone several mergers
+%				Snapshot 55: 230485 (formation time as at $z \sim 6$ and undergone 1 merger)
+%				Snapshot 55: 195599 (formation time as at $z \sim 6$ and undergone several mergers
+%				Snapshot 55: 112713 (recently formed)
+%				Snapshot 54: 361968 (several mergers) 
+%				Snapshot 54: 394878 (several mergers; TRY THIS)
+%				Snapshot 54: 401578 (several mergers; TRY THIS)				
+%				
+%				Search Criteria (Snapshots 53-55; mass stars >= 0.001 and <= 0.02; sfr >= 3; and prog snap>=1)
+				
+		\section{Results}
+		
+%		\begin{figure*}
+%			\centering
+%			\includegraphics[width=\textwidth]{figures/1002_spectra.png}
+%			\caption{ZZZ}
+%			\label{fig:spectra}
+%		\end{figure*}
+		
+%\begin{table}
+%		\centering
+%		\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}llc}
+%			\hline
+%			Line Ratio & ID & Measurement \\
+%			\hline
+%			$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & O3HB & \\
+%			$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & O32 & \\
+%			$\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $R2$ & \\
+%			$\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $R3$ & \\
+%			$R2$ +  $R3$ & $R23$ & \\
+%			%$(\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}  + \textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}})/\textrm{\hbeta}$ & $R23$ & \\
+%			$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & Ne3O2 & \\
+%			$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oiii}5007\textrm{\AA}$ & Ne3O3 & \\
+%			\hbeta/\hgamma & & \\
+%			\hbeta/\hdelta & & \\
+%			\hbeta/H$\epsilon$ & & \\
+%			\hline
+%		\end{tabular*}
+%	\end{table}
+%		
+%		
+		
+	
+		\CatchFileDef{\ISMandLineTable}{tables/ISM_and_Line_properties.table}{}
+		\begin{table}
+		\centering
+		{\renewcommand{\arraystretch}{1.1}
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lc}
+				\hline
+				ISM Property & Measurement \\
+				\hline
+				\ISMandLineTable
+				%\input{tables/ISM_and_Line_properties.table}
+				\hline
+				\end{tabular*}
+			}
+		\end{table}
+
+		
+		
+%		PLOTS NEEDED:
+%		1) Plot showing 1D spectra with fits for each line separately with associated 2D spectra \\
+%		2) Plot of best-fit SED \\
+%		\indent a) With prospector we want to include the SFH plot as well for nonparametric\\
+%		
+%		Todo:\\
+%		Finalize the SED fitting \\
+%		Measurements of EW\\
+		
+		
+		\subsection{Record Breaking Low Mass, Compact, High EW Emitter at $z \sim 0.8$}
+		
+		Main points:
+				EW of this source is \zzz
+				What is the stellar mass.
+				What is the effective radius.
+				figure showing the EW -- stellar mass anticorrelation
+				highlight that this source is quite extreme compared to typical \oiii~emitters at the same redshift and mass
+				consistent with low-$z$ LyC leakers
+				even higher than EIGER measurements
+				compared to other high EW emitters spectra doesn't have any evidence for Helium emission as expected in other sources (papers?)
+		
+		\subsection{No Evidence of AGN component}
+		
+		Main points:
+				Spectra does not show broad emission line component
+				Lack of strong ionization lines such as NeV
+				No Chandra and XMM detections
+				Maybe \textit{spitzer} but source is convolved with nearby objects
+				
+				MEx diagram Figure. Source falls well within the same range as SF-dominated sources
+				BPT diagram Figure (extrapolated spectra). Source falls within the SF-dominated range and consistent with EMPGs
+				
+			
+		\subsection{Extremely Metal Poor System Consistent with $z \gtrsim 5$ Galaxies}
+		
+		Main Points:
+			Mention what the metallicity is for this object via $T_e$ method
+			Mass -- Metallicity Figure
+			Highlight how much this source is below the $z \sim 0.8$ relation
+			Highlight how this matches EIGER and Langeroodi at $z \sim 8$
+			Consistent with EMPGs but at higher redshift
+		
+		\subsection{Energetic ISM Conditions: Harder Ionizing Radiation Field}
+		
+		Main Points:
+			Measured the ionization parameter using Ne3O2, O32, Cloudy+BC03, and Cloudy+BPASS
+			Ne3O2 gives the lowest logU and may be due to calibrations not compatible with low-metallicity systems
+			BAGPIPES and HCM both use BPASS with Cloudy and find high log U
+			
+			Comparison of Ne3O3 at given log U? or Stellar Mass? Maybe it is higher suggesting harder ionization field?
+		
+		\subsection{Rapid Burst of Star Formation}
+		
+		Main Point:
+			Parametric SFH with Cigale suggests burst of star formation
+			sSFR from Cigale suggests rapid mass doubling timescales
+			Non-parametric SFH with BAGPIPES. Suggests rapid burst of star formation within the last \zzz~Myrs.
+			Outshining could be a factor but analogs of such sources are found within Illustris.
+			Suggests such SFHs exist and may resemble galaxies in their infancies?
+		
+		
+		Illustris Analog Search:
+			Looked for EELG1002 analogs within the Illustris TNG simulations. Limit the search to galaxies with stellar masses in a range between $10^7$ to $10^{8.7}$ \msol~, instantaneous SFR $> 3$ \msol~yr$^{-1}$, and absolute magnitudes (\verb|stellarphotometrics|) within the range of $-18.5$ and $-21$ magnitudes (consistent with the range of EELG1002). The wide range is to ensure we have sizable number of potential analogs to study. Vast majority of potential analogs have high sSFR but no progenitor, which could suggest either that the galaxy formed recently or that the stellar particles associated with this galaxy have recently gone above the limiting simulation resolution. In such case, we consider only those sources for which have progenitors. 
+			
+			Here we will want to include a SFH plot with our source of interest along with Illustris extended to z = 0. We also want to include plots of the 
+			
+		
+		
+		\subsection{Devoid of Dust or Destruction of Dust Grains?}
+		Main Point:
+			Balmer Decrement suggests that E(B-V) is 0. This means there is no dust in the system
+			But both Cigale and Bagpipes suggest some dust content which would signify some past star-formation activity and that the stellar reddening does exist.
+			Could be that dust grains are being destroyed from intense radiation emanating from H{\sc ii} regions but are still found within the diffuse ISM. One way to test this is by follow-up mid IR imaging with \textit{JWST} to observe PAH emission. Some studies already suggest that PAH is destroyed in starburst galaxies.
+		
+		\subsection{High Neon Abundance}
+		
+		
+%		\subsection{Reconstruction of Star Formation Histories}
+%			Main Point: It is extremely difficult to reconstruct star-formation histories of extreme emission line galaxies. Parametric SFHs with {\sc Cigale} suggest a delayed-$\tau$ model with a recent burst reproduces an SED that best matches with the available photometry and spectroscopy. However, we also tested an exponential and periodic model which resulted in high $\chi^2$. We use {\sc Bagpipes} with similar delayed-$\tau$ burst model.
+%			
+%			We've done Bagpipes and Cigale and are finding that all result in extreme star-formation histories pointing in the direction of a recent burst of star-formation with very little to no activity at $> 10$ Myr? This can be due to outshining effect where recent star-formation produces many young stars that outshines the old stellar population such that stellar mass estimates and SFH reconstruction is affected. However, we also have  $> 1$\micron~photometry from CFHT/Wircam $H$ and $Ksw$ that should help to constrain the older population. In \textit{Spitzer}/IRAC photometry, the emission is mixed between possible IR-AGN contribution and dust emission. Perhaps what would help to pinpoint the older population are NIR \textit{JWST} observations? 
+%
+%			
+%		Attempted with Cigale: Delayed
+%		
+%		Attempted with Bagpipes: Delayed, Continuity
+	\begin{table*}
+		\centering
+		\caption{Emission Line Fits}
+		\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc}
+			\hline
+			Line & $z_{spec}$ & Observed Line Flux  & EW$_0$ (\verb|Cigale|)& EW$_0$ (\verb|Bagpipes|) & FWHM& $\sigma_d$\\
+			&                     &  ($10^{-17}$ erg s$^{-1}$ cm$^{-2}$) & ($10^{-17}$ erg s$^{-1}$ cm$^{-2}$) & (\AA) & (\AA)  & (km s$^{-1}$) \\
+			\hline
+			\multicolumn{7}{l}{{\textbf{Balmer Lines}}}\\
+			\hbeta & $0.8273^{+0.0058}_{-0.0058}$ & $18.84^{+0.96}_{-0.91}$ & $451.45^{+22.97}_{-21.87}$ & $321.43^{+16.35}_{-15.57}$ & $452^{+17}_{-15}$ & $191^{+7}_{-7}$ \\
+			H$\gamma$ & --- & $9.61^{+0.53}_{-0.52}$ & $134.48^{+7.41}_{-7.27}$ & $125.97^{+6.94}_{-6.81}$ & --- & --- \\
+			H$\delta$ & --- & $4.00^{+0.33}_{-0.34}$ & $68.11^{+5.70}_{-5.72}$ & $45.56^{+3.81}_{-3.83}$ & --- & --- \\
+			H$\epsilon$ & --- & $2.19^{+0.35}_{-0.36}$ & $34.59^{+5.59}_{-5.69}$ & $23.16^{+3.74}_{-3.81}$ & --- & --- \\
+			H$\zeta+$He{\sc i}3889\AA & --- & $0.58^{+0.26}_{-0.24}$ & $8.37^{+3.80}_{-3.50}$ & $5.59^{+2.54}_{-2.34}$ & --- & --- \\
+			H$\eta$ & --- & $2.90^{+0.32}_{-0.29}$ & $43.46^{+4.78}_{-4.34}$ & $29.04^{+3.20}_{-2.90}$ & --- & --- \\
+						
+			\hline
+			\multicolumn{7}{l}{{\textbf{Oxygen Lines}}}				\\    	    			    					
+			\oiii5007\AA & $0.8276^{+0.0058}_{-0.0058}$ & $92.35^{+0.68}_{-0.70}$ & $2346.39^{+17.15}_{-17.68}$ & $1647.37^{+12.04}_{-12.41}$ & $347^{+5}_{-4}$ & $146^{+1}_{-1}$ \\
+			\oiii4959\AA & --- & $30.59^{+0.42}_{-0.42}$ & $755.44^{+10.29}_{-10.46}$ & $527.19^{+7.18}_{-7.30}$ & --- & --- \\
+			\oiii4363\AA & --- & $2.99^{+0.37}_{-0.38}$ & $55.31^{+6.92}_{-7.03}$ & $40.53^{+5.07}_{-5.15}$ & --- & --- \\
+			\oii3726,3729\AA & --- & $8.00^{+0.39}_{-0.36}$ & $112.05^{+5.49}_{-5.01}$ & $86.59^{+4.24}_{-3.87}$ & --- & --- \\
+			\oii3726\AA & --- & $3.86^{+0.38}_{-0.38}$ & $53.83^{+5.32}_{-5.33}$ & $44.00^{+4.35}_{-4.36}$ & --- & --- \\
+			\oii3729\AA & --- & $4.18^{+0.36}_{-0.40}$ & $54.96^{+4.69}_{-5.23}$ & $40.51^{+3.46}_{-3.86}$ & --- & --- \\
+			\hline
+			\multicolumn{7}{l}{{\textbf{Neon Lines}}}		\\		    	    			    						    		    
+			\neiii3869\AA & $0.8275^{+0.0058}_{-0.0058}$ & $10.82^{+0.51}_{-0.47}$ & $151.78^{+7.14}_{-6.61}$ & $105.71^{+4.97}_{-4.60}$ & $538^{+28}_{-26}$ & $227^{+12}_{-11}$ \\
+			\neiii3968\AA & --- & $3.35^{+0.00}_{-0.00}$ & $52.89^{+0.00}_{-0.00}$ & $35.48^{+0.00}_{-0.00}$ & --- & --- \\
+			\hline
+		\end{tabular*}
+		\label{table:line_fits}
+	\end{table*}
+
+
+
+		
+%		\begin{table*}
+%			\centering
+%			\caption{ISM Properties}
+%			\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c c c }
+%				\hline
+%				Property & Measurement & Diagnostic  & Value \\
+%				\hline
+%				$n_e$ $(10^3$ cm$^{-3})$ &  $0.843^{+2.089}_{-0.594}$ & \oii3729/3726\AA & $0.742^{+0.320}_{-0.226}$ \\
+%				$\log_{10} P/k~(10^7$ K/cm$^{-3}$) & $1.860^{+4.546}_{-1.315}$ & \oii3729/3726\AA & \\
+%				$T_e$ $(10^4$ K$)$ &  $2.184^{+0.344}_{-0.275}$ &$\log_{10}$(\oiii4363/\oiii4959+5007\AA) & $-1.544^{+0.089}_{-0.094}$ \\
+%				$12 + \log_{10}($O$/$H$)$ & $7.54^{+0.11}_{-0.06}$ & Direct & \\
+%				$Z_g$ (\zsol) & $0.066^{+0.018}_{-0.009}$ & Direct & \\
+%				$\log_{10} U$ & $-2.20^{+0.03}_{-0.03}$ & $\log_{10}$(\oiii5007/\oii3727\AA) & $0.964^{+0.023}_{-0.022}$ \\
+%										& $-2.48^{+0.03}_{-0.03}$ & $\log_{10}$(\neiii/\oii3727\AA) & $0.035^{+0.030}_{-0.028}$ \\
+%				$E(B - V)$ & $0.00^{+0.01}_{-0.00}$ & \hbeta/\hgamma & $1.972^{+0.148}_{-0.140}$ \\
+%								   &  $0.09^{+0.16}_{-0.09}$ & \hbeta/\hdelta & $4.141^{+0.515}_{-0.452}$ \\
+%				\hline
+%			\end{tabular*}
+%		\end{table*}
+				
+		\begin{table}
+			\centering
+			\caption{Best-Fit SED-dervied Properties from Delayed-$\tau$ Model}
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lc}
+					\hline
+					Property & {\sc Cigale} \\
+					\hline
+					Stellar Mass (\msol) & $7.02\pm4.08 \times 10^7$ \\
+					SFR(inst) (\msol~yr$^{-1}$) & $36.35\pm6.63$\\
+					SFR(10 Myrs) (\msol~yr$^{-1}$) & $3.82\pm0.44$  \\
+					SFR(100 Myrs) (\msol~yr$^{-1}$) & $0.47\pm0.17$ \\			
+					$f_{burst}$ & $0.57\pm0.26$ \\			
+					$Z_\star$ ($Z_\odot$) & $0.50 \pm 0.21$ \\
+					$E(B-V)$ & $0.097\pm0.032$ \\							
+					sSFR(inst) &  \\
+					sSFR(10 Myrs) &  \\
+					sSFR(100 Myrs) &  \\
+					Reduced $\chi^2$ & $0.70$  \\
+					\hline
+				\end{tabular*}
+		\end{table}			
+				
+		
+%		\begin{table*}
+%			\centering
+%			\caption{Best-fit Physical Properties from SED fitting}
+%			\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccc}
+%				\hline
+%				Property & {\sc Cigale} & {\sc Prospector} & {\sc Bagpipes} & {\sc DenseBasis} \\
+%				\hline
+%				Stellar Mass (\msol) & $6.13\pm3.65 \times 10^7$ &  &  & \\
+%				$Z_\star$ ($Z_\odot$) & $0.0079 \pm 0.001$ & & &  \\
+%				$\tau_{main}$ (Myr) & $1605\pm2824$ & & & \\
+%				$t_{main}$ (Myr) & $2541\pm2175$ & & & \\
+%				$\tau_{burst}$ (Myr) & $353 \pm 431$ & & & \\
+%				$t_{burst}$ (Myr) & $5.03\pm0.69$ & & & \\
+%				$f_{burst}$ & $0.68\pm0.23$ & &  & \\
+%				$t_{\star}$ (Myr) & 277 & & & \\
+%				$E(B-V)$ & $0.100\pm0.002$& & & \\
+%				SFR(inst) (\msol~yr$^{-1}$) & $7.76\pm0.81$ & & & \\
+%				SFR(10 Myrs) (\msol~yr$^{-1}$) & $4.10\pm0.20$  & & & \\
+%				SFR(100 Myrs) (\msol~yr$^{-1}$) & $0.47\pm0.17$ & & & \\			
+%				sSFR(inst) & & & & \\
+%				sSFR(10 Myrs) & & & & \\
+%				sSFR(100 Myrs) & & & & \\
+%				Reduced $\chi^2$ & $0.57$ & & & \\
+%				\hline
+%			\end{tabular*}
+%		\end{table*}
+%		
+%		\subsection{Analogs in Simulations}
+%		
+%		Look through simulations to find galaxies that are similar
+%		
+%		Illustris TNG300-1 at snapshot 54 may have some interesting analogs!
+%		
+%		
+		
+		
+		\section{Discussion}
+		
+		Here would be a great place to talk about how this relates to high-$z$ galaxies seen with \textit{JWST}
+		
+		\subsection{What is driving the intense star formation activity?}
+		
+		Elevated Cold Gas Content? 	Illustris-TNG analogs of source are showing high gas masses at the level of $\sim 10^{10}$ \msol! This means that the galaxy has a high gas content. Dark matter halo mass of analogs is also high such that it could be influenced by enhanced cold gas accretion. However, SFR is not high until the final snapshot. Something happens then!
+	
+		In a filament? no evidence based on available data
+		
+		High mass dark matter halo? Refer to my 2018 paper to get DMH mass.
+		
+		
+		\subsection{What are the potential descendants of EELG1002?}
+		
+		Plots that will go here are sizes, gas mass, stellar mass evolution
+
+%		\subsection{Emission lines Not Driven by AGN activity}
+%			
+%			Note: some studies find that elevated Ne3O2 ratios and O32 may be AGNs masquerading as low-metallicity galaxies. However, that would also suggest potential He{\sc i}4686\AA~detection which we don't have!
+%						
+%			Inferred BPT says no
+%			MEx says no
+%			Broad lines not present
+%			OHNO -- maybe?
+%			IR AGN selection  -- inconclusive; 50/50
+%			
+%			Cigale says ZZZ \% of IR light is contributed by AGN activity in the IR
+			
+%			\subsection{Elevated Cold Gas Content as Driver of Star Formation}
+%				Illustris-TNG analogs of source are showing high gas masses at the level of $\sim 10^{10}$ \msol! This means that the galaxy has a high gas content. Dark matter halo mass of analogs is also high such that it could be influenced by enhanced cold gas accretion. However, SFR is not high until the final snapshot. Something happens then!
+%			
+			
+%		\subsection{Outshining Biasing Mass Estimates}
+		
+			
+		
+		\begin{table}
+			\centering
+			\caption{Nebular AGN Diagnostics}
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}} l c c}
+				\hline
+				Diagnostic & Ratio & Classification \\
+				\hline
+				BPT & (R3 = , N2 = ) & SFG \\
+				MEx & (R3 = , Mass = ) & SFG \\
+				OHN(e)O &  (R3 = , NeO2 = ) & ZZZ \\
+				\hline
+			\end{tabular*}
+		\end{table}
+		
+%		\subsection{Deficient PAH Emission}
+%		Check Murata et al. 2014 % https://www.aanda.org/articles/aa/abs/2014/06/aa23744-14/aa23744-14.html
+%		
+%		Cigale suggests low PAH emission constrained by Ch3 IRAC. Rising slope at these wavelengths can not be sufficiently justified by a extreme dust parameters and lowest qpah. Need ZZZ\% AGN fraction as well which suggests for a very minoir AGN fraction. PAH emission is therefore probably on the low-end! 
+%	
+		
+		\subsection{Cause of High Electron Temperatures and  Ionization Parameter}
+		
+		Could be due to a multitude of combined factors. Metal coolants are needed to absorb ionizing photons that heat up the surrounding gas. In the case of low metallicity, there is not enough absorbants to cool the system. Couple that with low dust, this allows for gas heating and ionizing photon escape into the ISM. Indeed, this galaxy also has an inferred Lyman Continuum $f_{esc}$ of 10\% which would also decrease the ionizing parameter $\log_{10} U$.
+		
+		\subsection{Ideal Case of what First Generation of Galaxies may look like?}
+		
+%		\subsection{Is EELG1002 star formation driven by elevated levels of gas?}
+%		
+%		
+%		
+%		What about Neon abundance?
+	
+%		\subsection{EELG1002 is Progenitor of local ZZZ galaxies}
+	
+		\section{Conclusions}
+		
+		
+		\section*{Acknowledgements}
+		
+		This research made use of {\ttfamily{PypeIt}\footnote{\url{https://pypeit.readthedocs.io/en/latest/}}},
+		a Python package for semi-automated reduction of astronomical slit-based spectroscopy
+		\citep{Prochaska2020, Prochaska_zenodo}.
+		
+		
+		\textit{Software:} {\sc astropy}, {\sc numpy}, {\sc PyQSOFit}, {\sc Cigale}, {\sc Bagpipes}
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\section*{Data Availability}
+		
+		All raw data is publicly available and can be found within the Gemini Science Archive by searching for GS-2017A-FT-9 under Program ID. The associated pypeit reduction files can be found at {\url{github link} ZZZ} and is available for public use.
+		
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+		
+		% The best way to enter references is to use BibTeX:
+		
+		\bibliographystyle{aasjournal}
+		\bibliography{EELG_OIII_GMOS} % if your bibtex file is called example.bib
+		
+		
+		% Alternatively you could enter them by hand, like this:
+		% This method is tedious and prone to error if you have lots of references
+		%\begin{thebibliography}{99}
+		%\bibitem[\protect\citeauthoryear{Author}{2012}]{Author2012}
+		%Author A.~N., 2013, Journal of Improbable Astronomy, 1, 1
+		%\bibitem[\protect\citeauthoryear{Others}{2013}]{Others2013}
+		%Others S., 2012, Journal of Interesting Stuff, 17, 198
+		%\end{thebibliography}
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+		
+		\appendix
+		
+		\section{Some extra material}
+		
+		
+		\begin{table*}
+			\caption{{\sc Cigale} parameters used in the SED fitting process}
+			\label{table:cigale}
+			\centering
+			\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcc}
+				\hline
+				Parameter & Symbol & Value \\
+				\hline
+				\textbf{Delayed Exponential Star Formation History with Burst} & & \\
+				$e$--folding time of the main stellar population model (Gyr)     & $\tau_\textrm{main}$ & 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.5, 5.0, 7.5 \\
+				Age of the main stellar population in the galaxy (Gyr)                 & $t_\textrm{main}$       & 0.05, 0.1, 0.25, 0.5, 0.75, 1.0, 2.5, 5.0, 6.6 \\
+				$e$--folding time of the late starburst population model (Myr) & $\tau_\textrm{burst}$ & 1, 5, 10, 50, 100 \\
+				Age of the late burst (Myr)                                                                & $t_\textrm{burst}$      & 1, 5, 10, 25, 50 \\
+				Mass fraction of the late burst population                                    & $f_\textrm{burst}$      &  Uniform(0,1) steps of 0.1 \\
+				\hline
+				\textbf{Stellar Population Synthesis Model} \citep{Bruzual2003}         &                                        &  \\
+				Initial mass function																		 &  IMF          					   & \citet{Chabrier2003} \\
+				Stellar Metallicity ($Z_\odot$) 													  & $Z_\star$                      & 0.0001, 0.0004, 0.004, 0.008, 0.02 \\
+				\hline
+				\textbf{Nebular Emission Line Spectrum} ({\sc Cloudy} v13.01; \citealt{Ferland1998,Ferland2013}) & & \\
+				Ionisation parameter																	   & $\log_{10} U$	              & Uniform(-3,-1) steps of 0.1 \\		 
+				Gas Metallicity ($Z_\odot$)															  & $Z_g$         & 0.001 (fixed) \\
+				Electron Density (cm$^{-3}$)														& $n_e$							  & 100, 1000 \\
+				Fraction of Lyman Continuum photons escaping the galaxy      & $f_{esc}$					 & 0.0 \\
+				Fraction of Lyman Continuum photons absorbed by dust          & $f_{esc,\rm{dust}}$    & 0.0 \\
+				Emission Line Widths (km s$^{-1}$)											   &  $\Delta v_{lines}$       & 370 (fixed) \\
+				\hline
+				\textbf{Dust Attenuation Model} \citep{Calzetti2000}    &  &\\ 
+				Reddening of the nebular lines light for young \& old population (mag) & $E(B-V)_l$ & Uniform(0,0.14) steps of 0.02 \\
+				Ratio of $E(B-V)_l$ to Stellar Continuum Reddening (mag) & $f_{E(B-V)}$ & 1.0 (fixed) \\
+				Central wavelength of the UV bump (\AA)									  &     $\lambda_{UV,b}$   & 2175 (fixed) \\
+				Width (FWHM) of the UV bump (\AA)											& $\Delta\lambda_{UV,b}$ & 350 \\
+				Amplitude of the UV bump (3: Milky Way)									  &        $I_{UV,b}$ 				 & 0\\
+				Slope delta of the power law modifying the attenuation curve &        -- 							  & 0.0 \\
+				Extinction law to use for attenuating the emission lines flux    &        --                              & SMC \citep{Pei1992} \\
+				Total-to-selective extinction ratio for extinction curve applied to emission lines & $A_V / E(B-V)$ & 3.16 \\
+				\hline
+				\textbf{Dust Emission Model} \citep{Draine2014} & & \\
+				Mass fraction of PAH																	&       $q_{PAH}$			&  2.50 \\
+				Minimum Radiation Field																 &       $U_{min}$            &   1.0 \\
+				Power law slope $dU/dM \propto U^\alpha$								 &       $\alpha$               &    2.0 \\
+				Fraction illuminated from $U_{min}$ to $U_{max}$ 				  &          $\gamma$           &    0.1 \\
+				\hline
+%				\textbf{SKIRTOR2016 AGN Model} \citep{Stalevski2012,Stalevski2016} & & \\
+%				Average edge-on optical depth at 9.7 \micron 						& 		$\tau_{edge}$        &     7.0 \\
+%				Power-law exponent that sets radial gradient of dust density	&            -- 				 & 1.0 \\
+%				Index that sets dust density gradient with polar angle          &         	$q_{AGN}$         & 1.0 \\
+%				Angle measured between the equatorial plane and edge of the torus ($\deg$) &   $\theta_a$ & 40 \\
+%				Ratio of outer to inner radius													 &  $R_{out}/R_{in}$      &   20 \\
+%				Fraction of total dust mass inside clumps							  &    $f_{dust,cl}$				&  0.97  \\
+%				Inclination ($\deg$) 																&   $\theta_i$                     & 30, 60 \\
+%				Disk spectrum																		  &       --							  &  \citep{Schartmann2005} \\
+%				Power-law of index modifying the optical slop of the disk &    $\delta$                      &  -0.36 \\
+%				Fraction of AGN Contribution to IR Luminosity             &       $f_{AGN}$              &  0.0, 0.1, 0.2, 0.3, 0.4, 0.5\\
+%				Extinction law of the polar dust													& 	   -- 						& SMC \citep{Pei1992} \\
+%				Reddening  for the extinction in the polar direction (mag)	&   $E(B-V)_{polar}$      &   0.75, 1, 2  \\
+%				Temperature of the polar dust (K)												& $T_{d,polar}$           & 100\\
+%				Emissivity index of the polar dust													& 			--			&    1.6 \\
+%				\hline
+			\end{tabular*}
+		\end{table*}
+
+		\begin{table*}
+	\caption{{\sc Bagpipes} parameters used in the SED fitting process}
+	\label{table:bagpipes}
+	\centering
+	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcc}
+		\hline
+		Parameter & Range & Prior \\
+		\hline
+		\textbf{Continuity Non-Parametric Star Formation History Model} \citep{Leja2019} & & \\
+		Mass Formed in Each Time Bin ($\log_{10} M/$M$_\odot$)  & [1,13] & Uniform\\
+		Metallicity ($Z_\odot$)                &   0.065     & Fixed \\
+	    Time Bin Edges (Myr) & 0, 3, 10, 30, 100, 300, 1000, 3000, 6000 & -- \\
+		\hline
+		\textbf{Stellar Population Synthesis Model} ({\sc BPASS v2.2.1} \citealt{Stanway2018})       &                                        &  \\
+		Initial mass function -- Broken Power Law			&  IMF          					   & -- \\
+		\hline
+		\textbf{Nebular Emission Line Spectrum} ({\sc Cloudy v17.03}) & & \\
+		Ionisation parameter ($\log_{10} U$)	              & [-4,-1] &  Uniform \\		 
+		\hline
+		\textbf{Dust Attenuation Model} \citep{Calzetti2000}    &  &\\ 
+		$V$-band dust attenuation ($A_V$; mag) & [0,10] & Uniform \\
+		$E(B-V)_{nebular}/E(B-V)_{stellar}$ & 1.0 & Fixed \\
+		Slope delta of the power law modifying the attenuation curve &  0.0 & Fixed \\
+		\hline
+		\textbf{Dust Emission Model} \citep{Draine2014} & & \\
+		Mass fraction of PAH ($q_{PAH}$)			&  2.50 & Fixed \\
+		Minimum Radiation Field ($U_{min}$)        &   1.0 & Fixed \\
+		Fraction illuminated from $U_{min}$ to $U_{max}$ ($\gamma$)           &    0.1  & Fixed\\
+		\hline
+		%				\textbf{SKIRTOR2016 AGN Model} \citep{Stalevski2012,Stalevski2016} & & \\
+		%				Average edge-on optical depth at 9.7 \micron 						& 		$\tau_{edge}$        &     7.0 \\
+		%				Power-law exponent that sets radial gradient of dust density	&            -- 				 & 1.0 \\
+		%				Index that sets dust density gradient with polar angle          &         	$q_{AGN}$         & 1.0 \\
+		%				Angle measured between the equatorial plane and edge of the torus ($\deg$) &   $\theta_a$ & 40 \\
+		%				Ratio of outer to inner radius													 &  $R_{out}/R_{in}$      &   20 \\
+		%				Fraction of total dust mass inside clumps							  &    $f_{dust,cl}$				&  0.97  \\
+		%				Inclination ($\deg$) 																&   $\theta_i$                     & 30, 60 \\
+		%				Disk spectrum																		  &       --							  &  \citep{Schartmann2005} \\
+		%				Power-law of index modifying the optical slop of the disk &    $\delta$                      &  -0.36 \\
+		%				Fraction of AGN Contribution to IR Luminosity             &       $f_{AGN}$              &  0.0, 0.1, 0.2, 0.3, 0.4, 0.5\\
+		%				Extinction law of the polar dust													& 	   -- 						& SMC \citep{Pei1992} \\
+		%				Reddening  for the extinction in the polar direction (mag)	&   $E(B-V)_{polar}$      &   0.75, 1, 2  \\
+		%				Temperature of the polar dust (K)												& $T_{d,polar}$           & 100\\
+		%				Emissivity index of the polar dust													& 			--			&    1.6 \\
+		%				\hline
+	\end{tabular*}
+\end{table*}
+
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+	\end{document}
+	
+	% End of mnras_template.tex

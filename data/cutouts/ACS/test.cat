@@ -1,0 +1,14 @@
+#   1 NUMBER                 Running object number                                     
+#   2 EXT_NUMBER             FITS extension number                                     
+#   3 FLUX_APER              Flux vector within fixed circular aperture(s)              [count]
+#   4 FLUXERR_APER           RMS error vector for aperture flux(es)                     [count]
+#   5 MAG_APER               Fixed aperture magnitude vector                            [mag]
+#   6 MAGERR_APER            RMS error vector for fixed aperture mag.                   [mag]
+#   7 X_IMAGE                Object position along x                                    [pixel]
+#   8 Y_IMAGE                Object position along y                                    [pixel]
+#   9 ALPHA_J2000            Right ascension of barycenter (J2000)                      [deg]
+#  10 DELTA_J2000            Declination of barycenter (J2000)                          [deg]
+         1   1     10.18272     3.191902  23.4163   0.3404    168.2542    165.3937 150.1346065  +2.8531530
+         2   1    0.9661366    0.9856392  25.9734   1.1079    167.4275    258.9517 150.1353746  +2.8530138
+         3   1    0.7494153    0.8686327  26.2492   1.2588    161.4016    242.6051 150.1352316  +2.8529874
+         4   1     1.168268     1.083405  25.7671   1.0071     58.9371    209.0643 150.1348106  +2.8521934

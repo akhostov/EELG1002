@@ -1,0 +1,3 @@
+# Ignore the Following
+./data/Science_coadd/spec2d*
+./data/specpro/*
