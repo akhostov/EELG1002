@@ -31,6 +31,55 @@ def calzetti(lam):
     lam = lam/1e4
     return (2.659*(-2.156 + 1.509/lam - 0.198/(lam**2.) + 0.011/(lam**3.)) + 4.05)
 
+def ab_mag_to_fnu(mag, magerr, unit="mJy"):
+    """
+    Converts an AB magnitude to flux density.
+
+    Args:
+        mag (float or array-like): The AB magnitude(s) to be converted.
+        magerr (float or array-like): The error in the AB magnitude(s).
+        unit (str, optional): The unit of the flux density. Defaults to "mJy".
+
+    Returns:
+        tuple: A tuple containing the converted flux density and its error.
+
+    Raises:
+        ValueError: If the unit is not one of "mJy", "uJy", "Jy", "cgs", or "SI".
+    """
+
+    # Check if the input unit is valid
+    valid_units = ["mJy", "uJy", "Jy", "cgs", "SI"]
+    if unit not in valid_units:
+        raise ValueError(f"Unit must be one of {valid_units}")
+
+    # Convert magnitude to flux density in Jy
+    fnu = pow(10, -0.4 * (mag - 8.9))
+    dfnu = 0.4 * np.log(10) * magerr * fnu
+
+    # Convert flux density to different units
+    if "Jy" in unit:
+        if unit == "mJy":
+            fnu *= 1e3
+            dfnu *= 1e3
+        elif unit == "uJy":
+            fnu *= 1e6
+            dfnu *= 1e6
+    elif "cgs" in unit:
+        fnu = pow(10, -0.4 * (mag + 48.60))
+        dfnu = 0.4 * np.log(10) * magerr * fnu
+    elif "SI" in unit:
+        fnu = pow(10, -0.4 * (mag + 56.1))
+        dfnu = 0.4 * np.log(10) * magerr * fnu
+
+    # Handle non-detections
+    try:
+        fnu[np.abs(mag) > 80.] = -99.
+        dfnu[np.abs(mag) > 80.] = -99.
+    except:
+        None
+
+    return (fnu, dfnu)
+
 
 def write_with_newline(table, text):
     """
