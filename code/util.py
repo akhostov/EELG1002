@@ -18,20 +18,52 @@ def stats(pdf,upper_limit=False):
     else:
         return (np.nanmedian(pdf),np.nanmedian(pdf) - np.nanpercentile(pdf,16.),np.nanpercentile(pdf,84.) - np.nanmedian(pdf))
 
-def calzetti(lam):
+def calzetti(lam,unit="Angstrom"):
     """
-    Calculate the Calzetti Dust Atteunation Curve for a given wavelength.
+    Calculate the Calzetti extinction curve for a given wavelength.
 
     Parameters:
-        lam (float or array-like): The wavelength(s) in micrometers.
+        lam (float): The wavelength for which to calculate the extinction curve.
+        unit (str, optional): The unit of the wavelength. Defaults to "Angstrom".
 
     Returns:
-        float or array-like: The Calzetti extinction value(s) corresponding to the input wavelength(s).
+        float: The calculated extinction curve value.
+
+    Raises:
+        ValueError: If the input unit is not 'Angstrom' or 'micron', or if the input wavelength is not between 0.12 and 2.2 microns.
     """
-    lam = lam/1e4
-    return (2.659*(-2.156 + 1.509/lam - 0.198/(lam**2.) + 0.011/(lam**3.)) + 4.05)
+
+    if unit == "Angstrom":
+        lam = lam/1e4
+    elif unit == "micron":
+        pass
+    else:
+        raise ValueError("Input unit must be 'Angstrom' or 'micron'.")
+    
+    if (lam > 0.12) & (lam < 0.63):
+        return 2.659*( -2.156 + 1.509/lam - 0.198/(lam**2.) + 0.011/(lam**3.) ) + 4.05
+    elif (lam > 0.63) & (lam < 2.2):
+        return 2.659*( -1.857 + 1.040/lam ) + 4.05
+    else:
+        raise ValueError("Input wavelength must be between 0.12 and 2.2 microns.") 
 
 def fnu_to_ab_mag(fnu, fnuerr = None, unit="cgs", ZP = None):
+    """
+    Converts a flux density to an AB magnitude.
+
+    Parameters:
+        fnu (float or array-like): The flux density to be converted.
+        fnuerr (float or array-like, optional): The error in the flux density. Defaults to None.
+        unit (str, optional): The unit of the flux density. Defaults to "cgs".
+        ZP (float, optional): The zero point of the magnitude system. Defaults to None.
+
+    Returns:
+        float or tuple: The converted AB magnitude, or a tuple containing the magnitude and its error if fnuerr is not None.
+
+    Raises:
+        ValueError: If the unit is not one of "mJy", "uJy", "Jy", "cgs", "SI", or "custom".   
+        ValueError: If custom is used and ZP is not specified.
+    """
     
     # Check if the input unit is valid
     valid_units = ["mJy", "uJy", "Jy", "cgs", "SI", "custom"]
