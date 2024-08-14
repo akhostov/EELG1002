@@ -9,21 +9,15 @@ warnings.filterwarnings("ignore")
 
 QSOFit.set_mpl_style()
 
-# Show the versions so we know what works
 import astropy
 import lmfit
 import pyqsofit
-print(astropy.__version__)
-print(lmfit.__version__)
-print(pyqsofit.__version__)
-
-import emcee # optional, for MCMC
-print(emcee.__version__)
-
+import emcee 
 
 from scipy.integrate import simps
 from scipy.interpolate import UnivariateSpline
 import pickle
+import h5py
 
 import util
 
@@ -237,7 +231,10 @@ def run_pyqsofit():
 
 	# Extract Spectra
 	spec1d = data[1].data
+	mask = (spec1d["OPT_WAVE"] > 6300.) & (spec1d["OPT_WAVE"] < 9400.)
+	spec1d = spec1d[mask]
 	lam, flux, sig = spec1d["OPT_WAVE"],spec1d["OPT_FLAM"],spec1d["OPT_FLAM_SIG"]
+	print(f"Limited Spectrum to {lam.min():0.2f} - {lam.max():0.2f} A")
 
 	# Indices of 0s towards the end of the array
 	index = np.flatnonzero(lam)
@@ -273,6 +270,7 @@ def line_props(sed_module="cigale"):
 
 	# Initialize Main Dictionary
 	line_results = {}
+	EW_results = {}
 
 	### READ IN THE DATA
 	path = "../data/emline_fits/"
@@ -426,6 +424,8 @@ def line_props(sed_module="cigale"):
 		
 		# Output Line Flux Results into the Dictionary
 		line_results[f"{lid}_lflux_pdf"] = np.asarray(pdf_lflux)
+		EW_results[f"{lid}_EW_cigale_pdf"] = np.asarray(pdf_ew_cigale)
+		EW_results[f"{lid}_EW_bagpipes_pdf"] = np.asarray(pdf_ew_bagpipes)
 
 	# WRITE EVERYTHING OUT
 	line_id = line_id.tolist()
@@ -454,7 +454,10 @@ def line_props(sed_module="cigale"):
 	# Output Dictionary
 	with open("../data/emline_fits/1002_lineflux_pdfs.pkl","wb") as outfile:
 		pickle.dump(line_results,outfile)
-	
+
+	with open("../data/emline_fits/1002_EW_pdfs.pkl","wb") as outfile:
+		pickle.dump(EW_results,outfile)
+
 	outfile.close()
 
 
@@ -501,7 +504,6 @@ def line_ratios():
 	ratio_measurements["name"].append("Hb/H9")
 	median,low_1sigma,upp_1sigma = util.stats(line_results["Hb_na_lflux_pdf"]/line_results["H9_lflux_pdf"])
 	ratio_measurements["low_1sigma"].append(low_1sigma); ratio_measurements["median"].append(median); ratio_measurements["upp_1sigma"].append(upp_1sigma)
-
 
 	# [OIII]5007/Hbeta
 	ratio_measurements["name"].append("O3HB")
@@ -567,11 +569,121 @@ def line_ratios():
 	
 	print("And Done :D")
 
+def get_1500A_luminosity(wave, flam, redshift=0.8275):
+    
+    mask = (wave > 1450.) & (wave < 1550.)
+    wave = wave[mask]
+    flam = flam[mask]
+    
+    fnu = (1./3e18) * simps(flam*wave, x=wave)/simps(1./wave, x=wave)
+
+    return util.lineFlux_to_Luminosity(fnu,redshift)
+
+def get_xi_ion(uv_lum, ha_lum):
+    return ha_lum/(1.36e-12 * uv_lum)
+
+def get_uv_props_bagpipes(gmos, bagpipes_SED, bagpipes_params):
+
+	# Calculate the 1500A Luminosity
+	wave = pow(10,bagpipes_SED["log_wave"])/1.8275
+	flam = bagpipes_SED["SED_median"]*1.8275*1e-18
+	flam_elow = bagpipes_SED["SED_1sig_low"]*1.8275*1e-18
+	flam_eupp = bagpipes_SED["SED_1sig_upp"]*1.8275*1e-18
+
+	Lnu_1500, Lnu_1500_low, Lnu_1500_upp =  (get_1500A_luminosity(wave,flam=flam),  get_1500A_luminosity(wave,flam=flam - flam_elow),  get_1500A_luminosity(wave,flam=flam + flam_eupp))
+	Lnu_1500_pdf = util.sampling(Lnu_1500,(Lnu_1500 - Lnu_1500_low, Lnu_1500_upp - Lnu_1500))
+
+	# Extract the Hbeta Luminosity
+	HB_pdf = util.sampling(gmos["lineflux_med"],(gmos["lineflux_elow"],gmos["lineflux_eupp"]))
+	lum_HB_pdf = util.lineFlux_to_Luminosity(HB_pdf,redshift=0.8275)
+
+	# Xi Ion Measurement
+	xi_ion_pdf = get_xi_ion(uv_lum = Lnu_1500_pdf, ha_lum = lum_HB_pdf*2.86)
+
+	# UV Luminosity Measurement
+	M_UV_pdf = -2.5*np.log10(Lnu_1500_pdf/(4.*np.pi*(10*3.08e18)**2.)) - 48.6
+	return (xi_ion_pdf, M_UV_pdf)
+
+def get_uv_props_cigale(gmos, cigale_SED, cigale_params):
+
+	# 1500A Luminosity
+	#flam = cigale_SED["Fnu"]*1e-26*3e18/(cigale_SED["wavelength"]*10.)**2.*1.8275
+	#wave = cigale_SED["wavelength"]*10./1.8275
+
+	HB_pdf = util.sampling(gmos["lineflux_med"],(gmos["lineflux_elow"],gmos["lineflux_eupp"]))
+
+	Lnu_1500_pdf = util.sampling(central = cigale_params["bayes.param.restframe_Lnu(TopHat_1500_100)"]*1e7,
+									sigma = cigale_params["bayes.param.restframe_Lnu(TopHat_1500_100)_err"]*1e7)
+	lum_HB_pdf = util.lineFlux_to_Luminosity(HB_pdf,redshift=0.8275)
+
+	# Xi Ion Measurement
+	xi_ion_pdf = get_xi_ion(uv_lum = Lnu_1500_pdf, ha_lum = lum_HB_pdf*2.86)
+
+	# UV Luminosity Measurement
+	M_UV_pdf = -2.5*np.log10(Lnu_1500_pdf/(4.*np.pi*(10*3.08e18)**2.)) - 48.6
+
+	return (xi_ion_pdf, M_UV_pdf)
+
+def measure_xi_ion(gmos,cigale_SED,cigale_params,bagpipes_SED,bagpipes_params,lineprops_pdf):
+
+    output = {}
+
+    # Measure Xi_Ion with Bagpipes SED
+    bagpipes_xi_ion_pdf,bagpipes_M_UV_pdf_corr = get_uv_props_bagpipes(gmos=gmos,bagpipes_SED=bagpipes_SED,bagpipes_params=bagpipes_params)
+
+    # Measure [OIII]+Hb EW with Bagpipes SED
+    EW_O3HB_bagpipes_pdf = lineprops_pdf["OIII5007c_EW_bagpipes_pdf"] + lineprops_pdf["OIII4959c_EW_bagpipes_pdf" ] + lineprops_pdf["Hb_na_EW_bagpipes_pdf"]
+
+    output["bagpipes_xi_ion"] = util.stats(bagpipes_xi_ion_pdf)
+    output["bagpipes_M_UV"] = util.stats(bagpipes_M_UV_pdf_corr)
+    output["bagpipes_xi_ion_pdf"] = bagpipes_xi_ion_pdf
+    output["bagpipes_M_UV_pdf"] = bagpipes_M_UV_pdf_corr
+    output["bagpipes_O3HB_EW_pdf"] = EW_O3HB_bagpipes_pdf
+    output["bagpipes_O3HB_EW"] = util.stats(EW_O3HB_bagpipes_pdf)
+    
+
+    # Cigale Xi_ion
+    xi_ion_pdf, M_UV_pdf_corr = get_uv_props_cigale(gmos, cigale_SED, cigale_params)
+
+    # Measure [OIII]+Hb EW with Cigale SED
+    EW_O3HB_cigale_pdf = lineprops_pdf["OIII5007c_EW_cigale_pdf"] + lineprops_pdf["OIII4959c_EW_cigale_pdf" ] + lineprops_pdf["Hb_na_EW_cigale_pdf"]
+
+    output["cigale_xi_ion"] = util.stats(xi_ion_pdf)
+    output["cigale_M_UV"] = util.stats(M_UV_pdf_corr)
+    output["cigale_xi_ion_pdf"] = xi_ion_pdf
+    output["cigale_M_UV_pdf"] = M_UV_pdf_corr
+    output["cigale_O3HB_EW_pdf"] = EW_O3HB_cigale_pdf
+    output["cigale_O3HB_EW"] = util.stats(EW_O3HB_cigale_pdf)
+    
+    with open("../data/xi_ion_measurements.pkl","wb") as f:
+        pickle.dump(output,f)
+
 
 def main():
-	run_pyqsofit()
-	line_props()
-	line_ratios()
+	#run_pyqsofit()
+	#line_props()
+	#line_ratios()
+
+
+	# Load in the GMOS Line Properties
+	gmos = fits.open("../data/emline_fits/1002_lineprops.fits")[1].data
+	gmos = gmos[ gmos["line_ID"] == "Hb_na" ]
+
+	# Load in the cigale sed fit and results
+	cigale_SED = fits.open("../data/SED_results/cigale_results/1002_best_model.fits")[1].data
+	cigale_params = fits.open("../data/SED_results/cigale_results/results.fits")[1].data
+
+	# Load in the bagpipes sed fit and results
+	bagpipes_SED = fits.open("../data/SED_results/bagpipes_results/best_fit_SED_sfh_continuity_spec_BPASS.fits")[1].data
+	bagpipes_params = h5py.File("../data/SED_results/bagpipes_results/pipes/posterior/sfh_continuity_spec_BPASS/1002.h5", "r")
+
+	# Load in the Line Prop PDF
+	with open("../data/emline_fits/1002_EW_pdfs.pkl","rb") as f:
+		lineprops_pdf = pickle.load(f)
+
+	# Measure Xi_Ion
+	measure_xi_ion(gmos,cigale_SED,cigale_params,bagpipes_SED,bagpipes_params,lineprops_pdf)
+
 
 if __name__ == "__main__":
 	main()

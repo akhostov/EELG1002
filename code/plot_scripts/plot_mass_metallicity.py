@@ -3,11 +3,15 @@ from matplotlib.lines import Line2D
 from astropy.io import fits
 import numpy as np 
 import pickle
+import h5py
 import pdb
 
 import sys
 sys.path.insert(0, "../../../My_Modules/color_lib/")
 from colors import tableau20
+sys.path.insert(0, "..")
+import util
+
 
 ######################################################################
 #######						PREPARE THE FIGURE				   #######
@@ -23,29 +27,38 @@ ax.set_ylabel(r"$12+\log_{10}($O/H$)$",fontsize=8)
 
 
 # Define Limits
-ax.set_ylim(6.7,9.)
-ax.set_xlim(6.5,11)
+ax.set_ylim(7.0,9.4)
+ax.set_xlim(6.3,11)
 
 #### OUR SOURCE
 # Load in the Line properties
-file = open("../../data/emline_fits/43158747673038238/ratios_and_ISM_props_1002_new.pkl","rb")
-data = pickle.load(file)
-file.close()
+pyneb = fits.open("../../data/emline_fits/1002_pyneb_stats.fits")[1].data
 
-# Load in the SED properties (use CIGALE for now)
-sed = fits.open("../../data/cigale_results/sfh_delayed_nodust/results.fits")[1].data
-mass = sed["bayes.stellar.m_star"]
-err_mass = sed["bayes.stellar.m_star_err"]/(np.log(10.)*mass)
-mass = np.log10(mass)
+# Get the Stellar Mass
+sed = fits.open("../../data/SED_results/cigale_results/results.fits")[1].data
+cigale_mass = sed["bayes.stellar.m_star"]
+cigale_mass_err = sed["bayes.stellar.m_star_err"]/(np.log(10.)*cigale_mass)
+cigale_mass = np.log10(cigale_mass)
 
-# Get Metallicity for this Object
-zgas,zgas_low,zgas_upp = np.median(data["pdf_12OH"]),np.percentile(data["pdf_12OH"],16.),np.percentile(data["pdf_12OH"],84.)
-zgas_low = zgas - zgas_low
-zgas_upp = zgas_upp - zgas
+bagpipes = h5py.File("../../data/SED_results/bagpipes_results/pipes/posterior/sfh_continuity_spec_BPASS/1002.h5", "r")
+bagpipes_mass = bagpipes["median"][10]
+bagpipes_mass_err_low,bagpipes_mass_err_up = bagpipes_mass - bagpipes["conf_int"][0][10], bagpipes["conf_int"][1][10] - bagpipes_mass
 
-ax.errorbar([mass],[zgas],xerr=([err_mass]),yerr=([zgas_low],[zgas_upp]),\
-				ls="none",mec=tableau20("Blue"),mfc=tableau20("Light Blue"),ecolor=tableau20("Blue"),\
+# Plot Cigale
+ax.errorbar(cigale_mass,pyneb["12+log10(O/H)_med"],xerr=cigale_mass_err,yerr=(pyneb["12+log10(O/H)_err_low"],pyneb["12+log10(O/H)_err_up"]),ls="none",
+            	mec=util.color_scheme("Cigale",mec=True),
+                mfc=util.color_scheme("Cigale",mfc=True),
+                ecolor=util.color_scheme("Cigale",mec=True),
                 marker="*",ms=15,mew=1,capsize=2,capthick=1,elinewidth=0.5)
+
+
+# Plot Bagpipes
+ax.errorbar([bagpipes_mass],pyneb["12+log10(O/H)_med"],xerr=([bagpipes_mass_err_low],[bagpipes_mass_err_up]),yerr=(pyneb["12+log10(O/H)_err_low"],pyneb["12+log10(O/H)_err_up"]),ls="none",
+            	mec=util.color_scheme("Bagpipes",mec=True),
+            	mfc=util.color_scheme("Bagpipes",mfc=True),
+            	ecolor=util.color_scheme("Bagpipes",mec=True),
+            	marker="*",ms=15,mew=1,capsize=2,capthick=1,elinewidth=0.5)
+
 
 #### SPECIAL SOURCES
 # BOSS-EUVLG1 (Marques-Chaves et al. 2020)
@@ -94,13 +107,14 @@ ax.plot(Am15["logMs"],Am15["Ab_O_"],\
 
 
 
-handles = [Line2D([],[],ls="none",marker="*",ms=10,mec=tableau20("Blue"),mfc=tableau20("Light Blue"),label=r"\textbf{\textit{EELG1002 (This Work)}}"),
-			Line2D([],[],ls="none",marker="d",ms=5,mec=tableau20("Green"),mfc=tableau20("Light Green"),label=r"BOSS-EUVLG1 (MC+20; $z = 2.47$)"),
-			Line2D([],[],ls="none",marker="p",ms=5,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),label=r"\textit{Ion2} (deBa+16; $z = 3.2$)"),
-			Line2D([],[],ls="none",marker="s",ms=3,mec="navy",mfc="none",label=r"Blueberries (Ya+17; $z \sim 0$)"),
+handles = [Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Cigale",mec=True), mfc=util.color_scheme("Cigale",mfc=True),label=r"\textbf{\textit{EELG1002 (Cigale)}}"),
+            Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Bagpipes",mec=True), mfc=util.color_scheme("Bagpipes",mfc=True),label=r"\textbf{\textit{EELG1002 (Bagpipes)}}"),
+			Line2D([],[],ls="none",marker="d",ms=5,mec=tableau20("Green"),mfc=tableau20("Light Green"),label=r"BOSS-EUVLG1 ($z = 2.47$)"),
+			Line2D([],[],ls="none",marker="p",ms=5,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),label=r"\textit{Ion2} ($z = 3.2$)"),
+			Line2D([],[],ls="none",marker="s",ms=3,mec="navy",mfc="none",label=r"BBs (Ya+17; $z \sim 0$)"),
 			Line2D([],[],ls="none",marker="o",ms=3,mec=tableau20("Green"),mfc="none",label=r"GPs (Ya+17; $z \sim 0.2$)")]			
 
-leg1 = ax.legend(handles=handles,loc="upper left",frameon=False,ncol=1,numpoints=1,fontsize=5)
+leg1 = ax.legend(handles=handles,loc="upper left",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=0.8,columnspacing=0.1,handletextpad=0.2)
 plt.gca().add_artist(leg1)
 
 
@@ -161,7 +175,7 @@ handles = [Line2D([],[],ls="--",color=tableau20("Purple"),label=r"A\&M+13 ($z \s
 			Line2D([],[],ls="--",color=tableau20("Red"),label=r"La+23 ($z \sim 8$)")
 			]
 
-leg2 = ax.legend(handles=handles,loc="lower right",frameon=False,ncol=2,numpoints=1,fontsize=5)
+leg2 = ax.legend(handles=handles,loc="upper right",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=0.6,handletextpad=0.5)
 plt.gca().add_artist(leg2)
 
 
@@ -214,7 +228,7 @@ handles = [Line2D([],[],ls="none",marker="^",ms=5,mec="black",mew=0.2,mfc=tablea
 			Line2D([],[],ls="none",marker="o",ms=5,mec="black",mew=0.2,mfc=tableau20("Red"),label=r"EIGER (Ma+23; $5 - 7$)"),
 			]
 
-leg3 = ax.legend(handles=handles,loc="lower right",frameon=False,ncol=1,numpoints=1,fontsize=5,bbox_to_anchor=(0.99,0.15),handletextpad=0.02)
+leg3 = ax.legend(handles=handles,loc="lower right",frameon=False,ncol=1,numpoints=1,fontsize=5,handletextpad=0.02)
 plt.gca().add_artist(leg3)
 
 
@@ -255,4 +269,3 @@ plt.errorbar(mass,Cu23_zgas,xerr=(err_mass),yerr=(Cu23_zgas_err),marker="s",ls="
 plt.savefig("../../plots/MZR_EELG1002.png",format="png",dpi=300,bbox_inches="tight")
 
 
-pdb.set_trace()

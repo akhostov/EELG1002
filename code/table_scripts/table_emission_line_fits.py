@@ -25,33 +25,36 @@ def table_emission_line_fits():
 			"OIII5007c","OIII4959c","OIII4363","[OII]","OII3726","OII3728",\
 			"NeIII3869","NeIII3968"])
 
-	names = np.array([r"\hbeta",r"H$\gamma$",r"H$\delta",r"H$\epsilon",r"H$\zeta+$He{\sc i}3889\AA",r"H$\eta$",\
+	names = np.array([r"\hbeta",r"H$\gamma$",r"H$\delta$",r"H$\epsilon$",r"H$\zeta+$He{\sc i}3889\AA",r"H$\eta$",\
 						r"\oiii5007\AA",r"\oiii4959\AA",r"\oiii4363\AA",r"\oii3726,3729\AA",r"\oii3726\AA",r"\oii3729\AA",\
 						r"\neiii3869\AA",r"\neiii3968\AA"])
 
 	keep = np.hstack([np.argwhere(tt == data["line_id"])[0] for tt in sort])
 	data = data[keep]
 
-	for ff in range(len(data["line_id"])):
+	# Open and Write All Print Statements to a Table
+	with open("../../paper/tables/Line_Flux_Props.table","w") as table:
 
-		data['linez_eupp'][ff] = np.sqrt( (data['linez_eupp'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
-		data['linez_elow'][ff] = np.sqrt( (data['linez_elow'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
+		for ff in range(len(data["line_id"])):
 
-		str_lflux = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineflux_med'][ff]*1e17,data['lineflux_eupp'][ff]*1e17,data['lineflux_elow'][ff]*1e17)
-		str_lEW_Cigale   = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Cigale_med'][ff],data['lineEW_Cigale_eupp'][ff],data['lineEW_Cigale_elow'][ff])	
-		str_lEW_Bagpipes = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Bagpipes_med'][ff],data['lineEW_Bagpipes_eupp'][ff],data['lineEW_Bagpipes_elow'][ff])	
+			data['linez_eupp'][ff] = np.sqrt( (data['linez_eupp'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
+			data['linez_elow'][ff] = np.sqrt( (data['linez_elow'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
 
-		if data["line_id"][ff] in ("Hb_na","OIII5007c","NeIII3869"):
-			str_redshift = "$%0.4f^{+%0.4f}_{-%0.4f}$" % (data['linez_med'][ff],data['linez_eupp'][ff],data['linez_elow'][ff])
-			str_lfwhm = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linefwhm_med'][ff],data['linefwhm_eupp'][ff],data['linefwhm_elow'][ff])
-			str_lsigma = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linesigma_med'][ff],data['linesigma_eupp'][ff],data['linesigma_elow'][ff])
-		else:
-			str_redshift = "---"
-			str_lfwhm = "---"
-			str_lsigma = "---"
+			str_lflux = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineflux_med'][ff]*1e17,data['lineflux_eupp'][ff]*1e17,data['lineflux_elow'][ff]*1e17)
+			str_lEW_Cigale   = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Cigale_med'][ff],data['lineEW_Cigale_eupp'][ff],data['lineEW_Cigale_elow'][ff])	
+			str_lEW_Bagpipes = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Bagpipes_med'][ff],data['lineEW_Bagpipes_eupp'][ff],data['lineEW_Bagpipes_elow'][ff])	
+
+			if data["line_id"][ff] in ("Hb_na","OIII5007c","NeIII3869"):
+				str_redshift = "$%0.4f^{+%0.4f}_{-%0.4f}$" % (data['linez_med'][ff],data['linez_eupp'][ff],data['linez_elow'][ff])
+				str_lfwhm = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linefwhm_med'][ff],data['linefwhm_eupp'][ff],data['linefwhm_elow'][ff])
+				str_lsigma = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linesigma_med'][ff],data['linesigma_eupp'][ff],data['linesigma_elow'][ff])
+			else:
+				str_redshift = "---"
+				str_lfwhm = "---"
+				str_lsigma = "---"
 
 
-		print(f"{names[ff]} & {str_redshift} & {str_lflux} & {str_lEW_Cigale} & {str_lEW_Bagpipes} & {str_lfwhm} & {str_lsigma} \\\\")
+			util.write_with_newline(table,f"{names[ff]} & {str_redshift} & {str_lflux} & {str_lEW_Cigale} & {str_lEW_Bagpipes} & {str_lfwhm} & {str_lsigma} \\\\")
 
 
 def table_emission_line_ratios():
@@ -77,6 +80,12 @@ def table_emission_line_ratios():
 		util.write_with_newline(table,r"$12+\log_{10}(\rm{O}^{++}/\rm{H})$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (pyneb_stat["12+log10(O++/H)_med"],pyneb_stat["12+log10(O++/H)_err_up"],pyneb_stat["12+log10(O++/H)_err_low"]))
 		util.write_with_newline(table,r"$12+\log_{10}(\rm{O}^{+}/\rm{H})$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (pyneb_stat["12+log10(O+/H)_med"],pyneb_stat["12+log10(O+/H)_err_up"],pyneb_stat["12+log10(O+/H)_err_low"]))
 		util.write_with_newline(table,r"$12+\log_{10}(\rm{O}/\rm{H})$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (pyneb_stat["12+log10(O/H)_med"],pyneb_stat["12+log10(O/H)_err_up"],pyneb_stat["12+log10(O/H)_err_low"]))
+
+		# Gas Metallicity with 8.69 set by Apslund et al. (2009)
+		zgas_med = pow(10,pyneb_stat["12+log10(O/H)_med"] - 8.69)
+		zgas_elow = zgas_med - pow(10,pyneb_stat["12+log10(O/H)_med"] - pyneb_stat["12+log10(O/H)_err_low"] - 8.69)
+		zgas_eup = pow(10,pyneb_stat["12+log10(O/H)_med"] + pyneb_stat["12+log10(O/H)_err_up"] - 8.69) - zgas_med
+		util.write_with_newline(table,r"$Z_{gas} (Z_{\odot})$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (zgas_med,zgas_eup,zgas_elow))
 
 		# Neon Abundance
 		util.write_with_newline(table,"\\multicolumn{2}{l}{\\textbf{Neon Abundance}} \\\\")
@@ -125,14 +134,14 @@ def table_emission_line_ratios():
 
 
 		util.write_with_newline(table,r"$E(B-V)$ -- (H$\beta$/H$\gamma$) &  $%0.2f^{+%0.2f}_{-%0.2f}$ mag\\" % (pyneb_stat["EBV_hghb_med"], pyneb_stat["EBV_hghb_err_up"], pyneb_stat["EBV_hghb_err_low"])  )
-		util.write_with_newline(table,r"								 &  $%0.2f$ mag ($<2\sigma$) \\" % (pyneb_stat["EBV_hghb_2sig_limit"]) )
-		util.write_with_newline(table,r"$E(B-V)$ -- (H$\beta$/H$\delta$) & $%0.2f^{+%0.2f}_{-%0.2f}$ mag\\" % (pyneb_stat["EBV_hdhb_med"], pyneb_stat["EBV_hdhb_err_up"], pyneb_stat["EBV_hdhb_err_low"])  )
+		#util.write_with_newline(table,r"								 &  $%0.2f$ mag ($<2\sigma$) \\" % (pyneb_stat["EBV_hghb_2sig_limit"]) )
+		#util.write_with_newline(table,r"$E(B-V)$ -- (H$\beta$/H$\delta$) & $%0.2f^{+%0.2f}_{-%0.2f}$ mag\\" % (pyneb_stat["EBV_hdhb_med"], pyneb_stat["EBV_hdhb_err_up"], pyneb_stat["EBV_hdhb_err_low"])  )
 
 
 
 
-		# Dust - Corrected Line Ratios
-		util.write_with_newline(table,"\\multicolumn{2}{l}{\\textbf{Dust-Corrected Line ratios}} \\\\")
+		# Line Ratios
+		util.write_with_newline(table,"\\multicolumn{2}{l}{\\textbf{Line ratios}} \\\\")
 		# O3HB
 		index = line_ratio["name"].index("O3HB")
 		o3hb_measured = "$\\textrm{\oiii}_{5007\\textrm{\scriptsize\AA}}/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
@@ -150,7 +159,7 @@ def table_emission_line_ratios():
 
 		# R3
 		index = line_ratio["name"].index("R3")
-		R3_measured = "$(\\textrm{\oiii}_{5007,4959\\textrm{\scriptsize\AA}}/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$\\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		R3_measured = "$\\textrm{\oiii}_{5007,4959\\textrm{\scriptsize\AA}}/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$\\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,R3_measured)
 
 		# R23
@@ -178,6 +187,5 @@ def table_emission_line_ratios():
 
 
 table_emission_line_ratios()
-#table_emission_line_fits()
-#def table_SED_fits():
+table_emission_line_fits()
 

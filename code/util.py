@@ -1,4 +1,6 @@
 import numpy as np
+from scipy.integrate import simps
+from astropy.cosmology import FlatLambdaCDM
 
 
 def stats(pdf,upper_limit=False): 
@@ -46,6 +48,21 @@ def calzetti(lam,unit="Angstrom"):
         return 2.659*( -1.857 + 1.040/lam ) + 4.05
     else:
         raise ValueError("Input wavelength must be between 0.12 and 2.2 microns.") 
+
+def lineFlux_to_Luminosity(lineFlux,redshift,cosmo=FlatLambdaCDM(H0=70.,Om0=0.3)):
+    """
+    Calculate the luminosity of a line in a given redshift.
+
+    Parameters:
+        lineFlux (float): The flux of the line in cgs (erg/s/cm2)
+        redshift (float): The redshift of the line.
+        cosmo (astropy.cosmology.FLRW, optional): The cosmology to use. Defaults assumes FlatLambdaCDM(H0=70.,Om0=0.3). 
+
+    Returns:
+        float: The luminosity of the line in cgs (erg/s)
+    """
+    
+    return lineFlux*4.*np.pi*(cosmo.luminosity_distance(redshift).value*3.086e24)**2.
 
 def fnu_to_ab_mag(fnu, fnuerr = None, unit="cgs", ZP = None):
     """
@@ -161,3 +178,95 @@ def write_with_newline(table, text):
         None
     """
     table.write(text + "\n")
+
+def calc_SFR(time, sfr, max_time_limit = None, sigma=None):
+    """
+    Calculate the average SFR (Star Formation Rate) over a given time period.
+
+    Parameters:
+        time (array-like): An array of time values.
+        sfr (array-like): An array of SFR values.
+        max_time_limit (float, optional): The maximum time limit for integration. Default is None.
+        sigma (array-like, tuple, optional): The error in SFR. If a single array is provided, it is considered as the symmetrical error.
+                                              If a tuple is provided, it is considered as the low and upper errors in that order. Default is None.
+    Returns:
+        tuple or float: If sigma is provided, a tuple containing the average SFR, the lower error, and the upper error.
+                        If sigma is not provided, the average SFR.
+    Raises:
+        ValueError: If sigma is a tuple and it does not contain exactly two arrays.
+
+    """
+
+    # Check to make sure that the tuple is of size 2 (low, upp)
+    if isinstance(sigma,tuple):
+        if len(sigma) != 2:
+            raise ValueError("Sigma tuple must contain exactly two arrays: (sigma_low, sigma_upp)")
+        sigma_low, sigma_upp = sigma
+
+    # Limit the integration from 0 to max_time_limit Gyr
+    if max_time_limit is not None:
+        mask = time < max_time_limit
+
+        # Make sure that the mask is not empty
+        if not np.any(mask):
+            raise ValueError("The max_time_limit is too small resulting in an empty array. Can't Integrate. Adjust your max_time_limit accordingly.")
+
+        time = time[mask]
+        sfr = sfr[mask]
+
+        if sigma is not None:
+            if isinstance(sigma,tuple):
+                sigma_low, sigma_upp = sigma_low[mask], sigma_upp[mask]
+            else:
+                sigma = sigma[mask]
+
+    # Calculate time-averaged SFR
+    sfr_avg = simps(sfr, x = time)/np.max(time)
+
+    # Calculate the error in the time-averaged SFR
+    if sigma is not None:
+        if isinstance(sigma, tuple):
+            err_sfr_avg_low = np.sqrt(simps(sigma_low**2.,x=time))
+            err_sfr_avg_upp = np.sqrt(simps(sigma_upp**2.,x=time))
+            return sfr_avg, err_sfr_avg_low, err_sfr_avg_upp
+        
+        else:
+            err_sfr_avg = np.sqrt(simps(sigma**2.,x=time))
+            return sfr_avg,err_sfr_avg
+        
+    return sfr_avg
+
+
+def sampling(central, sigma, n_samples=10000):
+    """
+    Generates a set of random samples from a normal and asymmetrically distributed normal distribution.
+
+    Parameters:
+        central (float): The mean of the normal distribution.
+        sigma (float or tuple): The standard deviation of the normal distribution. If a tuple, the first element is the standard deviation for positive samples and the second element is the standard deviation for negative samples.
+        n_samples (int): The number of samples to generate. Defaults to 10000.
+
+    Returns:
+        numpy.ndarray: An array of random samples from the specified normal distribution.
+    """
+    if isinstance(sigma,tuple):
+        
+        samples = np.random.normal(loc=0., scale=sigma[0], size=n_samples)
+
+        mask = samples < 0.
+
+        samples[mask] = -1.*np.abs(np.random.normal(loc=0., scale=sigma[1], size=np.sum(mask)))
+
+        return samples + central
+    
+    else:
+
+        return np.random.normal(loc=central, scale=sigma, size=n_samples)
+
+def color_scheme(sed,mfc=False,mec=False):
+    if sed == "Cigale":
+        if mfc == True: return "#AEC7E8"
+        if mec == True: return "#1F77B4"
+    elif sed == "Bagpipes":
+        if mfc == True: return "#acb7dc"
+        if mec == True: return "#003366"

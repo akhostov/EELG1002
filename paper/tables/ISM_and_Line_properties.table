@@ -1,33 +1,32 @@
 \multicolumn{2}{l}{\textbf{Electron Temperature \& Density}} \\
-$T_e(\textrm{O}^{++})$ & $19595^{+1550}_{-1498}$ \\
-$T_e(\textrm{O}^{+})$ & $15544^{+83}_{-273}$ \\
-$n_e$ & $458^{+356}_{-244}$ \\
+$T_e(\textrm{O}^{++})$ & $19507^{+1581}_{-1426}$ \\
+$T_e(\textrm{O}^{+})$ & $15535^{+91}_{-268}$ \\
+$n_e$ & $488^{+340}_{-247}$ \\
 \multicolumn{2}{l}{\textbf{Oxygen Abundance}} \\
-$12+\log_{10}(\rm{O}^{++}/\rm{H})$ & $7.451^{+0.077}_{-0.072}$ \\
-$12+\log_{10}(\rm{O}^{+}/\rm{H})$ & $6.545^{+0.044}_{-0.038}$ \\
-$12+\log_{10}(\rm{O}/\rm{H})$ & $7.501^{+0.072}_{-0.065}$ \\
+$12+\log_{10}(\rm{O}^{++}/\rm{H})$ & $7.456^{+0.073}_{-0.072}$ \\
+$12+\log_{10}(\rm{O}^{+}/\rm{H})$ & $6.559^{+0.046}_{-0.041}$ \\
+$12+\log_{10}(\rm{O}/\rm{H})$ & $7.507^{+0.069}_{-0.065}$ \\
+$Z_{gas} (Z_{\odot})$ & $0.066^{+0.011}_{-0.009}$ \\
 \multicolumn{2}{l}{\textbf{Neon Abundance}} \\
-$12+\log_{10}(\rm{Ne}^{++}/\rm{H})$ & $6.882^{+0.090}_{-0.079}$ \\
-$12+\log_{10}(\rm{Ne}/\rm{H})$ & $6.901^{+0.089}_{-0.076}$ \\
-ICF(Ne$^{++}$) & $1.047^{+0.007}_{-0.005}$ \\
-$\log_{10}(\rm{Ne}/\rm{O})$ & $-0.599^{+0.029}_{-0.025}$ \\
+$12+\log_{10}(\rm{Ne}^{++}/\rm{H})$ & $6.898^{+0.087}_{-0.083}$ \\
+$12+\log_{10}(\rm{Ne}/\rm{H})$ & $6.918^{+0.085}_{-0.081}$ \\
+ICF(Ne$^{++}$) & $1.048^{+0.007}_{-0.005}$ \\
+$\log_{10}(\rm{Ne}/\rm{O})$ & $-0.589^{+0.027}_{-0.026}$ \\
 \multicolumn{2}{l}{\textbf{Ionization Parameter} -- $\boldsymbol{\log_{10} U}$} \\
 \texttt{HCM} + \texttt{BPASS} & $-1.69\pm0.12$ \\
-\texttt{Bagpipes} + \texttt{BPASS} & $-1.63^{+0.12}_{-0.13}$ \\
-\texttt{Cigale} + \texttt{BC03} & $-2.27\pm0.05$ \\
+\texttt{Bagpipes} + \texttt{BPASS} & $-1.64^{+0.11}_{-0.12}$ \\
+\texttt{Cigale} + \texttt{BC03} & $-2.23\pm0.06$ \\
 \multicolumn{2}{l}{\textbf{Balmer Decrement}} \\
-\hbeta/\hgamma & $1.961^{+0.153}_{-0.147}$ \\
-\hbeta/\hdelta & $4.708^{+0.510}_{-0.432}$ \\
-\hbeta/H$\epsilon$ & $8.627^{+1.753}_{-1.323}$ \\
-$E(B-V)$ -- (H$\beta$/H$\gamma$) &  $0.00^{+0.01}_{-0.00}$ mag\\
-								 &  $0.17$ mag ($<2\sigma$) \\
-$E(B-V)$ -- (H$\beta$/H$\delta$) & $0.30^{+0.14}_{-0.13}$ mag\\
-\multicolumn{2}{l}{\textbf{Dust-Corrected Line ratios}} \\
-$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $4.899^{+0.254}_{-0.236}$ \\
-$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & $11.428^{+0.591}_{-0.672}$ \\
-$\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $0.431^{+0.032}_{-0.028}$ \\
-$(\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $6.520^{+0.341}_{-0.329}$\\
-$(\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}  + \textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}})/\textrm{\hbeta}$ & $6.948^{+0.362}_{-0.342}$ \\
-$\textrm{\oiii}_{4363\textrm{\scriptsize\AA}}/\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}$ & $0.033^{+0.004}_{-0.004}$ \\
-$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & $1.350^{+0.092}_{-0.082}$ \\
-$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oiii}5007\textrm{\AA}$ & $0.118^{+0.007}_{-0.006}$ \\
+\hbeta/\hgamma & $1.936^{+0.154}_{-0.145}$ \\
+\hbeta/\hdelta & $4.641^{+0.437}_{-0.441}$ \\
+\hbeta/H$\epsilon$ & $8.283^{+1.624}_{-1.224}$ \\
+$E(B-V)$ -- (H$\beta$/H$\gamma$) &  $0.00^{+0.00}_{-0.00}$ mag\\
+\multicolumn{2}{l}{\textbf{Line ratios}} \\
+$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $4.929^{+0.242}_{-0.229}$ \\
+$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & $11.142^{+0.607}_{-0.580}$ \\
+$\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $0.444^{+0.030}_{-0.028}$ \\
+$\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $6.556^{+0.323}_{-0.316}$\\
+$(\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}  + \textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}})/\textrm{\hbeta}$ & $6.994^{+0.350}_{-0.327}$ \\
+$\textrm{\oiii}_{4363\textrm{\scriptsize\AA}}/\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}$ & $0.032^{+0.004}_{-0.004}$ \\
+$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & $1.347^{+0.094}_{-0.084}$ \\
+$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oiii}5007\textrm{\AA}$ & $0.121^{+0.007}_{-0.006}$ \\

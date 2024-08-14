@@ -1,0 +1,154 @@
+/home/aahsps/.bashrc: line 87: bind: warning: line editing not enabled
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+Traceback (most recent call last):
+  File "/home/aahsps/Research Projects/EELG_OIII_GMOS/bagpipes_runs/with_BPASS/bagpipes_EELG_OIII_GMOS_run.py", line 226, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/fitting/fit.py", line 244, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/home/aahsps/env/bagpipes/lib/python3.10/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'. Did you mean: 'n_posterior'?
+srun: error: skl-a-00: tasks 1-19: Exited with exit code 1

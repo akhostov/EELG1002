@@ -16,13 +16,14 @@ from colors import tableau20
 ##################################################################################################
 
 # Load in the best-fit SED
-cigale = fits.open("../../data/cigale_results/sfh_delayed_nodust/1002_best_model.fits")[1].data
+cigale = fits.open("../../data/SED_results/cigale_results/1002_best_model.fits")[1].data
+bagpipes = fits.open("../../data/SED_results/bagpipes_results/best_fit_SED_sfh_continuity_spec_BPASS_new.fits")[1].data
 
 # Load in the results that include best-model fits
-model_phot = fits.open("../../data/cigale_results/sfh_delayed_nodust/results.fits")[1].data
+model_phot = fits.open("../../data/SED_results/cigale_results/results.fits")[1].data
 
 # Load in the observations
-obs = fits.open("../../data/cigale_results/sfh_delayed_nodust/observations.fits")[1].data
+obs = fits.open("../../data/SED_results/cigale_results/observations.fits")[1].data
 
 # Define the central wavelengths
 lib_wave = [("CFHT_u",3709.,518.),
@@ -94,6 +95,7 @@ ax.set_xticklabels(["0.3","0.4","0.5","0.6","0.8","1","2","3"])
 
 # Plot the Best-Fit SED
 ax.plot(cigale["wavelength"]/1e3,cigale["fnu"]*1e-3*1e-23*3e18/pow(cigale["wavelength"]*10.,2.)*1e19,color="black",lw=0.5)
+ax.plot(pow(10,bagpipes["log_wave"])/1e4,bagpipes["SED_median"]*10.,color="green",lw=0.5)
 
 # Keep only Detections
 keep = (obs_ferr > 0.) & (obs_fluxes > 0.)

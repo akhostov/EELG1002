@@ -1,5 +1,4 @@
 import requests
-
 from astropy.io import fits
 from astropy.cosmology import FlatLambdaCDM
 import numpy as np
@@ -131,9 +130,6 @@ def main(simulation):
     
     # Close the File
     outfile.close()
-
-
-
 
 
 if __name__ == "__main__":

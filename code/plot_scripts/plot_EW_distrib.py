@@ -1,81 +1,16 @@
-import matplotlib as mpl
-from matplotlib.lines import Line2D
 import matplotlib.pyplot as plt 
+from matplotlib.lines import Line2D
 import numpy as np 
 from astropy.io import fits
-import os,sys
-import pdb
+import pickle
+import h5py
+import sys
 
 sys.path.insert(0, "../../../My_Modules/color_lib/")
 from colors import tableau20
 
-# setup LaTeX path
-#os.environ['PATH'] = os.environ['PATH'] + ':/usr/texbin'
-
-# Define Key Parameters for Font
-#mpl.rc('text',usetex=True)
-#mpl.rcParams['text.latex.preamble']=[r'\usepackage{amsmath,amssymb,newtxtt,newtxmath}']
-#mpl.rc('font',family='serif')
-
-"""
-fig = plt.figure()
-fig.set_size_inches(3.75, 3.75)
-fig.subplots_adjust(hspace=0.03, wspace=0.03)
-
-ax = fig.add_subplot(111)
-
-# set label
-ax.set_xlabel(r"Rest-Frame EW (\AA)")
-ax.set_ylabel(r"Number of Emitters")
-
-# Load in the catalog
-cat = fits.open("../data/NBH_HiZELS_HA_O3_sample.fits")
-cat = cat[1].data
-
-ewbins = pow(10,np.arange(1.,5.,0.2))
-
-plt.hist(cat["EW_0"][cat["EL"] == "HA"],bins=ewbins,color=tableau20("Blue"),edgecolor="black",alpha=0.5,ls="--",lw=1,histtype="stepfilled",hatch="\\",label=r"H$\alpha$")
-plt.hist(cat["EW_0"][cat["EL"] == "OIII"],bins=ewbins,color=tableau20("Red"),edgecolor="black",alpha=0.5,ls="--",lw=1,histtype="stepfilled",hatch="/",label=r"[O{\sc iii}]")
-
-plt.legend(loc="upper right",ncol=1,fontsize=10,frameon=False)
-
-plt.xscale("log")
-plt.yscale("log")
-plt.ylim(0.9,100.)
-plt.xlim(10.,20000.)
-plt.savefig("../plots/EW_distributions.png",format="png",dpi=300,bbox_inches="tight")
-"""
-
-"""
-fig = plt.figure()
-fig.set_size_inches(3.71,2.36)
-fig.subplots_adjust(hspace=0.03, wspace=0.03)
-
-ax = fig.add_subplot(111)
-
-# set label
-ax.set_xlabel(r"$\log_{10}$ Stellar Mass (M$_\odot$)")
-ax.set_ylabel(r"Number of Galaxies")
-
-# Load in the catalog
-cat = fits.open("../data/NBH_HiZELS_HA_O3_sample.fits")
-cat = cat[1].data
-
-mass_bins = np.arange(7.5,12.,0.3)
-
-plt.hist(cat["MASS"][cat["EL"] == "HA"],bins=mass_bins,color=tableau20("Blue"),edgecolor="black",alpha=0.5,ls="--",lw=1,histtype="stepfilled",hatch="\\",label=r"H$\alpha$")
-plt.hist(cat["MASS"][cat["EL"] == "OIII"],bins=mass_bins,color=tableau20("Red"),edgecolor="black",alpha=0.5,ls="--",lw=1,histtype="stepfilled",hatch="/",label=r"[O{\sc iii}]")
-
-plt.legend(loc="upper right",ncol=1,fontsize=10,frameon=False)
-
-#plt.xscale("log")
-#plt.yscale("log")
-#plt.ylim(2e-17,5e-16.)
-#plt.xlim(10.,20000.)
-plt.savefig("../plots/Mass_distributions.png",format="png",dpi=300,bbox_inches="tight")
-#plt.show()
-
-"""
+sys.path.insert(0, '..')
+import util
 
 
 fig = plt.figure()
@@ -189,31 +124,42 @@ ax.errorbar(hizels_mass_z3p24,hizels_EW_z3p24,yerr=(hizels_EW_z3p24_elow,hizels_
                 marker="o",ms=5,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=98)
 
 # Plot in my Source
-sed = fits.open("../../data/cigale_results/sfh_delayed_nodust/results.fits")[1].data
-mass = sed["bayes.stellar.m_star"]
-mass_err = sed["bayes.stellar.m_star_err"]/(np.log(10.)*mass)
-mass = np.log10(mass)
-pdb.set_trace()
-data = fits.open("../../data/emline_fits/43158747673038238/1002_lineprops_new.fits")[1].data
 
-EW_source = data["lineEW_med"][-1] + data["lineEW_med"][-2] + data["lineEW_med"][-3] 
-EW_source_elow = np.sqrt( data["lineEW_elow"][-1]**2. + data["lineEW_elow"][-2]**2. + data["lineEW_elow"][-3]**2. )
-EW_source_eupp = np.sqrt( data["lineEW_eupp"][-1]**2. + data["lineEW_eupp"][-2]**2. + data["lineEW_eupp"][-3]**2. )
+# Get the Stellar Mass
+sed = fits.open("../../data/SED_results/cigale_results/results.fits")[1].data
+cigale_mass = sed["bayes.stellar.m_star"]
+cigale_mass_err = sed["bayes.stellar.m_star_err"]/(np.log(10.)*cigale_mass)
+cigale_mass = np.log10(cigale_mass)
 
-ax.errorbar([mass],[EW_source],xerr=[mass_err],yerr=([EW_source_elow],[EW_source_eupp]),\
-						ls="none",mec=tableau20("Blue"),mfc=tableau20("Light Blue"),ecolor=tableau20("Blue"),\
-                		marker="*",ms=15,mew=1,capsize=2,capthick=1,elinewidth=0.5,label=r"$EELG1002$",zorder=99)
+bagpipes = h5py.File("../../data/SED_results/bagpipes_results/pipes/posterior/sfh_continuity_spec_BPASS/1002.h5", "r")
+bagpipes_mass = bagpipes["median"][10]
+bagpipes_mass_err_low,bagpipes_mass_err_up = bagpipes_mass - bagpipes["conf_int"][0][10], bagpipes["conf_int"][1][10] - bagpipes_mass
 
-#high_ew_prop, = ax.plot(cat["MASS"][cat["EL"] == "OIII"][highEW], cat["EW_0"][cat["EL"] == "OIII"][highEW],color=tableau20("Green"),marker="o",ms=5,mec="black",ls="none",alpha=0.5,label=r"High EW")
 
-#handles = [mpl.lines.Line2D([],[],mfc=tableau20("Light Blue"),marker="*",ms=10,mew=0.5,mec=tableau20("Blue"),ls="none",alpha=0.5,label=r"$EELG1002$"),
-#		   mpl.lines.Line2D([],[],color="black",marker="s",ms=5,mew=0.5,mec="black",ls="none",alpha=0.5,label=r"Confirmed LyC")]
+# Get the EW
+with open("../../data/xi_ion_measurements.pkl","rb") as f: EW_meas = pickle.load(f)
 
-#lgd1 = ax.legend(handles=handles,loc="upper left",ncol=1,fontsize=7.,frameon=True,handletextpad=0.1,columnspacing=0.05)
-#plt.gca().add_artist(lgd1)
-#lgd1.get_title().set_fontsize('7')
 
-handles = [	Line2D([],[],ls="none",marker="*",ms=10,mec=tableau20("Blue"),mfc=tableau20("Light Blue"),label=r"\textbf{\textit{EELG1002 (This Work)}}"),
+ax.errorbar(cigale_mass,[EW_meas["cigale_O3HB_EW"][0]],
+				xerr=(cigale_mass_err,cigale_mass_err),
+            	yerr=([EW_meas["cigale_O3HB_EW"][2]],[EW_meas["cigale_O3HB_EW"][1]]),ls="none",
+                mec=util.color_scheme("Cigale",mec=True),
+                mfc=util.color_scheme("Cigale",mfc=True),
+                ecolor=util.color_scheme("Cigale",mec=True),\
+	            marker="*",ms=15,mew=1,capsize=2,capthick=1,elinewidth=0.5,label=r"$EELG1002$",zorder=99)
+
+ax.errorbar([bagpipes_mass],[EW_meas["bagpipes_O3HB_EW"][0]],
+				xerr=([bagpipes_mass_err_low],[bagpipes_mass_err_up]),
+            	yerr=([EW_meas["bagpipes_O3HB_EW"][2]],[EW_meas["bagpipes_O3HB_EW"][1]]),ls="none",
+                mec=util.color_scheme("Bagpipes",mec=True),
+                mfc=util.color_scheme("Bagpipes",mfc=True),
+                ecolor=util.color_scheme("Bagpipes",mec=True),\
+	            marker="*",ms=15,mew=1,capsize=2,capthick=1,elinewidth=0.5,label=r"$EELG1002$",zorder=99)
+
+
+
+handles = [	Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Cigale",mec=True),mfc=util.color_scheme("Cigale",mfc=True),label=r"\textbf{\textit{EELG1002 (Cigale)}}"),
+           	Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Bagpipes",mec=True),mfc=util.color_scheme("Bagpipes",mfc=True),label=r"\textbf{\textit{EELG1002 (Bagpipes)}}"),
 			Line2D([],[],ls="none",marker="s",ms=4,mec="#464196",mfc="none",label=r"Blueberries (Ya+17; $z \sim 0$)"),
 			Line2D([],[],ls="none",marker="d",ms=4,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),label=r"LyC Leakers (Iz+21; $z \sim 0$)"),
 			Line2D([],[],ls="none",marker="s",ms=4,mec=tableau20("Green"),mfc="none",label=r"GPs (Ca+08; $z \sim 0.2 - 0.3$)"),
@@ -222,7 +168,7 @@ handles = [	Line2D([],[],ls="none",marker="*",ms=10,mec=tableau20("Blue"),mfc=ta
 			Line2D([],[],ls="none",marker="v",ms=4,mec=tableau20("Red"),mfc=tableau20("Light Red"),label=r"\textrm{Ion2} (deB+16; $z = 3.216$)")
 			]		
 
-leg = ax.legend(handles=handles,loc="upper right",frameon=False,ncol=2,numpoints=1,fontsize=5,columnspacing=0.075)
+leg = ax.legend(handles=handles,loc="upper right",frameon=False,ncol=2,numpoints=1,fontsize=5,labelspacing=1.0,columnspacing=0.075)
 plt.gca().add_artist(leg)	
 
 
@@ -239,6 +185,5 @@ leg2.get_title().set_fontsize('5')
 plt.xlim(7,11.)
 plt.ylim(10.,3e4)
 plt.yscale("log")
-#plt.savefig("../plots/EW_OIII_distrib.png",format="png",dpi=300,bbox_inches="tight")
-plt.savefig("../../plots/EW_OIII_distrib_STScI_talk.png",format="png",dpi=300,bbox_inches="tight")
+plt.savefig("../../plots/EW_OIII_distrib.png",format="png",dpi=300,bbox_inches="tight")
 

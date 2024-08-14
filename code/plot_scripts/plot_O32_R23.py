@@ -47,21 +47,26 @@ ax.set_ylim(-1.0,2.0)
 
 #### OUR SOURCE
 # Load in the Line properties
-file = open("../../data/emline_fits/43158747673038238/ratios_and_ISM_props_1002_new.pkl","rb")
-data = pickle.load(file)
+with open("../../data/emline_fits/1002_line_ratios.pkl","rb") as file: data = pickle.load(file)
 file.close()
 
 # Load in the SED properties (use CIGALE for now)
-sed = fits.open("../../data/cigale_results/sfh_delayed_nodust/results.fits")[1].data
-o32,o32_elow,o32_eupp = np.median(data["pdf_o32"]),np.percentile(data["pdf_o32"],16.),np.percentile(data["pdf_o32"],84.)
-o32_elow = o32 - o32_elow
-o32_eupp = o32_eupp - o32
+mask_r23 = data["name"].index("R23")
+mask_o32 = data["name"].index("O32")
 
-r23,r23_elow,r23_eupp = np.median(data["pdf_r23"]),np.percentile(data["pdf_r23"],16.),np.percentile(data["pdf_r23"],84.)
-r23_elow = r23 - r23_elow
-r23_eupp = r23_eupp - r23
+r23 = data["median"][mask_r23]
+r23_elow = np.log10(r23) - np.log10(r23 - data["low_1sigma"][mask_r23])
+r23_eupp = np.log10(data["upp_1sigma"][mask_r23] + r23) - np.log10(r23)
+r23 = np.log10(r23)
 
-ax.errorbar([r23],[o32],xerr=([r23_elow],[r23_eupp]),yerr=([o32_elow],[o32_eupp]),\
+o32 = data["median"][mask_o32]
+o32_elow = np.log10(o32) - np.log10(o32 - data["low_1sigma"][mask_o32])
+o32_eupp = np.log10(data["upp_1sigma"][mask_o32] + o32) - np.log10(o32)
+o32 = np.log10(o32)
+
+ax.errorbar(r23,o32,
+			xerr=([r23_elow],[r23_eupp]),\
+				yerr=([o32_elow],[o32_eupp]),\
 				ls="none",mec=tableau20("Blue"),mfc=tableau20("Light Blue"),ecolor=tableau20("Blue"),\
                 marker="*",ms=12,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=99)
 
@@ -109,8 +114,9 @@ ax.plot(Ya17_R23,Ya17_O32,
 				ls="none",mec=tableau20("Green"),mfc="none",\
                 marker="^",ms=3,mew=0.5,zorder=98)
 
-
 ## Plot SDSS Sources
+print ("Running SDSS")
+
 SDSS = fits.open("../../../Main Catalogs/SDSS/DR12/portsmouth_emlinekin_full-DR12-boss.fits")[1].data
 O3_5007 = SDSS["FLUX"].T[17]
 O3_4959 = SDSS["FLUX"].T[16]
@@ -163,7 +169,7 @@ SDSS_R23 = np.log10( (O3_5007+ O3_4959 + SDSS_O2)/(HB_4861) )#*pow(10,0.4*SDSS["
 ax.plot(SDSS_R23,SDSS_O32,				
 				ls="none",mfc=tableau20("Light Grey"),mec="none",\
                 marker="o",ms=1,alpha=0.8,zorder=1)
-
+print("Finished SDSS")
 
 
 # MOSDEF
