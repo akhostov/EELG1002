@@ -326,50 +326,56 @@
 		
 		\subsection{GMOS Spectroscopy}
 		
+		\begin{figure}
+			\centering
+			\includegraphics[width=\columnwidth]{figures/slit_pos.png}
+			\caption{GMOS slit position for EELG1002 with a $10'' \times 10''$ \textit{HST}/ACS F814W cutout ($0.03''$ pix$^{-1}$ resolution). The Subaru HSC $i$ detection is shown in \textit{red} contours highlighting the lower resolution of ground-based observations where we find $\sim 50$\% of EELG1002's total flux is observed along the $0.5''$ GMOS slit. \textit{GALEX}/NUV and FUV detections are found within the COSMOS2020 catalog which would suggest strong \lya~emission and possible LyC escape; however, we note that \textit{GALEX} resolution is quite poor highlighted here in \textit{purple} for the NUV detection. The proximity of two nearby sources, shown with their COSMOS2020/Classic IDs and best-fit photometric redshifts, makes it probable that contamination could affect the \textit{GALEX} detections. We therefore ignore \textit{GALEX}s photometry as well as \textit{Spitzer} photometry in this analysis.}
+			\label{fig:slitpos}
+		\end{figure}
 		GS-2017A-FT-9 consisted of three masks with only one in COSMOS which is the focus of this paper. Observations were taken in 2017 April 23 on Gemini-South using the Gemini Multi-Object Spectrograph (GMOS) with the Hamamatsu Detector, R150 grating, and GG455 blocking filter. This allows for spectral coverage from {\color{red} ZZZ} to {\color{red} ZZZ} with the blocking filter ensuring second-order {\color{red} ZZZ}. Table \ref{table:obslog} shows the observation log identifying the frame ID as found in the Gemini Science Archive, along with the frame type, exposure time, and central wavelength (dispangle). Seeing conditions were reported as $0.9''$ throughout the observing time and humidity levels were somewhat elevated at $\sim 40\%$. A total of 3 individual exposures were pointed at GS2017AFT009-02 (mask design file) with the central wavelengths of each exposure being 8070\AA, 8200\AA, and 8330\AA, respectively, which when 2D Coadded would take into account the GMOS detector chip gaps allowing for continuous spectral coverage in the final 1D and 2D spectra. Each science exposure was 1200 seconds resulting in an on-source integration time of 3600 seconds. Slit widths were set to $0.5''$ for the science targets and box slits of $2''$ sizes were used for alignment stars. Calibration frames consisted of a single 5 second twilight flat taken in the beginning of the night, a single 1 second dome flat (GCALflat) for each dispangle, and a 20 second CuAr lamp exposure for wavelngth calibration per each dispangle. Bias frames were taken on 2017 April 29 (last night of the program) and consisted of 5 frames each 1 second in exposure time.
 
 		
 		The standard star LTT7379 (G0 star) that we use for flux calibration purposes was observed on 2017 April 29 with the same configuration and central wavelength of 8200\AA. Conditions were reported with seeing as $1.08''$ and humidity levels of $14\%$. Observations of the standard star were done using a $0.5''$ wide longslit for an on-source integration time of 10 seconds. Associated CuAr lamp and Dome Flat frames were observed in 1 second exposures with the same configuration and slit widths.
 		
 		
-		\begin{table}
-			\centering
-			\caption{Observation Log for GS-2017A-FT-9 and mask GS2017AFT009-03. Dispangle is the central wavelength of the observation. No bias frame was take on 2017 April 23 which is why we use the bias associated with this program that was taken on 2017 April 29.}
-			\label{table:obslog} 
-			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}  l l c c }
-				\hline
-				Frame ID            & Frame Type    & Exposure Time              & Dispangle   \\
-				                    &               & (sec)                      & (\AA)       \\ \hline
-				\multicolumn{3}{l}{{\bf Science \& Associated Calibrations}}            \\
-				S20170423S0039 & Science       & 1200.0                     & 8070       \\
-				S20170423S0038 & Science       & 1200.0                     & 8200       \\
-				S20170423S0041 & Science       & 1200.0                     & 8330       \\
-				S20170423S0113 & CuAr Lamp     & 20.0                       & 8070       \\
-				S20170423S0112 & CuAr Lamp     & 20.0                       & 8200       \\
-				S20170423S0114 & CuAr Lamp     & 20.0                       & 8330       \\
-				S20170423S0040 & Dome Flat     & 1.0                        & 8070       \\
-				S20170423S0037 & Dome Flat     & 1.0                        & 8200       \\
-				S20170423S0042 & Dome Flat     & 1.0                        & 8330       \\
-				S20170423S0014 & Twilight Flat & 5.0                        & 8070       \\
-				S20170423S0014 & Twilight Flat & 5.0                        & 8200       \\
-				S20170423S0014 & Twilight Flat & 5.0                        & 8330       \\
-				S20170429S0198 & Bias          & 1.0                        & --          \\
-				S20170429S0199 & Bias          & 1.0                        & --         \\
-				S20170429S0200 & Bias          & 1.0                        & --         \\
-				S20170429S0201 & Bias          & 1.0                        & --         \\
-				S20170429S0202 & Bias          & 1.0                        & --         \\
-				\hline
-				\multicolumn{3}{l}{\textbf{Standard Star \& Associated Calibrations}}  \\
-				S20170429S0169 & Standard      & 10.0                       & 8200       \\
-				S20170429S0180 & CuAr Lamp     & 1.0                        & 8200       \\
-				S20170429S0170 & Dome Flat     & 1.0                        & 8200       \\
-				S20170429S0243 & Bias          & 1.0                        & --          \\
-				S20170429S0244 & Bias          & 1.0                        & --          \\
-				S20170429S0245 & Bias          & 1.0                        & --         \\
-				S20170429S0246 & Bias          & 1.0                        & --          \\
-				S20170429S0247 & Bias          & 1.0                        & --          \\ \hline
-			\end{tabular*}
-		\end{table}
+%		\begin{table}
+%			\centering
+%			\caption{Observation Log for GS-2017A-FT-9 and mask GS2017AFT009-03. Dispangle is the central wavelength of the observation. No bias frame was take on 2017 April 23 which is why we use the bias associated with this program that was taken on 2017 April 29.}
+%			\label{table:obslog} 
+%			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}  l l c c }
+%				\hline
+%				Frame ID            & Frame Type    & Exposure Time              & Dispangle   \\
+%				                    &               & (sec)                      & (\AA)       \\ \hline
+%				\multicolumn{3}{l}{{\bf Science \& Associated Calibrations}}            \\
+%				S20170423S0039 & Science       & 1200.0                     & 8070       \\
+%				S20170423S0038 & Science       & 1200.0                     & 8200       \\
+%				S20170423S0041 & Science       & 1200.0                     & 8330       \\
+%				S20170423S0113 & CuAr Lamp     & 20.0                       & 8070       \\
+%				S20170423S0112 & CuAr Lamp     & 20.0                       & 8200       \\
+%				S20170423S0114 & CuAr Lamp     & 20.0                       & 8330       \\
+%				S20170423S0040 & Dome Flat     & 1.0                        & 8070       \\
+%				S20170423S0037 & Dome Flat     & 1.0                        & 8200       \\
+%				S20170423S0042 & Dome Flat     & 1.0                        & 8330       \\
+%				S20170423S0014 & Twilight Flat & 5.0                        & 8070       \\
+%				S20170423S0014 & Twilight Flat & 5.0                        & 8200       \\
+%				S20170423S0014 & Twilight Flat & 5.0                        & 8330       \\
+%				S20170429S0198 & Bias          & 1.0                        & --          \\
+%				S20170429S0199 & Bias          & 1.0                        & --         \\
+%				S20170429S0200 & Bias          & 1.0                        & --         \\
+%				S20170429S0201 & Bias          & 1.0                        & --         \\
+%				S20170429S0202 & Bias          & 1.0                        & --         \\
+%				\hline
+%				\multicolumn{3}{l}{\textbf{Standard Star \& Associated Calibrations}}  \\
+%				S20170429S0169 & Standard      & 10.0                       & 8200       \\
+%				S20170429S0180 & CuAr Lamp     & 1.0                        & 8200       \\
+%				S20170429S0170 & Dome Flat     & 1.0                        & 8200       \\
+%				S20170429S0243 & Bias          & 1.0                        & --          \\
+%				S20170429S0244 & Bias          & 1.0                        & --          \\
+%				S20170429S0245 & Bias          & 1.0                        & --         \\
+%				S20170429S0246 & Bias          & 1.0                        & --          \\
+%				S20170429S0247 & Bias          & 1.0                        & --          \\ \hline
+%			\end{tabular*}
+%		\end{table}
 		
 		\subsection{COSMOS2020 Classic}
 		
@@ -797,6 +803,13 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 		
 		\subsection{Record Breaking Low Mass, Compact, High EW Emitter at $z \sim 0.8$}
 		
+		\begin{figure*}
+			\centering
+			\includegraphics[width=\textwidth]{figures/EELG1002_SED.png}
+			\caption{\zzz}
+			\label{fig:sed}
+		\end{figure*}
+	
 		\begin{figure}
 			\centering
 			\includegraphics[width=\columnwidth]{figures/EW_OIII_distrib.png}
@@ -815,6 +828,13 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 				compared to other high EW emitters spectra doesn't have any evidence for Helium emission as expected in other sources (papers?)
 		
 		\subsection{No Evidence of AGN component}
+		
+		\begin{figure*}
+			\centering
+			\includegraphics[width=\textwidth]{figures/BPT_MEx.png}
+			\caption{\zzz}
+			\label{fig:BPT_MEx}
+		\end{figure*}
 		
 		Main points:
 				Spectra does not show broad emission line component
@@ -1081,7 +1101,7 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 		\citep{Prochaska2020, Prochaska_zenodo}.
 		
 		
-		\textit{Software:} {\sc astropy}, {\sc numpy}, {\sc PyQSOFit}, {\sc Cigale}, {\sc Bagpipes}
+		\textit{Software:} \verb|astropy|, \verb|numpy|, \verb|PyQSOFit|, \verb|Pyneb|, \verb|Cigale|, \verb|Bagpipes|
 		
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

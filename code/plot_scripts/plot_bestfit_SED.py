@@ -9,6 +9,8 @@ import pdb
 import os,sys
 sys.path.insert(0, "../../../My_Modules/color_lib/")
 from colors import tableau20
+sys.path.insert(0,"..")
+import util
 
 
 ##################################################################################################
@@ -17,7 +19,7 @@ from colors import tableau20
 
 # Load in the best-fit SED
 cigale = fits.open("../../data/SED_results/cigale_results/1002_best_model.fits")[1].data
-bagpipes = fits.open("../../data/SED_results/bagpipes_results/best_fit_SED_sfh_continuity_spec_BPASS_new.fits")[1].data
+bagpipes = fits.open("../../data/SED_results/bagpipes_results/best_fit_SED_sfh_continuity_spec_BPASS.fits")[1].data
 
 # Load in the results that include best-model fits
 model_phot = fits.open("../../data/SED_results/cigale_results/results.fits")[1].data
@@ -46,12 +48,12 @@ match_ind = [index_map[element] for element in filters]
 
 obs_wave = np.double(lib_wave[1][match_ind])
 obs_fwhm = np.double(lib_wave[2][match_ind])
-obs_fluxes = np.asarray([obs[ii] for ii in filters]).T[0]*1e-3*1e-23*3e18/pow(obs_wave,2.)
-obs_ferr = np.asarray([obs[ii+"_err"] for ii in filters]).T[0]*1e-3*1e-23*3e18/pow(obs_wave,2.)
+obs_fluxes = np.asarray([obs[ii] for ii in filters]).T[0]#*1e-3*1e-23#*3e18/pow(obs_wave,2.)
+obs_ferr = np.asarray([obs[ii+"_err"] for ii in filters]).T[0]#*1e-3*1e-23#*3e18/pow(obs_wave,2.)
 obs_band_ids = lib_wave[0][match_ind]
 
-results_fluxes = np.asarray([model_phot["bayes."+ii] for ii in filters]).T[0]*1e-3*1e-23*3e18/pow(obs_wave,2.)
-results_ferr = np.asarray([model_phot["bayes."+ii+"_err"] for ii in filters]).T[0]*1e-3*1e-23*3e18/pow(obs_wave,2.)
+results_fluxes = np.asarray([model_phot["bayes."+ii] for ii in filters]).T[0]#*1e-3*1e-23#*3e18/pow(obs_wave,2.)
+results_ferr = np.asarray([model_phot["bayes."+ii+"_err"] for ii in filters]).T[0]#*1e-3*1e-23#*3e18/pow(obs_wave,2.)
 
 
 
@@ -78,7 +80,7 @@ ax.set_yscale("log")
 #ax.set_xticks(np.arange(0.0,9.,1.))
 #ax.set_xticks(np.arange(0.0,9.,0.5),minor=True)
 
-ax.set_ylim(0.1,1e3)
+ax.set_ylim(1e-4,1)
 ax.set_xlim(0.3,3.0)
 
 ax.xaxis.set_major_formatter(mpl.ticker.NullFormatter())
@@ -94,15 +96,17 @@ ax.set_xticklabels(["0.3","0.4","0.5","0.6","0.8","1","2","3"])
 
 
 # Plot the Best-Fit SED
-ax.plot(cigale["wavelength"]/1e3,cigale["fnu"]*1e-3*1e-23*3e18/pow(cigale["wavelength"]*10.,2.)*1e19,color="black",lw=0.5)
-ax.plot(pow(10,bagpipes["log_wave"])/1e4,bagpipes["SED_median"]*10.,color="green",lw=0.5)
+#ax.plot(cigale["wavelength"]/1e3,cigale["fnu"]*1e-3*1e-23*3e18/pow(cigale["wavelength"]*10.,2.)*1e19,color=util.color_scheme("Cigale",mec=True),ls="-",lw=0.5)
+#ax.plot(pow(10,bagpipes["log_wave"])/1e4,bagpipes["SED_median"]*10.,color=util.color_scheme("Bagpipes",mec=True),ls="--",lw=0.5)
+ax.plot(cigale["wavelength"]/1e3,cigale["fnu"],color=util.color_scheme("Cigale",mec=True),ls="-",lw=0.5)
+ax.plot(pow(10,bagpipes["log_wave"])/1e4,bagpipes["SED_median"]*1e-18*pow(pow(10,bagpipes["log_wave"]),2.)/3e18*1e23*1e3,color=util.color_scheme("Bagpipes",mec=True),ls="--",lw=0.5)
 
 # Keep only Detections
 keep = (obs_ferr > 0.) & (obs_fluxes > 0.)
 obs_band_ids = obs_band_ids[keep]
 
 # Plot the Model
-ax.plot(obs_wave[keep]/1e4,results_fluxes[keep]*1e19,\
+ax.plot(obs_wave[keep]/1e4,results_fluxes[keep],\
 				ls="none",mfc="none",mec=tableau20("Red"),\
 				marker="s",ms=5,mew=0.5)
 
@@ -120,36 +124,36 @@ spitzer = [ind for ind,band in enumerate(obs_band_ids) if "spitzer" in band] # r
 
 # plot
 ms = 4
-ax.errorbar(obs_wave[keep][cfht]/1e4,obs_fluxes[keep][cfht]*1e19,xerr=obs_fwhm[keep][cfht]/(1e4*2.),yerr=obs_ferr[keep][cfht]*1e19,\
+ax.errorbar(obs_wave[keep][cfht]/1e4,obs_fluxes[keep][cfht],xerr=obs_fwhm[keep][cfht]/(1e4*2.),yerr=obs_ferr[keep][cfht],\
 				ls="none",mec="black",mfc=tableau20("Purple"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
-ax.errorbar(obs_wave[keep][scam_BB]/1e4,obs_fluxes[keep][scam_BB]*1e19,xerr=obs_fwhm[keep][scam_BB]/(1e4*2.),yerr=obs_ferr[keep][scam_BB]*1e19,\
+ax.errorbar(obs_wave[keep][scam_BB]/1e4,obs_fluxes[keep][scam_BB],xerr=obs_fwhm[keep][scam_BB]/(1e4*2.),yerr=obs_ferr[keep][scam_BB],\
 				ls="none",mec="black",mfc=tableau20("Blue"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
-ax.errorbar(obs_wave[keep][scam_IB]/1e4,obs_fluxes[keep][scam_IB]*1e19,xerr=obs_fwhm[keep][scam_IB]/(1e4*2.),yerr=obs_ferr[keep][scam_IB]*1e19,\
+ax.errorbar(obs_wave[keep][scam_IB]/1e4,obs_fluxes[keep][scam_IB],xerr=obs_fwhm[keep][scam_IB]/(1e4*2.),yerr=obs_ferr[keep][scam_IB],\
 				ls="none",mec="black",mfc=tableau20("Light Blue"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
-ax.errorbar(obs_wave[keep][scam_NB]/1e4,obs_fluxes[keep][scam_NB]*1e19,xerr=obs_fwhm[keep][scam_NB]/(1e4*2.),yerr=obs_ferr[keep][scam_NB]*1e19,\
+ax.errorbar(obs_wave[keep][scam_NB]/1e4,obs_fluxes[keep][scam_NB],xerr=obs_fwhm[keep][scam_NB]/(1e4*2.),yerr=obs_ferr[keep][scam_NB],\
 				ls="none",mec="black",mfc=tableau20("Sky Blue"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
 
-ax.errorbar(obs_wave[keep][hsc]/1e4,obs_fluxes[keep][hsc]*1e19,xerr=obs_fwhm[keep][hsc]/(1e4*2.),yerr=obs_ferr[keep][hsc]*1e19,\
+ax.errorbar(obs_wave[keep][hsc]/1e4,obs_fluxes[keep][hsc],xerr=obs_fwhm[keep][hsc]/(1e4*2.),yerr=obs_ferr[keep][hsc],\
 				ls="none",mec="black",mfc=tableau20("Green"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
-ax.errorbar(obs_wave[keep][F814W]/1e4,obs_fluxes[keep][F814W]*1e19,xerr=obs_fwhm[keep][F814W]/(1e4*2.),yerr=obs_ferr[keep][F814W]*1e19,\
+ax.errorbar(obs_wave[keep][F814W]/1e4,obs_fluxes[keep][F814W],xerr=obs_fwhm[keep][F814W]/(1e4*2.),yerr=obs_ferr[keep][F814W],\
 				ls="none",mec="black",mfc=tableau20("Olive"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
-ax.errorbar(obs_wave[keep][F140W]/1e4,obs_fluxes[keep][F140W]*1e19,xerr=obs_fwhm[keep][F140W]/(1e4*2.),yerr=obs_ferr[keep][F140W]*1e19,\
+ax.errorbar(obs_wave[keep][F140W]/1e4,obs_fluxes[keep][F140W],xerr=obs_fwhm[keep][F140W]/(1e4*2.),yerr=obs_ferr[keep][F140W],\
 				ls="none",mec="black",mfc=tableau20("Orange"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
-ax.errorbar(obs_wave[keep][wircam]/1e4,obs_fluxes[keep][wircam]*1e19,xerr=obs_fwhm[keep][wircam]/(1e4*2.),yerr=obs_ferr[keep][wircam]*1e19,\
+ax.errorbar(obs_wave[keep][wircam]/1e4,obs_fluxes[keep][wircam],xerr=obs_fwhm[keep][wircam]/(1e4*2.),yerr=obs_ferr[keep][wircam],\
 				ls="none",mec="black",mfc=tableau20("Red"),ecolor=tableau20("Grey"),\
 				marker="o",ms=ms,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
 
@@ -191,7 +195,8 @@ ax.fill_between([0.365*1.8275,0.51*1.8275],1,1e3,color=tableau20("Grey"),alpha=0
 """
 
 custom_leg = [Line2D([0], [0], ls="none", marker="o",mfc=tableau20("Blue"),mec="black",label="Observations",mew=0.2),
-				Line2D([0], [0], ls="none", marker="s",mfc="none",mec=tableau20("Red"),label=r"{\sc Cigale} $\chi^2_\textrm{red} = %0.2f$" % (model_phot["best.reduced_chi_square"]))]
+				Line2D([0], [0], ls="none", marker="s",mfc="none",mec=tableau20("Red"),label=r"{\sc Cigale} $\chi^2_\textrm{red} = %0.2f$" % (model_phot["best.reduced_chi_square"])),
+                Line2D([0], [0], ls="none", marker="s",mfc="none",mec=tableau20("Red"),label=r"{\sc Bagpipes}")]
 
 ax.legend(handles=custom_leg,frameon=False,ncol=1,loc="upper right",fontsize=8)
 
@@ -199,10 +204,10 @@ ax.legend(handles=custom_leg,frameon=False,ncol=1,loc="upper right",fontsize=8)
 
 
 ax.set_xlabel(r"Observed Wavelength ($\mu$m)",fontsize=8)
-ax.set_ylabel(r"$f_\lambda$ (10$^{-19}$ erg s$^{-1}$ cm$^{-2}$ \AA$^{-1}$)",fontsize=8)
+#ax.set_ylabel(r"$f_\lambda$ (10$^{-19}$ erg s$^{-1}$ cm$^{-2}$ \AA$^{-1}$)",fontsize=8)
+ax.set_ylabel(r"$f_\nu$ (mJy)",fontsize=8)
 
 fig.savefig("../../plots/EELG1002_SED.png",format="png",dpi=300,bbox_inches="tight")
 
 
 
-pdb.set_trace()

@@ -2,8 +2,9 @@ import requests
 from astropy.io import fits
 from astropy.cosmology import FlatLambdaCDM
 import numpy as np
-
 import pickle
+import pandas as pd
+from tqdm import trange
 
 baseUrl = 'http://www.tng-project.org/api/'
 headers = {"api-key":"993aabb363536300837b5830bda7e65d"}
@@ -65,6 +66,11 @@ def main(simulation):
         Finally, the function saves the retrieved information in a pickle file.
     """
 
+    # Read in the Snapshot Redshift Mapping
+
+
+
+
     r = get(baseUrl)
     subhalo_id = 1212
     url = f"{baseUrl}{simulation}/snapshots/55/subhalos/{subhalo_id}/"
@@ -89,47 +95,83 @@ def main(simulation):
     subhalos = get(url)
     print(f"Found a total of: {subhalos['count']} potential candidates")
 
-
-    # prepare dict to hold result arrays
-    fields = ['snap','id','sfr','mass_gas','mass_stars','mass_dm','mass_bhs','halfmassrad_stars','gasmetallicitysfrweighted','bhmdot','starmetallicity','windmass']
-    out = {}
-    for field in fields:
-        out[field] = []
-
     # Run through each and keep those that have a progenitor
     if subhalos['count'] != 0:
-        ids = []
-        for ii in range(subhalos['count']):
-            subhalo = get(subhalos['results'][ii]['url'])
+        for ii in trange(subhalos['count'], desc="Going through Subhalos"):
 
-            ssfr = np.log10(subhalo['sfr']/subhalo['mass_stars'])-10.
-            
-            if subhalo['related']['sublink_progenitor'] != None:
-                ids.append(subhalo['id'])
+            # prepare dict to hold result arrays
+            fields = ['snap','redshift','id','sfr','mass_gas','mass_stars','mass_dm','mass_bhs','halfmassrad_stars','gasmetallicitysfrweighted','bhmdot','starmetallicity','windmass']
+            out = {}
+            for field in fields:
+                out[field] = []
 
-                print(subhalos["results"][ii]['id'], ssfr, subhalo["related"]["sublink_progenitor"])
+            # Get the Initial Snap = 55 source
+            subhalo_main = get(subhalos['results'][ii]['url'])
 
+            #store the id
+            id_main = subhalo_main['id']
+
+            ssfr = np.log10(subhalo_main['sfr']/subhalo_main['mass_stars'])-10.
+
+            if subhalo_main['related']['sublink_progenitor'] != None:
+                #print(subhalos["results"][ii]['id'], ssfr, subhalo["related"]["sublink_progenitor"])
+
+                subhalo = subhalo_main
+                ind = 0 # Dummy variable just to make sure the same snapshot is not duplicated (in this case snapshot 55)
                 while subhalo['prog_sfid'] != -1:
+                    if ind == 0:
+                        # Dummy variable just to save all subsequent snapshots but ignore 55
+                        ind = 1
+        
                     for field in fields:
-                        out[field].append(subhalo[field])
+                        if field == "redshift":
+                            out[field].append(get(f"https://www.tng-project.org/api/{simulation}/snapshots/{subhalo['snap']}")["redshift"])
+                        else:
+                            out[field].append(subhalo[field])
                     # request the full subhalo details of the descendant by following the sublink URL
                     subhalo = get(subhalo['related']['sublink_progenitor'])
 
+        
+                subhalo = subhalo_main
+                ind = 0
                 while subhalo['desc_sfid'] != -1:
-                    for field in fields:
-                        out[field].append(subhalo[field])
+                    if ind == 0:
+                        # Dummy variable just to save all subsequent snapshots but ignore 55
+                        ind = 1
+
+                    if ind != 0:
+                        for field in fields:
+                            if field == "redshift":
+                                out[field].append(get(f"https://www.tng-project.org/api/{simulation}/snapshots/{subhalo['snap']}")["redshift"])
+                            else:
+                                out[field].append(subhalo[field])
                     # request the full subhalo details of the descendant by following the sublink URL
                     subhalo = get(subhalo['related']['sublink_descendant'])
+
+                # We need to sort everything
+                ind = np.argsort(out["snap"])
+
+                # Convert in to numpy arrays
+                for field in fields:
+                    out[field] = np.array(out[field])[ind]
+
+                # Save all the information
+                with open(f"../data/Illustris_Analogs/{simulation}_{id_main}_analogs_with_histories.pkl","wb") as outfile:
+                    pickle.dump((out), outfile)
+
+                # Close the File
+                outfile.close()
+
     else:
         print("No subhalos found")
         exit()
 
-    # Save all the information
-    with open(f"data/Illustris_Analogs/{simulation}_analogs_with_histories.pkl","wb") as outfile:
-        pickle.dump((ids,out), outfile)
+    ## Save all the information
+    #with open(f"data/Illustris_Analogs/{simulation}_analogs_with_histories.pkl","wb") as outfile:
+    #    pickle.dump((ids,out), outfile)
     
-    # Close the File
-    outfile.close()
+    ## Close the File
+    #outfile.close()
 
 
 if __name__ == "__main__":

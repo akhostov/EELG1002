@@ -1,0 +1,32 @@
+# Paper: Nakajima et al. (2016)
+# URL: https://ui.adsabs.harvard.edu/abs/2016ApJ...831L...9N/abstract
+# Table 3
+# Note: If Err is <0 then measurement is a lower limit. If Err is 999, then the measurement is an upper limit.
+# Flag A means: xi_ion, stellar mass, and MUV are less certain due to less precise optical photometry.
+# For the objects, the EW is estimated from the BV–NB497 color. The EW of LAE 93564 is derived from spectroscopy. A lower limit is given if the object is not detected significantly in the image.
+# (2) Confirmed or not from previous rest FUV spectroscopy. 
+# (3) Nebular redshift. 
+# (4) [O iii]λλ5007, 4959/[O ii]λ 3727 ratio. 
+# (5) R23-index. 
+# (6) Under the assumption of a zero fesc. 
+# (7) SFR under the assumption of a zero fesc, estimated from the Hβ luminosity. An upper limit is adopted in Columns (4)–(7) if the line is not detected. 
+# (8) Stellar mass derived from SED fitting, which adopts an SMC dust law. 
+# (9) Absolute UV magnitude measured from an SED around 1500–1600 Å.
+
+# Data columns
+# ID           Flag  EW_Lya  EW_lya_elow  EW_lya_eupp  FUV_det zspec   O32    O32_err R23   R23_err log10_xi_ion_0 log10_xi_ion_0_err log10_SFR_0 log10_SFR_0_err log10_stellar_mass log10_stellar_mass_elow log10_stellar_mass_eupp M_UV
+LAE93564	None    61  4       4   	True	3.6768	10.78   2.0	    9.8     0.9     25.63   0.04	1.80    0.04	10.28   1.21    0.27    	-21.3	
+LAE94460	A       54  8       9   	True	3.0721	2.5     -99.	5.4     -99.    25.0	999     0.68    999	    9.10    0.73    0.39	    -20.0
+LAE97081	None    213 -99     -99	    True	3.0760  4.9     -99.	10.6    -99.	25.70   999	    0.63    999	    8.08    0.72    0.70	    -18.1	
+LAE97176	None    62  13      15	    True	3.0749  4.5     -99.    12.4 	-99.    24.93	999     0.57    999	    9.28    0.71    0.31	    -19.9	
+LAE103371	None    151 47      72	    True	3.0892  7.0     -99.    8.7     2.3	    25.68   0.10	0.65    0.10	9.87    0.72    0.26	    -18.3	
+LAE104037	None    37  3       3	    True	3.0646  6.0     0.3 	16.9    1.2	    25.29   0.03	1.51    0.03	9.95    0.13    0.09	    -21.4	
+LAE89723	A       43  7       7	    False	3.1109  3.3     -99.	7.2     -99.	24.81   999	    0.69    999	    8.47    0.39    1.06	    -20.5
+LAE91055	None    77  -99     -99	    False	3.0814  3.7     -99.	4.3     1.1	    25.59   0.09	0.69    0.09	8.80    1.36    0.82	    -18.6	
+LAE97030	None    26  9       11	    False	3.0731  6.7     1.0	    9.7     1.4	    25.78   0.06	1.16    0.06	8.41    0.57    0.68	    -19.3	
+LAE97254	None    74  20      27	    False	3.0709  3.5     -99.	5.8     1.6	    25.53   0.11	0.79    0.11	9.14    0.41    0.56	    -19.0	
+LAE99330	None    48  6       7       False	3.1054  11.5    1.7 	12.4    1.0	    25.51   0.03	1.30    0.03	10.64   0.67    0.33	    -20.3	
+LAE104147	None    24  6       7       False	3.0991  5.7     -99.	8.6     -99.	25.19	999     0.61    999	    9.37    0.83    0.41	    -19.4	
+AGN86861	None    79  3       3       True	3.1051  5.6     -99.	10.1    3.4	    24.96   0.12	1.16    0.13	10.52   0.04    0.03	    -21.3	
+LBG102826	None    -4  3       4 	    True	3.0710  2.0     0.2	    7.9     1.7	    25.1    0.08    1.15    0.08	9.80    0.23    0.08	    -20.9	
+LBG104097	None    -1  6       8   	True	3.0671  2.5     0.2	    5.1     1.4	    25.4    0.10    1.42    0.10	9.69    0.16    0.18	    -20.7	

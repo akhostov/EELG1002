@@ -2,6 +2,18 @@ import numpy as np
 from scipy.integrate import simps
 from astropy.cosmology import FlatLambdaCDM
 
+def get_cosmology(H0=70,Om0=0.3):
+    """
+    Returns a FlatLambdaCDM cosmology object.
+
+    Parameters:
+        H0 (float, optional): The Hubble constant. Defaults to 70.
+        Om0 (float, optional): The matter density parameter. Defaults to 0.3.
+
+    Returns:
+        FlatLambdaCDM: A FlatLambdaCDM cosmology object.
+    """
+    return FlatLambdaCDM(H0=H0,Om0=Om0)
 
 def stats(pdf,upper_limit=False): 
     """
@@ -243,7 +255,7 @@ def sampling(central, sigma, n_samples=10000):
 
     Parameters:
         central (float): The mean of the normal distribution.
-        sigma (float or tuple): The standard deviation of the normal distribution. If a tuple, the first element is the standard deviation for positive samples and the second element is the standard deviation for negative samples.
+        sigma (float or tuple): The standard deviation of the normal distribution. If a tuple, the first element is +sigma and the second element is -sigma.
         n_samples (int): The number of samples to generate. Defaults to 10000.
 
     Returns:
