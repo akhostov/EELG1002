@@ -37,24 +37,37 @@ def table_emission_line_fits():
 
 		for ff in range(len(data["line_id"])):
 
-			data['linez_eupp'][ff] = np.sqrt( (data['linez_eupp'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
-			data['linez_elow'][ff] = np.sqrt( (data['linez_elow'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
+			#data['linez_eupp'][ff] = np.sqrt( (data['linez_eupp'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
+			#data['linez_elow'][ff] = np.sqrt( (data['linez_elow'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
 
 			str_lflux = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineflux_med'][ff]*1e17,data['lineflux_eupp'][ff]*1e17,data['lineflux_elow'][ff]*1e17)
 			str_lEW_Cigale   = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Cigale_med'][ff],data['lineEW_Cigale_eupp'][ff],data['lineEW_Cigale_elow'][ff])	
 			str_lEW_Bagpipes = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Bagpipes_med'][ff],data['lineEW_Bagpipes_eupp'][ff],data['lineEW_Bagpipes_elow'][ff])	
 
 			if data["line_id"][ff] in ("Hb_na","OIII5007c","NeIII3869"):
+				if data["line_id"][ff] == "Hb_na": 
+					data["linez_elow"][ff] = np.sqrt( (data["linez_elow"][ff])**2. + ((2.5/2.355) * 3.88/(4861.*(1.+data["linez_med"][ff])))**2. )
+					data["linez_eupp"][ff] = np.sqrt( (data["linez_eupp"][ff])**2. + ((2.5/2.355) * 3.88/(4861.*(1.+data["linez_med"][ff])))**2. )
+
+				if data["line_id"][ff] == "OIII5007c": 
+					data["linez_elow"][ff] = np.sqrt( (data["linez_elow"][ff])**2. + ((2.5/2.355) * 3.88/(5007.*(1.+data["linez_med"][ff])))**2. )
+					data["linez_eupp"][ff] = np.sqrt( (data["linez_eupp"][ff])**2. + ((2.5/2.355) * 3.88/(5007.*(1.+data["linez_med"][ff])))**2. )
+
+				if data["line_id"][ff] == "NeIII3869": 
+					data["linez_elow"][ff] = np.sqrt( (data["linez_elow"][ff])**2. + ((2.5/2.355) * 3.88/(3869.*(1.+data["linez_med"][ff])))**2. )
+					data["linez_eupp"][ff] = np.sqrt( (data["linez_eupp"][ff])**2. + ((2.5/2.355) * 3.88/(3869.*(1.+data["linez_med"][ff])))**2. )
+
 				str_redshift = "$%0.4f^{+%0.4f}_{-%0.4f}$" % (data['linez_med'][ff],data['linez_eupp'][ff],data['linez_elow'][ff])
-				str_lfwhm = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linefwhm_med'][ff],data['linefwhm_eupp'][ff],data['linefwhm_elow'][ff])
-				str_lsigma = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linesigma_med'][ff],data['linesigma_eupp'][ff],data['linesigma_elow'][ff])
+				str_lsigma_obs = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linesigma_obs_med'][ff],data['linesigma_obs_eupp'][ff],data['linesigma_obs_elow'][ff])
+				str_lsigma_int = "$%0.0f^{+%0.0f}_{-%0.0f}$" % (data['linesigma_int_med'][ff],data['linesigma_int_eupp'][ff],data['linesigma_int_elow'][ff])
 			else:
 				str_redshift = "---"
-				str_lfwhm = "---"
-				str_lsigma = "---"
+				str_lsigma_obs = "---"
+				str_lsigma_int = "---"
 
 
-			util.write_with_newline(table,f"{names[ff]} & {str_redshift} & {str_lflux} & {str_lEW_Cigale} & {str_lEW_Bagpipes} & {str_lfwhm} & {str_lsigma} \\\\")
+			util.write_with_newline(table,f"{names[ff]} & {str_redshift} & {str_lflux} & {str_lEW_Cigale} & {str_lEW_Bagpipes} & {str_lsigma_obs} & {str_lsigma_int} \\\\")
+	table.close()
 
 
 def table_emission_line_ratios():

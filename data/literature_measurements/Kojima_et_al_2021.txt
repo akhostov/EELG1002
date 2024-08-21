@@ -1,0 +1,9 @@
+# Paper: Kojima et al. (2021)
+# URL: https://ui.adsabs.harvard.edu/abs/2021ApJ...913...22K/abstract
+# Survey: EMPRESS
+
+# Data columns
+# ID                Redshift    12+log10(O/H)   12+log10(O/H)_elow      12+log10(O/H)_eupp      log10(Ne/O)     log10(Ne/O)_elow    log10(Ne/O)_eupp
+HSC-J2314+0154      0.03265     7.23            0.02                    0.03                    -0.634          0.007               0.006
+HSC-J1631+4426      0.03125     6.90            0.03                    0.03                    -0.641          0.019               0.022
+SDSS-J2115−1734     0.02296     7.68            0.01                    0.01                    -0.757          0.004               0.005

@@ -286,9 +286,13 @@ def line_props(sed_module="cigale"):
 
 	### TEMP: ASSIGNING REDSHIFT
 	redshift = 0.8275
+	
+	# Define Thermal Broadening
+	# Note the 19500 K is made after actually measuring the Electron Temperature
+	line_disp_thermal = np.sqrt(8.247e-3 * 19500.)
 
 	# This is where we will store all the line fit information
-	stats_lflux,stats_ew_cigale,stats_ew_bagpipes,stats_lsigma,stats_lfwhm,stats_redshift = [],[],[],[],[],[]
+	stats_lflux,stats_ew_cigale,stats_ew_bagpipes,stats_lsigma_obs,stats_lsigma_int,stats_redshift = [],[],[],[],[],[]
 
 	# Now Let's get the SEDs so we can use the continuum flux density to make measurements of the the emission line equivalent width	
 	cigale = fits.open("../data/SED_results/cigale_results/1002_best_model.fits")[1].data
@@ -312,7 +316,7 @@ def line_props(sed_module="cigale"):
 	fx_cigale = extrap_cont(sed_wave=cigale_wave,sed_flam=cigale_flam,central_line=3727.*(1.+redshift),left_window=left_window,right_window=right_window)
 	fx_bagpipes = extrap_cont(sed_wave=bagpipes_wave,sed_flam=bagpipes_flam,central_line=3727.*(1.+redshift),left_window=left_window,right_window=right_window)
 
-	pdf_lflux, pdf_ew_cigale, pdf_ew_bagpipes, pdf_lsigma, pdf_lfwhm, pdf_redshift = [],[],[],[],[],[]
+	pdf_lflux, pdf_ew_cigale, pdf_ew_bagpipes, pdf_lsigma_int, pdf_lsigma_obs, pdf_redshift = [],[],[],[],[],[]
 
 	for jj in trange(scales.shape[0],desc="Running for [OII] Doublet"):
 
@@ -331,15 +335,20 @@ def line_props(sed_module="cigale"):
 		pdf_ew_cigale.append(lflux/((1.+redshift)*cont_cigale))
 		pdf_ew_bagpipes.append(lflux/((1.+redshift)*cont_bagpipes))
 
-		pdf_lsigma.append(emission_line.line_sigma())
-		pdf_lfwhm.append(emission_line.line_FWHM())
+		# Get Line Dispersion
+		# Instrumental Dispersion factos in 2.5 pixel arc line FWHM and 3.88 Angstrom per pixel
+		line_disp_obs = emission_line.line_sigma(kms=True)
+		line_disp_inst = (2.5/2.355) * 3.88/obs_line_wave * 3e5 # km/s
+
+		pdf_lsigma_int.append(np.sqrt( line_disp_obs**2. - line_disp_inst**2. - line_disp_thermal**2. ))
+		pdf_lsigma_obs.append(line_disp_obs)
 
 	stats_redshift.append( util.stats(pdf_redshift) )
 	stats_lflux.append( util.stats(pdf_lflux) )
 	stats_ew_cigale.append( util.stats(pdf_ew_cigale) )
 	stats_ew_bagpipes.append( util.stats(pdf_ew_bagpipes) )
-	stats_lsigma.append( util.stats(pdf_lsigma) )
-	stats_lfwhm.append( util.stats(pdf_lfwhm) )
+	stats_lsigma_obs.append( util.stats(pdf_lsigma_obs) )
+	stats_lsigma_int.append( util.stats(pdf_lsigma_int) )
 
 
 
@@ -397,7 +406,7 @@ def line_props(sed_module="cigale"):
 		cont_cigale = fx_cigale(obs_line_wave)
 		cont_bagpipes = fx_bagpipes(obs_line_wave)
 
-		pdf_lflux, pdf_ew_cigale, pdf_ew_bagpipes, pdf_lsigma, pdf_lfwhm, pdf_redshift = [],[],[],[],[],[]
+		pdf_lflux, pdf_ew_cigale, pdf_ew_bagpipes, pdf_lsigma_int, pdf_lsigma_obs, pdf_redshift = [],[],[],[],[],[]
 		for jj in trange(len(scales),desc=f"Running for {lid}"):
 
 			emission_line = physical_PyQSOfit(scale=scales[jj],cwave=cwaves[jj],sigma=sigmas[jj],redshift=redshift, ref_line = obs_line_wave)
@@ -410,16 +419,22 @@ def line_props(sed_module="cigale"):
 			pdf_ew_cigale.append(lflux/((1.+redshift)*cont_cigale))
 			pdf_ew_bagpipes.append(lflux/((1.+redshift)*cont_bagpipes))
 
-			pdf_lsigma.append(emission_line.line_sigma())
-			pdf_lfwhm.append(emission_line.line_FWHM())
+			# Get Line Dispersion
+			# Instrumental Dispersion factos in 2.5 pixel arc line FWHM and 3.88 Angstrom per pixel
+			line_disp_obs = emission_line.line_sigma(kms=True)
+			line_disp_inst = (2.5/2.355) * 3.88/obs_line_wave * 3e5 # km/s
 
-			
+			pdf_lsigma_int.append(np.sqrt( line_disp_obs**2. - line_disp_inst**2. - line_disp_thermal**2. ))
+			pdf_lsigma_obs.append(line_disp_obs)
+
+
+		# Calculate Statistics
 		stats_redshift.append( util.stats(pdf_redshift) )
 		stats_lflux.append( util.stats(pdf_lflux) )
 		stats_ew_cigale.append( util.stats(pdf_ew_cigale) )
 		stats_ew_bagpipes.append( util.stats(pdf_ew_bagpipes) )
-		stats_lsigma.append( util.stats(pdf_lsigma) )
-		stats_lfwhm.append( util.stats(pdf_lfwhm) )
+		stats_lsigma_int.append( util.stats(pdf_lsigma_int) )
+		stats_lsigma_obs.append( util.stats(pdf_lsigma_obs) )
 
 		
 		# Output Line Flux Results into the Dictionary
@@ -432,14 +447,14 @@ def line_props(sed_module="cigale"):
 	line_id.insert(0,"[OII]")
 	line_id = np.asarray(line_id)
 
-	final = np.column_stack((line_id,stats_redshift,stats_lflux,stats_ew_cigale,stats_ew_bagpipes,stats_lsigma,stats_lfwhm))
+	final = np.column_stack((line_id,stats_redshift,stats_lflux,stats_ew_cigale,stats_ew_bagpipes,stats_lsigma_obs,stats_lsigma_int))
 	names = np.array(["line_ID",
 						"linez_med","linez_elow","linez_eupp",
 						"lineflux_med","lineflux_elow","lineflux_eupp",
 						"lineEW_Cigale_med","lineEW_Cigale_elow","lineEW_Cigale_eupp",
 						"lineEW_Bagpipes_med","lineEW_Bagpipes_elow","lineEW_Bagpipes_eupp",
-						"linesigma_med","linesigma_elow","linesigma_eupp",
-						"linefwhm_med","linefwhm_elow","linefwhm_eupp"])
+						"linesigma_obs_med","linesigma_obs_elow","linesigma_obs_eupp",
+						"linesigma_int_med","linesigma_int_elow","linesigma_int_eupp"])
 	dtypes = np.array(["str",
 						"float","float","float",
 						"float","float","float",
@@ -660,10 +675,9 @@ def measure_xi_ion(gmos,cigale_SED,cigale_params,bagpipes_SED,bagpipes_params,li
 
 
 def main():
-	#run_pyqsofit()
-	#line_props()
-	#line_ratios()
-
+	run_pyqsofit()
+	line_props()
+	line_ratios()
 
 	# Load in the GMOS Line Properties
 	gmos = fits.open("../data/emline_fits/1002_lineprops.fits")[1].data

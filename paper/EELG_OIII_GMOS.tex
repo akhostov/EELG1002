@@ -460,12 +460,16 @@
 		
 		The second step in the pipeline is to 2D coadd all 3 reduced science frames of varying central wavelengths (accounts for GMOS chip gaps in final 2D coadded spectra). To account for potential drift during observations, we define the offsets by using the brightest object in the mask. \pypeit~models the spatial profile of the object and calculates the spatial shift in reference to the first science frame in our 2D coadd list. These were {\color{red} $0.05$ and $0.56$ pixels for science frames 38 and 41, respectively (check UNITS ZZZ)}. This is then stacked with weights corresponding to the S/N of our brightest object. 
 	
-		\subsubsection{Flux Calibration \& Slitloss Corrections}
+		\subsubsection{Flux Calibration \& Slit Loss Corrections}
 		
 		Flux calibration is done by first reducing our standard star LTT7379 (G0) using the same \pypeit~reduction as mentioned above. We then use the wavelength-calibrated, reduced spectra to measure the sensitivity curve that converts raw counts into physical flux units. \pypeit~does this by comparing the observed 1D GMOS spectra against archival spectra drawn, in this case, from ESO Optical and UV Spectrophotometric Standard Stars library. The observed resolving power ($R \sim 2100$) is also provided in the sensitivity function configuration file which \pypeit~uses to match the archived LTT7379 spectra to the same resolution as our GMOS observation. The final sensitivity curve is then applied to each of our science targets.
 		
-		An additional correction is also necessary to account for aperture/slitloss where a percentage of the total flux of an object falls outsides of the slit resulting in a reduction in observed flux that can not be corrected with the flux calibration approach listed above. As such, we apply a slitloss correction using \textit{HST} ACS/F814W imaging of our targets as a starting point taking advantage of the high spatial resolution ($\sim 0.03''$/pixel). We then smooth out the F814W image using a Gaussian Kernel set to a FWHM of $\sim ${\color{red} ZZZ} (seeing) to best match the ground-based conditions at the time of observations. The smoothed F814W image is then used to calculate the total flux of our main targets within a slit with $0.5''$ width. This is compared to the total F814W flux which gives a percentage of the total flux that fell within the slit. The remaining fraction of flux missing is then accounted for by simply multiplying the 1D flux-calibrated spectra $1+f$ with $f = 0.456$ being the ratio of missing-to-total flux.
+		An additional correction is also necessary to account for slit loss (e.g., a fraction of the total flux is lost due to the object extending off the slit). Figure \ref{fig:slitpos} shows the GMOS Slit configuration along with Subaru/HSC \textit{i} contours demonstrating how a significant fraction of the light falls outside of the slit. We correct for this factor by using the spatially resolved \textit{HST}/ACS F814W image also shown in Figure \ref{fig:slitpos} and measure the total flux collected along the slit. We then smooth out the F814W image using a Gaussian kernel with FWHM set to the seeing ($0.9''$) and again measure the total flux within the $0.5''$ slit. We measure 45.6\% of the total flux from EELG1002 is lost and correct the 1D spectra by multiplying a factor of 1.456 to take into account the slit loss.
 		
+%		on top of the spatially-resolved \textit{HST} ACS/F814W image and Subaru HSC \textit{i} contours highlighting how ground-based observations using narrow slits require a slit loss
+%		
+%		where a percentage of the total flux of an object falls outsides of the slit resulting in a reduction in observed flux that can not be corrected with the flux calibration approach listed above. As such, we apply a slitloss correction using \textit{HST} ACS/F814W imaging of our targets as a starting point taking advantage of the high spatial resolution ($\sim 0.03''$/pixel). We then smooth out the F814W image using a Gaussian Kernel set to a FWHM of $\sim ${\color{red} ZZZ} (seeing) to best match the ground-based conditions at the time of observations. The smoothed F814W image is then used to calculate the total flux of our main targets within a slit with $0.5''$ width. This is compared to the total F814W flux which gives a percentage of the total flux that fell within the slit. The remaining fraction of flux missing is then accounted for by simply multiplying the 1D flux-calibrated spectra $1+f$ with $f = 0.456$ being the ratio of missing-to-total flux.
+%		
 
 		
 		
@@ -487,28 +491,48 @@
 		\subsection{Spectroscopic Redshift \& Emission Line Profile Fitting}
 		\label{sec:specz_line_profile}
 		
-		We use \pyqsofit~\citep{Guo2018} for fitting the profiles of all emission lines observed in the GMOS spectra which requires an initial estimate of the spectroscopic redshift visually measured as $z = 0.8275$ using {\sc SpecPro} {\color{red} SPECPRO PAPER}. Each detected emission line is fit by a single Gaussian profile centered on the expected rest-frame wavelength assuming our initial redshift. The center of each Gaussian is allowed to vary up to $\sim 2.7$\AA~allowing for variations in the final measured spectroscopic redshift. Table \ref{table:line_fits} shows the best-fit redshifts about the line centers consistent with $z = 0.8275^{+ZZZ}_{-ZZZ}$.
+		We use \pyqsofit~\citep{Guo2018} for fitting the profiles of all emission lines observed in the GMOS spectra which requires an initial estimate of the spectroscopic redshift visually measured as $z = 0.8275$ using \verb|SpecPro| \citep{Masters2011}. Each detected emission line is fit by a single Gaussian profile with the central wavelength allowed to vary to capture variations in the final measured spectroscopic redshift. Line widths of each emission line are set to be constant among other associated lines within the atomic specie (e.g., Balmer line FWHMs are the same from \hbeta~to H$\eta$). This allows us to deblend lines from different atomic species that are in close wavelength proximity to one another (e.g., \neiii3968\AA~and H$\epsilon$ separated by 2.6\AA; rest-frame) and are not fully resolved given the GMOS wavelength resolution limit. The \oii3726,3729\AA~doublet is also not resolved for which we fit two Gaussians assuming the FWHM from \oiii5007\AA~to deblend the doublet. Line fluxes are measured by integrating the best-fit Gaussian profiles.
 		
-		Line widths of each emission line is set to be constant among other associated lines within the atomic specie (e.g., Balmer line FWHMs are the same from \hbeta~to H$\eta$). This allows us to deblend lines from different atomic species that are in close wavelength proximity to one another (e.g., \neiii3968\AA~and H$\epsilon$ separated by 2.6\AA; rest-frame) and are not fully resolved given the GMOS wavelength resolution limit. The \oii3726,3729\AA~doublet is also not resolved for which we fit two Gaussians assuming the FWHM from \oiii5007\AA~to deblend the doublet which is important to measuring electron density. Line fluxes are measured by integrating the best-fit Gaussian profiles.
-		
-		Uncertainty measurements in the emission line profiles are measured via Markov Chain Monte Carlo (MCMC) where \pyqsofit~samples the error spectrum a total of 1000 times and perturbs the 1D spectra accordingly in each realization. We ignore the first 200 samples in the MCMC (20\% burn-in)  which is done to ensure that starting points do not affect the underlying probability distribution functions and uncertainty measurements. Overall, each emission line detected has an associated probability distribution that will be used throughout this work to measure line ratios and associated uncertainties. 
+		%. The center of each Gaussian is allowed to vary up to $\sim 2.7$\AA~allowing for variations in the final measured spectroscopic redshift. Table \ref{table:line_fits} shows the best-fit redshifts about the line centers consistent with $z = 0.8275^{+ZZZ}_{-ZZZ}$.
 		
 		
+		Uncertainty measurements in the emission line profiles are measured via Markov Chain Monte Carlo (MCMC) where \pyqsofit~samples the error spectrum a total of 1000 times and perturbs the 1D spectra accordingly in each realization. We ignore the first 25 samples in the MCMC which is done to ensure that starting points do not affect the underlying probability distribution functions and uncertainty measurements. A thinning of 10 is also incorporated to sample values that are nearly independent from one another. Overall, each emission line detected has an associated probability distribution that will be used throughout this work to measure line ratios and associated uncertainties. 
+		
+		\subsection{Velocity Dispersion}
+		
+		The observed velocity dispersion, $\sigma_{obs}$, is measured using the best-fit Gaussian emission line profile. We measure the `intrinsic' velocity dispersion, $\sigma$, by:
+		\begin{equation}
+			\centering
+			\sigma = \sqrt{ \sigma_{obs}^2 - \sigma_{inst}^2 - \sigma_{th}^2 }
+		\end{equation}
+		which subtracts out the effects of instrumental ($\sigma_{inst}$) and thermal ($\sigma_{th}$) broadening. The latter is measured as $\sigma_{th} = \sqrt{k_B T_e / m_H}$, where $k_B$ is the Boltzmann constant, $m_H$ is the mass of Hydrogen, and $T_e$ is the electron temperature which we use our measurement described in \S\ref{sec:ne_and_te} and Table \ref{table:ISM}. The instrumental broadening is measured using the FWHM of the arc lines ($2.5$ pix with $3.88$ \AA~pix$^{-1}$ resolution). 
 		
 
 	
 		\subsection{Measuring ISM Properties}
-		In this section, we will describe how we use nebular emission line ratios in conjunction with \verb|PyNeb| \citep{Luridiana2015} to measure key ISM properties. Below are the main key definitions and conventions that we adopt in defining key line ratios:
-		\begin{itemize}
-			\item O3HB: $\textrm{\oiii}5007\textrm{\AA}/\textrm{\hbeta}$
-			\item O32: $ \textrm{\oiii}5007\textrm{\AA}/\textrm{\oii}3726,3729\textrm{\AA}$
-			\item Ne3O2: $ \textrm{\neiii}3869\textrm{\AA}/\textrm{\oii}3726,3729\textrm{\AA}$
-			\item Ne3O3: $ \textrm{\neiii}3869\textrm{\AA}/\textrm{\oiii}5007\textrm{\AA}$
-			\item $R2$:  $\textrm{\oii}/\textrm{\hbeta}$
-			\item $R3$:  $(\textrm{\oiii}5007\textrm{\AA} + \textrm{\oiii}4959\textrm{\AA})/\textrm{\hbeta}$			
-			\item $R23$: $(\textrm{\oiii}5007\textrm{\AA} + \textrm{\oiii}4959\textrm{\AA} + \textrm{\oii})/\textrm{\hbeta}$
-			\
-		\end{itemize}		
+		In this section, we will describe how we use nebular emission line ratios in conjunction with \verb|PyNeb| \citep{Luridiana2015} to measure key ISM properties. We present the key line ratios with the short-hand notation used in this work and its exact definitions (e.g., lines used) in Table \ref{table:ratio_defs}.
+		
+		\begin{table}
+			\centering
+			\caption{Key Line Ratio Shorthands and Definitions}
+			\label{table:ratio_defs}
+			{\renewcommand{\arraystretch}{1.1}
+				\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}ll}
+					\hline
+					ID & Definition \\
+					\hline
+					O3HB & $\textrm{\oiii}5007\textrm{\AA}/\textrm{\hbeta}$\\
+					O32 & $ \textrm{\oiii}5007\textrm{\AA}/\textrm{\oii}3726,3729\textrm{\AA}$\\
+					Ne3O2 & $ \textrm{\neiii}3869\textrm{\AA}/\textrm{\oii}3726,3729\textrm{\AA}$\\
+					Ne3O3 & $ \textrm{\neiii}3869\textrm{\AA}/\textrm{\oiii}5007\textrm{\AA}$\\
+					$R2$ & $\textrm{\oii}/\textrm{\hbeta}$\\
+					$R3$ &$(\textrm{\oiii}5007\textrm{\AA} + \textrm{\oiii}4959\textrm{\AA})/\textrm{\hbeta}$\\
+					$R23$ & $(\textrm{\oiii}5007\textrm{\AA} + \textrm{\oiii}4959\textrm{\AA} + \textrm{\oii})/\textrm{\hbeta}$\\
+					\hline
+				\end{tabular*}
+			}
+		\end{table}
+		
 				
 		\subsubsection{Dust Extinction}
 		
@@ -516,7 +540,7 @@
 		\begin{eqnarray}
 			E(B-V) = \frac{2.5}{k(\textrm{\hgamma}) - k(\textrm{\hbeta})} \log_{10} \Bigg(\frac{ [\textrm{\hbeta}/\textrm{\hgamma}]_\textrm{\scriptsize obs} }{[\textrm{\hbeta}/\textrm{\hgamma}]_\textrm{\scriptsize int}}\Bigg)
 		\end{eqnarray}
-		coupled with the dust attenuation curve evaluated at the wavelength of each Balmer line used, $k(\lambda)$, which we assume the \citet{Calzetti2000} attenuation curve. Amount of dust extinction is then measured as $A_\lambda = k(\lambda) E(B-V)$ at any given wavelength. We use both the \hbeta/\hgamma~and \hbeta/\hdelta~ratios observed in the GMOS spectra to measure $E(B-V)$ and $A_\lambda$ and use \pyneb~to determine the intrinsic line ratios, \hbeta/\hgamma~$ = 2.11$ and \hbeta/\hdelta~$ = 3.82$, assuming case B recombination, $T_e = 15000$ K (electron temperature), and $n_e = 100$ cm$^{-3}$ (electron density). Varying these assumptions marginally changes the intrinsic ratios (e.g., \hbeta/\hdelta~$ = 3.81$ for $n_e = 1000$ cm$^{-3}$ and $T_e = 15000$ K) and does not affect our dust extinction measurements. Uncertainties in $E(B-V)$ are measured via each MCMC realization used in the emission line profile fitting (see \S\ref{sec:specz_line_profile}).
+		coupled with the dust attenuation curve evaluated at the wavelength of each Balmer line used, $k(\lambda)$, which we assume the \citet{Calzetti2000} attenuation curve. Amount of dust extinction is then measured as $A_\lambda = k(\lambda) E(B-V)$ at any given wavelength. We use the brightest ratio, \hbeta/\hgamma, to measure $E(B-V)$ and $A_\lambda$. The intrinsic line ratio, \hbeta/\hgamma~$ = 2.11$, is determined using \pyneb~assuming case B recombination, $T_e = 15000$ K (electron temperature), and $n_e = 100$ cm$^{-3}$ (electron density). Varying these assumptions marginally changes the intrinsic ratios and does not affect our dust extinction measurements. Uncertainties in $E(B-V)$ are measured via each MCMC realization used in the emission line profile fitting (see \S\ref{sec:specz_line_profile}).
 		
 		
 		%are the reddening curves evaluated at a given wavelength (e.g., \hgamma) and the dust extinction in magnitude measured as $A_\lambda = k(\lambda) E(B-V)$ at any given wavelength. We assume \cite{Calzetti2000} dust attenuation law and use each MCMC realization in the emission line profile fitting to measure the best-fit $A_\textrm{\halpha}$ and its associated uncertainties. We find EELG1002 to be virtually dust-free with $A_\textrm{\halpha} = $ ZZZ {\color{red} FILL THIS PART LATER}. As such, no dust correction is applied to any of the emission lines and ratios listed below.
@@ -526,16 +550,17 @@
 	
 		\subsubsection{Electron Temperature \& Density}
 		\label{sec:ne_and_te}
-		The electron temperature is measured using a two-zone H{\sc ii} region model due to \oiii~(doubly ionized oxygen) tracing the (high ionizing) zone closest to the ionizing source and \oii~(single ionized oxygen) being able to trace the outer (low ionizing) zone of an H{\sc ii} region. Electron temperature traced via \oiii~, $T_e(\rm{O}^{++})$, is measured using the auroral \oiii4363/\oiii5007\AA~line ratio at a fixed $n_e = 1000$ cm$^{-3}$ and the \texttt{getTemDen} function in \pyneb. The fixed $n_e$ is done arbitrarily as $T_e$ is essentially independent of electron density up to $\sim 10^4$ cm$^{-3}$ (which is not expected for the ISMs of galaxy populations) but is an input in \texttt{getTemDen}.% hence the reason of assuming a fixed density. 
+		The electron temperature is measured using a two-zone H{\sc ii} region model due to \oiii~(doubly ionized oxygen) tracing the (high ionizing) zone closest to the ionizing source and \oii~(single ionized oxygen) being able to trace the outer (low ionizing) zone. Electron temperature of the high ionizing zone, $T_e(\rm{O}^{++})$, is measured using the auroral \oiii4363/\oiii5007\AA~line ratio at a fixed $n_e = 1000$ cm$^{-3}$ and the \texttt{getTemDen} function in \pyneb. The fixed $n_e$ is done arbitrarily as $T_e$ is essentially independent of electron density up to $\sim 10^4$ cm$^{-3}$ (not expected for ISMs of galaxy populations) but is an input in \texttt{getTemDen}.% hence the reason of assuming a fixed density. 
 		
-		Tracing the low ionizing zone electron temperature requires O$^+$ auroral lines (e.g., \oii7322,7332\AA) which is outside our GMOS coverage. Instead, we estimate O$^+$ electron temperature using the \citet{Izotov2006} calibration:
+		Measuring the low ionizing zone electron temperature requires O$^+$ auroral lines (e.g., \oii7322,7332\AA) which is outside our GMOS coverage. Instead, we estimate O$^+$ electron temperature using the \citet{Izotov2006} low metallicity calibration:
 		\begin{eqnarray}
 			\centering
 			t_e(\textrm{O}^+) = t_e(\textrm{O}^{++}) \times (2.065 - 0.498 t_e(\textrm{O}^{++}))  - 0.577
 		\end{eqnarray}
-		where $T_e (\textrm{O}^+) = t_e(\textrm{O}^+) \times 10^4$ K and $T_e (\textrm{O}^{++}) = t_e(\textrm{O}^{++}) \times 10^4$ K. We note that this is the low metallicity calibration which we later show in this paper to be appropriate for EELG1002.  % with the calibration drawn from photoionization models and found to be consistent with observations \citep{Izotov2006}.
+		with $T_e  = t_e\times 10^4$ K for both O$^+$ and O$^{++}$.
+		%with $T_e (\textrm{O}^+) = t_e(\textrm{O}^+) \times 10^4$ K and $T_e (\textrm{O}^{++}) = t_e(\textrm{O}^{++}) \times 10^4$ K. %We note that this is the low metallicity calibration which we later show in this paper to be appropriate for EELG1002.  % with the calibration drawn from photoionization models and found to be consistent with observations \citep{Izotov2006}.
 		
-		We then measure the electron density using the \oii3726,3729\AA~doublet which is sensitive to $T_e$. For example, $n_e$ can vary from $\sim 500$ cm$^{-3}$ to $\sim 640$ cm$^{-3}$ by increasing $T_e$ from 10000 K to 20000 K assuming the \oii~doublet ratio is of order unity. Therefore, it is crucial that we first measure the electron temperature as described above and then measure electron density. We use \pyneb~\texttt{getTemDen} function with the estimated $T_e(\rm{O}^{+})$ and the observed \oii3729/\oii3726\AA~ratio.
+		We measure the electron density, $n_e$, using the \oii3726,3729\AA~doublet which is sensitive to $T_e$ (e.g., can vary from $\sim 500$ cm$^{-3}$ to $\sim 640$ cm$^{-3}$ by increasing $T_e$ from 10000 K to 20000 K assuming \oii~doublet ratio is of order unity.) Therefore, we first measure the electron temperature as described above and then measure $n_e$ using \pyneb~\texttt{getTemDen} function with the estimated $T_e(\rm{O}^{+})$ and the observed \oii3729/\oii3726\AA~ratio.
 		
 		
 %		Both the electron temperature ($T_e$) and density ($n_e$) are key properties that regulate the strength of collisionally excited lines and o. We use the \oiii4363/\oiii5007\AA~line ratio 
@@ -551,14 +576,14 @@
 		
 		\subsubsection{Gas-Phase Abundance}
 		
-		Abundances associated with Oxygen and Neon are measured using \pyneb~and its \texttt{getIonAbundance} feature assuming the electron temperatures in both the high and low ionizing zones. Our approach also assumes that the electron density as measured from \oii~is constant throughout the ionizing zones. Below we describe how the ionic and total abundances are measured. %that are also highlighted in Table {\color{red} ZZZ}.
+		Abundances associated with Oxygen and Neon are measured using \pyneb~and its \texttt{getIonAbundance} feature assuming the electron temperatures in both the high and low ionizing zones. Our approach assumes $n_e$ is constant throughout the ionizing zones. Below we describe how the ionic and total abundances are measured. %that are also highlighted in Table {\color{red} ZZZ}.
 		
 		Oxygen abundance is measured with the formalism:
 		\begin{eqnarray}
 			\frac{\textrm{O}}{\textrm{H}} \approx \frac{\textrm{O}^+}{\textrm{H}}  + \frac{\textrm{O}^{++}}{\textrm{H}} 
 			\label{eqn:oxygen_abundance}
 		\end{eqnarray}
-		where additional abundance contribution from O$^{+++}$ is not expected to contribute significantly to the overall O/H abundance. Specifically, to have O$^{+++}$ requires $54.9$ eV and, therefore, we would also expect Helium recombination line detections within the GMOS spectra (e.g., He{\sc i}4686\AA) for which we find none. \cite{Berg2018} investigated $z \sim 2$ lensed source with O{\sc iv} detection and found that O$^{+++}/$H contribution only accounted for a $\sim 5$\% increase ($+0.02$ dex) in the total O/H abundance. We therefore continue measuring O/H abundance as defined in Equation \ref{eqn:oxygen_abundance}. The $\textrm{O}^{++}/\textrm{H}$ abundance is measured using $R3$ with $n_e$ and $T_e(\rm{O}^{++})$ measured in \S\ref{sec:ne_and_te} and $\textrm{O}^{+}/\textrm{H}$ is measured using $R2$, $n_e$, and $T_e(\rm{O}^{+})$. %Note that assuming $T_e(\rm{O}^{+})$ is equivalent to $T_e(\rm{O}^{++})$ does not significantly change $\textrm{O}^{+}/\textrm{H}$ {\color{red} BY HOW MUCH? ZZZ}.
+		where additional abundance contribution from O$^{+++}$ is not expected to contribute significantly to the overall O/H abundance. Specifically, to have O$^{+++}$ requires $54.9$ eV and, therefore, we would also expect Helium recombination lines (e.g., He{\sc i}4686\AA) for which we find no detections in the GMOS spectra. \cite{Berg2018} investigated a $z \sim 2$ lensed source with O{\sc iv} detection and found that O$^{+++}/$H contribution only accounted for a $\sim 5$\% increase ($+0.02$ dex) in the total O/H abundance. We therefore continue measuring O/H abundance as defined in Equation \ref{eqn:oxygen_abundance}. The $\textrm{O}^{++}/\textrm{H}$ abundance is measured using $R3$ with $n_e$ and $T_e(\rm{O}^{++})$ measured in \S\ref{sec:ne_and_te} and $\textrm{O}^{+}/\textrm{H}$ is measured using $R2$, $n_e$, and $T_e(\rm{O}^{+})$. %Note that assuming $T_e(\rm{O}^{+})$ is equivalent to $T_e(\rm{O}^{++})$ does not significantly change $\textrm{O}^{+}/\textrm{H}$ {\color{red} BY HOW MUCH? ZZZ}.
 
 		Figure \ref{fig:spectra} also shows clear detections of both the \neiii3869\AA~and \neiii3968\AA~lines, although the latter is affected by H$\epsilon$ contribution. Therefore, we can also investigate the Ne/H abundance, as well as Ne/O abundance ratios. We define the Neon-to-Hydrogen abundance as:
 			\begin{eqnarray}
@@ -744,7 +769,9 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 		\CatchFileDef{\ISMandLineTable}{tables/ISM_and_Line_properties.table}{}
 		\begin{table}
 		\centering
-		{\renewcommand{\arraystretch}{1.1}
+		\caption{\zzz}
+		\label{table:ISM}
+		{\renewcommand{\arraystretch}{1.12}
 			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lc}
 				\hline
 				ISM Property & Measurement \\
@@ -773,20 +800,19 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 			\caption{Emission Line Fits}
 			\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc}
 				\hline
-				Line & $z_{spec}$ & Observed Line Flux  & EW$_0$ (\verb|Cigale|)& EW$_0$ (\verb|Bagpipes|) & FWHM& $\sigma_d$\\
-				&                     &  ($10^{-17}$ erg s$^{-1}$ cm$^{-2}$) & ($10^{-17}$ erg s$^{-1}$ cm$^{-2}$) & (\AA) & (\AA)  & (km s$^{-1}$) \\
+				Line & $z_{spec}$ & Observed Line Flux  & EW$_0$ (\verb|Cigale|)& EW$_0$ (\verb|Bagpipes|) & $ \sigma_{obs}$& $\sigma_{int}$\\
+				&                     &  ($10^{-17}$ erg s$^{-1}$ cm$^{-2}$) & ($10^{-17}$ erg s$^{-1}$ cm$^{-2}$) & (\AA) & (km s$^{-1}$)  & (km s$^{-1}$) \\
 				\hline
 				\multicolumn{7}{l}{{\textbf{Balmer Lines}}}\\
-				\hbeta & $0.8273^{+0.0058}_{-0.0058}$ & $18.70^{+0.88}_{-0.89}$ & $472.00^{+22.14}_{-22.43}$ & $355.77^{+16.69}_{-16.91}$ & $453^{+16}_{-15}$ & $192^{+7}_{-7}$ \\
+				\hbeta & $0.8273^{+0.0005}_{-0.0005}$ & $18.70^{+0.88}_{-0.89}$ & $472.00^{+22.14}_{-22.43}$ & $355.77^{+16.69}_{-16.91}$ & $192^{+7}_{-7}$ & $131^{+10}_{-10}$ \\
 				H$\gamma$ & --- & $9.66^{+0.52}_{-0.53}$ & $187.34^{+10.18}_{-10.33}$ & $136.67^{+7.43}_{-7.53}$ & --- & --- \\
 				H$\delta$ & --- & $4.05^{+0.32}_{-0.33}$ & $71.79^{+5.73}_{-5.87}$ & $48.96^{+3.91}_{-4.00}$ & --- & --- \\
 				H$\epsilon$ & --- & $2.26^{+0.37}_{-0.36}$ & $36.83^{+5.96}_{-5.93}$ & $25.12^{+4.06}_{-4.04}$ & --- & --- \\
 				H$\zeta+$He{\sc i}3889\AA & --- & $0.71^{+0.30}_{-0.28}$ & $10.57^{+4.40}_{-4.11}$ & $7.13^{+2.97}_{-2.77}$ & --- & --- \\
 				H$\eta$ & --- & $3.05^{+0.29}_{-0.30}$ & $47.31^{+4.54}_{-4.67}$ & $31.91^{+3.06}_{-3.15}$ & --- & --- \\
-				
 				\hline
 				\multicolumn{7}{l}{{\textbf{Oxygen Lines}}}				\\    	    			    					
-				\oiii5007\AA & $0.8276^{+0.0058}_{-0.0058}$ & $92.12^{+0.72}_{-0.65}$ & $2437.94^{+18.92}_{-17.20}$ & $1847.72^{+14.34}_{-13.03}$ & $346^{+4}_{-5}$ & $146^{+1}_{-1}$ \\
+			\oiii5007\AA & $0.8276^{+0.0005}_{-0.0005}$ & $92.12^{+0.72}_{-0.65}$ & $2437.94^{+18.92}_{-17.20}$ & $1847.72^{+14.34}_{-13.03}$ & $146^{+1}_{-1}$ & $53^{+3}_{-3}$ \\
 				\oiii4959\AA & --- & $30.45^{+0.43}_{-0.46}$ & $787.04^{+11.06}_{-11.77}$ & $588.41^{+8.27}_{-8.80}$ & --- & --- \\
 				\oiii4363\AA & --- & $2.97^{+0.38}_{-0.37}$ & $59.88^{+7.74}_{-7.39}$ & $43.43^{+5.61}_{-5.36}$ & --- & --- \\
 				\oii3726,3729\AA & --- & $8.21^{+0.37}_{-0.39}$ & $123.72^{+5.56}_{-5.86}$ & $91.51^{+4.11}_{-4.33}$ & --- & --- \\
@@ -794,7 +820,7 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 				\oii3729\AA & --- & $4.22^{+0.38}_{-0.36}$ & $58.17^{+5.18}_{-4.95}$ & $42.17^{+3.75}_{-3.59}$ & --- & --- \\
 				\hline
 				\multicolumn{7}{l}{{\textbf{Neon Lines}}}		\\		    	    			    						    		    
-				\neiii3869\AA & $0.8275^{+0.0058}_{-0.0058}$ & $11.07^{+0.50}_{-0.52}$ & $159.87^{+7.27}_{-7.45}$ & $112.68^{+5.13}_{-5.25}$ & $545^{+29}_{-28}$ & $230^{+12}_{-12}$ \\
+				\neiii3869\AA & $0.8275^{+0.0006}_{-0.0006}$ & $11.07^{+0.50}_{-0.52}$ & $159.87^{+7.27}_{-7.45}$ & $112.68^{+5.13}_{-5.25}$ & $230^{+12}_{-12}$ & $149^{+19}_{-19}$ \\
 				\neiii3968\AA & --- & $3.42^{+0.00}_{-0.00}$ & $55.54^{+0.00}_{-0.00}$ & $38.00^{+0.00}_{-0.00}$ & --- & --- \\
 				\hline
 			\end{tabular*}
@@ -878,6 +904,14 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 			Comparison of Ne3O3 at given log U? or Stellar Mass? Maybe it is higher suggesting harder ionization field?
 		
 		
+			\begin{figure}
+				\centering
+				\includegraphics[width=\columnwidth]{figures/Ne3O2_O32.png}
+				\caption{\zzz}
+				\label{fig:Ne3O2}
+			\end{figure}
+		
+		
 		\subsection{Extreme \xiion~for Low-$z$ ELG but Reminiscent of Typical High-$z$ Galaxies}
 		Here we talk about the high \xiion~perhaps panel plot showing it with sSFR.
 		
@@ -904,6 +938,13 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 			Here we will want to include a SFH plot with our source of interest along with Illustris extended to z = 0. We also want to include plots of the 
 			
 		
+		\begin{figure}
+			\centering
+			\includegraphics[width=\columnwidth]{figures/Illustris_Analogs.png}
+			\caption{\zzz}
+			\label{fig:analogs}
+		\end{figure}
+		
 		
 %		\subsection{Devoid of Dust or Destruction of Dust Grains?}
 %		Main Point:
@@ -911,8 +952,14 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 %			But both Cigale and Bagpipes suggest some dust content which would signify some past star-formation activity and that the stellar reddening does exist.
 %			Could be that dust grains are being destroyed from intense radiation emanating from H{\sc ii} regions but are still found within the diffuse ISM. One way to test this is by follow-up mid IR imaging with \textit{JWST} to observe PAH emission. Some studies already suggest that PAH is destroyed in starburst galaxies.
 		
-		\subsection{High Neon Abundance}
+		\subsection{Neon Abundance}
 		
+		\begin{figure}
+			\centering
+			\includegraphics[width=\columnwidth]{figures/NeO_OH.png}
+			\caption{\zzz}
+			\label{fig:NeO}
+		\end{figure}
 		
 %		\subsection{Reconstruction of Star Formation Histories}
 %			Main Point: It is extremely difficult to reconstruct star-formation histories of extreme emission line galaxies. Parametric SFHs with {\sc Cigale} suggest a delayed-$\tau$ model with a recent burst reproduces an SED that best matches with the available photometry and spectroscopy. However, we also tested an exponential and periodic model which resulted in high $\chi^2$. We use {\sc Bagpipes} with similar delayed-$\tau$ burst model.
@@ -1036,6 +1083,9 @@ where SFR$(t)$ is the star-formation rate at a given time starting at formation 
 		\subsection{What are the potential descendants of EELG1002?}
 		
 		Plots that will go here are sizes, gas mass, stellar mass evolution
+
+		\subsection{Conditions for LyC Escape}
+		Here mention how this source has high ionization potential, ionizing photon production efficiency, and so forth. The GALEX imaging itself also suggests potential LyC escape. Mention the FUV magnitude here from COSMOS2020. Then mention that this could potentially be $\sim$ \zzz~percent escape fraction. Spatially resolved spectroscopy of this source would help to identify channels of LyC escape. Stepping stone in studying high-$z$ galaxies.
 
 %		\subsection{Emission lines Not Driven by AGN activity}
 %			

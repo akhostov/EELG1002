@@ -30,7 +30,7 @@ def get_fluxcorr():
 
 	# Smooth out the images
 	data[0].data = convolve(data[0].data, gaussian_2D_kernel)
-	#data.writeto("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_sci_ground_PSF.fits",overwrite=True)
+	data.writeto("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_sci_ground_PSF.fits",overwrite=True)
 
 	# Calculate Original Flux
 	mag_new = util.fnu_to_ab_mag(np.sum(data[0].data[dx[0]:dx[1],dy[0]:dy[1]]),unit="custom",ZP=25.936)

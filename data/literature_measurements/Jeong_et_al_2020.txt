@@ -1,0 +1,10 @@
+# Paper: Jeong et al. (2020)
+# URL: https://ui.adsabs.harvard.edu/abs/2020ApJ...902L..16J/abstract
+# Survey: MOSDEF
+
+# Data columns
+# Bin_log10_Mass_min    Bin_log10_Mass_max  Bin_log10_Mass_med      Ngal    Ne3O2   Ne3O2_elow  Ne3O2_eupp  Ne3O3   Ne3O3_elow  Ne3O3_eupp  O3HB    O3HB_elow   O3HB_eupp   O32     O32_elow    O32_eupp    
+8.23                    9.51                9.29                    66      -0.73   0.04        0.04        -0.99   0.04        0.04        0.63    0.02        0.02        0.26    0.02        0.02
+9.52                    9.83                9.72                    66      -0.90   0.05        0.05        -0.93   0.05        0.05        0.53    0.02        0.02        0.03    0.02        0.02
+9.84                    10.19               9.99                    66      -1.19   0.10        0.08        -1.02   0.10        0.08        0.39    0.02        0.02        -0.17   0.01        0.02
+10.20                   11.27               10.43                   66      -1.04   0.07        0.06        -0.70   0.07        0.06        0.28    0.02        0.02        -0.34   0.02        0.02
