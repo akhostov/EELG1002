@@ -12,14 +12,6 @@ def table_emission_line_fits():
 
 	data = fits.open("../../data/emline_fits/1002_lineprops.fits")[1].data
 
-	names = np.array(["line_ID",
-						"linez_med","linez_elow","linez_eupp",
-						"lineflux_med","lineflux_elow","lineflux_eupp",
-						"lineEW_Cigale_med","lineEW_Cigale_elow","lineEW_Cigale_eupp",
-						"lineEW_Bagpipes_med","lineEW_Bagpipes_elow","lineEW_Bagpipes_eupp",
-						"linesigma_med","linesigma_elow","linesigma_eupp",
-						"linefwhm_med","linefwhm_elow","linefwhm_eupp"])
-
 	# Sort to Table
 	sort = np.array(["Hb_na","Hg_na","Hd_na","Hep_na","H9","H8",\
 			"OIII5007c","OIII4959c","OIII4363","[OII]","OII3726","OII3728",\
@@ -84,9 +76,9 @@ def table_emission_line_ratios():
 
 		# Electron Temperature and Density
 		util.write_with_newline(table,"\\multicolumn{2}{l}{\\textbf{Electron Temperature \\& Density}} \\\\")
-		util.write_with_newline(table,"$T_e(\\textrm{O}^{++})$ & "+r"$%0.0f^{+%0.0f}_{-%0.0f}$ \\" % (pyneb_stat["te_O++_med"],pyneb_stat["te_O++_err_up"],pyneb_stat["te_O++_err_low"]))
-		util.write_with_newline(table,"$T_e(\\textrm{O}^{+})$ & "+r"$%0.0f^{+%0.0f}_{-%0.0f}$ \\" % (pyneb_stat["te_O+_med"],pyneb_stat["te_O+_err_up"],pyneb_stat["te_O+_err_low"]))
-		util.write_with_newline(table,"$n_e$ & "+r"$%0.0f^{+%0.0f}_{-%0.0f}$ \\" % (pyneb_stat["ne_med"],pyneb_stat["ne_err_up"],pyneb_stat["ne_err_low"]))
+		util.write_with_newline(table,"$T_e(\\textrm{O}^{++})$ (K) & "+r"$%0.0f^{+%0.0f}_{-%0.0f}$ \\" % (pyneb_stat["te_O++_med"],pyneb_stat["te_O++_err_up"],pyneb_stat["te_O++_err_low"]))
+		util.write_with_newline(table,"$T_e(\\textrm{O}^{+})$ (K) & "+r"$%0.0f^{+%0.0f}_{-%0.0f}$ \\" % (pyneb_stat["te_O+_med"],pyneb_stat["te_O+_err_up"],pyneb_stat["te_O+_err_low"]))
+		util.write_with_newline(table,"$n_e$ (cm$^{-3}$) & "+r"$%0.0f^{+%0.0f}_{-%0.0f}$ \\" % (pyneb_stat["ne_med"],pyneb_stat["ne_err_up"],pyneb_stat["ne_err_low"]))
 
 		# Oxygen Abundance
 		util.write_with_newline(table,"\\multicolumn{2}{l}{\\textbf{Oxygen Abundance}} \\\\")
@@ -134,7 +126,7 @@ def table_emission_line_ratios():
 		index = line_ratio["name"].index("Hb/Hg")
 		Hbg_measured = "\hbeta/\hgamma & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,Hbg_measured)
-
+		"""
 		# Hb/Hd
 		index = line_ratio["name"].index("Hb/Hd")
 		Hbd_measured = "\hbeta/\hdelta & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
@@ -144,9 +136,9 @@ def table_emission_line_ratios():
 		index = line_ratio["name"].index("Hb/Hep")
 		Hbep_measured =  "\hbeta/H$\epsilon$ & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,Hbep_measured)
+		"""
 
-
-		util.write_with_newline(table,r"$E(B-V)$ -- (H$\beta$/H$\gamma$) &  $%0.2f^{+%0.2f}_{-%0.2f}$ mag\\" % (pyneb_stat["EBV_hghb_med"], pyneb_stat["EBV_hghb_err_up"], pyneb_stat["EBV_hghb_err_low"])  )
+		util.write_with_newline(table,r"$E(B-V)$ via H$\beta$/H$\gamma$ (mag) &  $%0.2f^{+%0.2f}_{-%0.2f}$\\" % (pyneb_stat["EBV_hghb_med"], pyneb_stat["EBV_hghb_err_up"], pyneb_stat["EBV_hghb_err_low"])  )
 		#util.write_with_newline(table,r"								 &  $%0.2f$ mag ($<2\sigma$) \\" % (pyneb_stat["EBV_hghb_2sig_limit"]) )
 		#util.write_with_newline(table,r"$E(B-V)$ -- (H$\beta$/H$\delta$) & $%0.2f^{+%0.2f}_{-%0.2f}$ mag\\" % (pyneb_stat["EBV_hdhb_med"], pyneb_stat["EBV_hdhb_err_up"], pyneb_stat["EBV_hdhb_err_low"])  )
 
@@ -155,29 +147,29 @@ def table_emission_line_ratios():
 
 		# Line Ratios
 		util.write_with_newline(table,"\\multicolumn{2}{l}{\\textbf{Line ratios}} \\\\")
-		# O3HB
+		# O3HB -- [OIII]5007/Hbeta
 		index = line_ratio["name"].index("O3HB")
-		o3hb_measured = "$\\textrm{\oiii}_{5007\\textrm{\scriptsize\AA}}/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		o3hb_measured = "O3HB & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,o3hb_measured)
 
-		# O32
+		# O32 -- [OIII]5007/[OII]3726,3729
 		index = line_ratio["name"].index("O32")
-		o32_measured = "$\\textrm{\oiii}_{5007\\textrm{\scriptsize\AA}}/\\textrm{\oii}_{3726,3729\\textrm{\scriptsize\AA}}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		o32_measured = "O32 & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,o32_measured)
 
-		# R2
+		# R2 -- [OII]3726,3729/Hbeta
 		index = line_ratio["name"].index("R2")
-		R2_measured = "$\\textrm{\oii}_{3726,3729\\textrm{\scriptsize\AA}}/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		R2_measured = "$R2$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,R2_measured)
 
-		# R3
+		# R3 -- [OIII]5007,4959/Hbeta
 		index = line_ratio["name"].index("R3")
-		R3_measured = "$\\textrm{\oiii}_{5007,4959\\textrm{\scriptsize\AA}}/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$\\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		R3_measured = "$R3$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$\\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,R3_measured)
 
-		# R23
+		# R23 -- ([OIII]5007,4959 + [OII]3726,3729)/Hbeta
 		index = line_ratio["name"].index("R23")
-		R23_measured = "$(\\textrm{\oiii}_{5007,4959\\textrm{\scriptsize\AA}}  + \\textrm{\oii}_{3726,3729\\textrm{\scriptsize\AA}})/\\textrm{\hbeta}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		R23_measured = "$R23$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,R23_measured)
 		
 		# Auroral
@@ -185,14 +177,14 @@ def table_emission_line_ratios():
 		Auroral_measured = "$\\textrm{\oiii}_{4363\\textrm{\scriptsize\AA}}/\\textrm{\oiii}_{5007\\textrm{\scriptsize\AA}}$ & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,Auroral_measured)
 
-		# Ne3O2
+		# Ne3O2 -- [NeIII]3869/[OII]3726,3729
 		index = line_ratio["name"].index("Ne3O2")
-		Ne3O2_measured = "$\\textrm{\\neiii}_{3869\\textrm{\scriptsize\AA}}/\\textrm{\oii}_{3726,3729\\textrm{\scriptsize\AA}}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		Ne3O2_measured = "Ne3O2 & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,Ne3O2_measured)
 		
-		# Ne3O3
+		# Ne3O3 -- [NeIII]3869/[OIII]5007
 		index = line_ratio["name"].index("Ne3O3")
-		Ne3O3_measured = "$\\textrm{\\neiii}_{3869\\textrm{\scriptsize\AA}}/\\textrm{\oiii}5007\\textrm{\AA}$ & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
+		Ne3O3_measured = "Ne3O3 & "+r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,Ne3O3_measured)
 
 	table.close()

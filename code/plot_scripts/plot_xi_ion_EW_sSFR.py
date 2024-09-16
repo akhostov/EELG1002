@@ -193,7 +193,6 @@ def Castellano_2023(ax):
 	return ax
 
 
-
 cosmo = FlatLambdaCDM(H0=70.,Om0=0.3)
 
 # Let's first define the figure parameters

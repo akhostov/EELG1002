@@ -1,5 +1,5 @@
 # Paper: Tang et al. (2023)
-# URL: https://ui.adsabs.harvard.edu/abs/2023MNRAS.523.5468S/abstract
+# URL: https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.1657T/abstract
 
 # Data columns
 # ID    	zspec	Mass	Mass_elow	Mass_eupp	EW_O3_HB	EW_O3_HB_elow	EW_O3_HB_eupp	xi_ion	xi_ion_elow	xi_ion_eupp

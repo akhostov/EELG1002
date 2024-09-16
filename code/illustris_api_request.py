@@ -72,8 +72,8 @@ def main(simulation):
 
 
     r = get(baseUrl)
-    subhalo_id = 1212
-    url = f"{baseUrl}{simulation}/snapshots/55/subhalos/{subhalo_id}/"
+    #subhalo_id = 1212
+    #url = f"{baseUrl}{simulation}/snapshots/55/subhalos/{subhalo_id}/"
 
     # Stellar Mass 
     mass_min = 10**7/  1e10 * 0.704

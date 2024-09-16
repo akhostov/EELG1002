@@ -1,0 +1,15 @@
+# Paper: Izotov et al. (2021)
+# URL: https://ui.adsabs.harvard.edu/abs/2021MNRAS.503.1734I/abstract
+# IMF: Salpeter
+
+# Data columns
+# mass  Hbeta_EW    OIII4959_EW     OIII5007_EW
+7.49    227         480             1977 
+7.51    435         992             2547
+7.89    170         358             1116
+7.20    317         703             2222
+7.44    158         201             685
+7.79    305         542             1424
+7.36    172         450             1649
+7.74    265         597             1714
+7.90    278         747             2049

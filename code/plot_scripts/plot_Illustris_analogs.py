@@ -24,6 +24,32 @@ def log10_with_dummy_numbers(prop, dummy=-99.):
     
     return prop
 
+def set_top_axis(ax,ticklabels=True):
+
+    #### Now Let's Define the Redshift Axis
+    # Create a twin x-axis to display redshift
+    ax_redshift = ax.twiny()
+
+    # Convert lookback time to redshift
+    redshifts = np.array([0.,0.1,0.5,1.0,1.5])
+    redshifts_minor = np.arange(0.,1.5,0.1)
+    lookback_time = cosmo.lookback_time(redshifts).value
+    lookback_time_minor = cosmo.lookback_time(redshifts_minor).value
+
+    # Set ticks and labels for the redshift axis
+    ax_redshift.set_xticks(lookback_time)
+    ax_redshift.set_xticks(lookback_time_minor,minor=True)
+    
+    if ticklabels:
+        ax_redshift.set_xticklabels([f'{z:.1f}' for z in redshifts])
+        ax_redshift.set_xlabel(r'Redshift')
+    else:
+        ax_redshift.set_xticklabels([])
+
+    # Set limits for the secondary axis (redshift axis)
+    ax_redshift.set_xlim(ax_sfr.get_xlim())
+
+    return ax_redshift
 
 ######################################################################
 #######					  LOAD EELG1002 RESULTS			       #######
@@ -87,24 +113,9 @@ ax_metal.set_xlabel(r"Lookback Time (Gyr)")
 
 
 #### Now Let's Define the Redshift Axis
-# Create a twin x-axis to display redshift
-ax_redshift = ax_sfr.twiny()
-
-# Convert lookback time to redshift
-redshifts = np.array([0.,0.1,0.5,1.0,1.5])
-redshifts_minor = np.arange(0.,1.5,0.1)
-lookback_time = cosmo.lookback_time(redshifts).value
-lookback_time_minor = cosmo.lookback_time(redshifts_minor).value
-
-# Set ticks and labels for the redshift axis
-ax_redshift.set_xticks(lookback_time)
-ax_redshift.set_xticks(lookback_time_minor,minor=True)
-ax_redshift.set_xticklabels([f'{z:.1f}' for z in redshifts])
-ax_redshift.set_xlabel(r'Redshift')
-
-# Set limits for the secondary axis (redshift axis)
-ax_redshift.set_xlim(ax_sfr.get_xlim())
-
+_ = set_top_axis(ax_sfr,ticklabels=True)
+_ = set_top_axis(ax_mass,ticklabels=False)
+_ = set_top_axis(ax_metal,ticklabels=False)
 
 
 
@@ -127,10 +138,13 @@ zstar = log10_with_dummy_numbers(analog["starmetallicity"]/0.02)
 ax_metal.plot(cosmo.lookback_time(analog["redshift"]).value,zgas,color=tableau20("Red"))
 ax_metal.plot(cosmo.lookback_time(analog["redshift"]).value,zstar,color=tableau20("Red"),ls="--",alpha=0.5)
 
+# Now Let's Highlgiht the Merging events
+merging_snapnum = []
 
 
 
-# Load in the 182200 Analog
+
+# Load in the 119294 Analog
 id_analog_2 = "TNG300-2_119294"
 analog = pickle.load(open(f"../../data/Illustris_Analogs/{id_analog_2}_analogs_with_histories.pkl","rb"))
 
@@ -175,31 +189,31 @@ ax_metal.plot([cosmo.lookback_time(0.8275).value],[metal_med],marker="*",ms=15,m
 
 
 
-# Define Legend
-
-
+######## Define Legend
 ax_sfr.text(0.95,0.90,r"\textbf{%s}" % (id_analog_1.split("_")[0]) + '\n' + r'\textbf{Snap = 55}',color="black", ha="right",va="center",transform=ax_sfr.transAxes,fontsize=5)
 ax_sfr.text(0.95,0.82,r"\textbf{ID = %s}" % (id_analog_1.split("_")[1]),color=tableau20("Red"), ha="right",va="center",transform=ax_sfr.transAxes,fontsize=5)
 ax_sfr.text(0.95,0.75,r"\textbf{ID = %s}" % (id_analog_2.split("_")[1]),color=tableau20("Green"), ha="right",va="center",transform=ax_sfr.transAxes,fontsize=5)
-            
+
+# Goes to Top Panel: SFR            
 handles = [Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Cigale",mec=True),mfc=util.color_scheme("Cigale",mfc=True),label=r"\textbf{\textit{EELG1002 (Cigale)}}"),
             Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Bagpipes",mec=True),mfc=util.color_scheme("Bagpipes",mfc=True),label=r"\textbf{\textit{EELG1002 (Bagpipes)}}"),
             Line2D([],[],ls="none",marker="*",ms=10,mec=tableau20("Green"),mfc=tableau20("Light Green"),label=r"\textbf{\textit{EELG1002 (GMOS)}}")]			
 leg1 = ax_sfr.legend(handles=handles,loc="upper left",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=0.8)
-#plt.gca().add_artist(leg1)
 
+# Goes to Middle Panel: Mass Growth     
 handles = [Line2D([],[],ls="-",color=tableau20("Grey"),label=r"Stellar"),
             Line2D([],[],ls="--",color=tableau20("Grey"),alpha=0.5,label=r"Gas")]   	
 
 leg2 = ax_mass.legend(handles=handles,loc="upper right",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=0.8)
-#plt.gca().add_artist(leg2)
 
+# Goes to Bottom Panel: Chemical Enrichment 
 handles = [Line2D([],[],ls="-",color=tableau20("Grey"),label=r"Gas"),
             Line2D([],[],ls="--",color=tableau20("Grey"),alpha=0.5,label=r"Stellar")]   	
 
 leg3 = ax_metal.legend(handles=handles,loc="upper right",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=0.8)
-#plt.gca().add_artist(leg3)
 
+
+######## Save the Figure
 fig.savefig("../../plots/Illustris_Analogs.png",format="png",dpi=300,bbox_inches="tight")
 
 

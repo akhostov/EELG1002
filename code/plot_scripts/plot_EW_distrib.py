@@ -46,9 +46,28 @@ EIGER = ax.errorbar(EIGER_logM,EIGER_EW,yerr=[EIGER_EW_elow,EIGER_EW_eupp],\
 					marker="p",ms=5,mew=0.2,capsize=2,capthick=1,elinewidth=0.5,label=r"$z \sim 5 - 7$ (EIGER; stacks)")
 
 ## Izotov et al. 2021 -- LyC
-Iz21_mass,Iz21_hb,Iz21_o3_4959,Iz21_o3_5007 = np.loadtxt("../../../Proposal/HST/Cycle32/COS_EELG_GMOS/data/EELG_lit/Izotov_2021.txt",unpack=True)
+Iz21_mass,Iz21_hb,Iz21_o3_4959,Iz21_o3_5007 = np.loadtxt("../../data/literature_measurements/Izotov_et_al_2021.txt",unpack=True)
 Iz21_EW = Iz21_hb + Iz21_o3_4959 + Iz21_o3_5007
-Iz21, = ax.plot(Iz21_mass-0.21,Iz21_EW,marker="d",ms=5,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),alpha=0.8,ls="none",label=r"$z = 0.3 - 0.45$ (Iz+21)",zorder=99)
+Iz21, = ax.plot(Iz21_mass-0.21,Iz21_EW,marker="d",ms=5,mec=tableau20("Purple"),mfc="none",alpha=0.8,ls="none",label=r"$z = 0.3 - 0.45$ (Iz+21)",zorder=99)
+
+Iz16_mass,Iz16_hb,Iz16_o3_4959,Iz16_o3_5007 = np.loadtxt("../../data/literature_measurements/Izotov_et_al_2016.txt",unpack=True,usecols=(-2,10,13,16))
+Iz16_EW = Iz16_hb + Iz16_o3_4959 + Iz16_o3_5007
+_, = ax.plot(Iz16_mass-0.21,Iz16_EW,marker="d",ms=5,mec=tableau20("Purple"),mfc="none",alpha=0.8,ls="none",zorder=99)
+
+Iz18_mass,Iz18_hb,Iz18_o3_4959,Iz18_o3_5007 = np.loadtxt("../../data/literature_measurements/Izotov_et_al_2018.txt",unpack=True,usecols=(-2,10,13,16))
+Iz18_EW = Iz18_hb + Iz18_o3_4959 + Iz18_o3_5007
+_, = ax.plot(Iz18_mass-0.21,Iz18_EW,marker="d",ms=5,mec=tableau20("Purple"),mfc="none",alpha=0.8,ls="none",zorder=99)
+
+
+# JADES -- Boyett et al. (2024) 3 < z < 7
+JADES_mass,JADES_mass_elow,JADES_mass_eupp,\
+	JADES_EW, JADES_EW_err	= np.loadtxt("../../data/literature_measurements/Boyett_et_al_2024.txt",unpack=True,usecols=(4,6,5,2,3))
+
+JADES = ax.plot(JADES_mass,JADES_EW,\
+					ls="none",mec=tableau20("Pink"),mfc="none",mew=0.5,alpha=0.8,\
+					marker="H",ms=5,label=r"$z \sim 3 - 9$ (JADES)")
+
+
 
 # J0925+1403 (Izotov et al. 2016)
 #J0925, = ax.plot([np.log10(8.2e8)-0.21],[1174.],marker="s",ms=5,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),alpha=0.8,ls="none",label=r"$z = 0.301$ (J0925+1403)",zorder=99)
@@ -67,6 +86,7 @@ Ion2, = ax.plot([9.2-0.21],[1103.],marker="v",ms=5,mec=tableau20("Red"),mfc=tabl
 #
 #lgd3 = ax.legend(handles=[Ca09,JPLUS,Iz21],loc="upper left",ncol=1,fontsize=7.,frameon=False,handletextpad=0.025,columnspacing=0.05,bbox_to_anchor=(0.0,0.85))
 #plt.gca().add_artist(lgd3)
+
 
 
 # Plot the EW -- Stellar Mass Correlations
@@ -160,17 +180,23 @@ ax.errorbar([bagpipes_mass],[EW_meas["bagpipes_O3HB_EW"][0]],
 
 handles = [	Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Cigale",mec=True),mfc=util.color_scheme("Cigale",mfc=True),label=r"\textbf{\textit{EELG1002 (Cigale)}}"),
            	Line2D([],[],ls="none",marker="*",ms=10,mec=util.color_scheme("Bagpipes",mec=True),mfc=util.color_scheme("Bagpipes",mfc=True),label=r"\textbf{\textit{EELG1002 (Bagpipes)}}"),
-			Line2D([],[],ls="none",marker="s",ms=4,mec="#464196",mfc="none",label=r"Blueberries (Ya+17; $z \sim 0$)"),
-			Line2D([],[],ls="none",marker="d",ms=4,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),label=r"LyC Leakers (Iz+21; $z \sim 0$)"),
+            Line2D([],[],ls="none",marker="s",ms=4,mec="#464196",mfc="none",label=r"Blueberries (Ya+17; $z \sim 0$)"),
+			Line2D([],[],ls="none",marker="d",ms=4,mec=tableau20("Purple"),mfc="none",label=r"LyC Leakers (Iz+16,18,21; $z < 0.5$)"),
 			Line2D([],[],ls="none",marker="s",ms=4,mec=tableau20("Green"),mfc="none",label=r"GPs (Ca+08; $z \sim 0.2 - 0.3$)"),
-			Line2D([],[],ls="none",marker="p",ms=4,mec="darkred",mfc="darkred",label=r"EIGER (Ma+23; $z \sim 5 - 7$)"),
-			Line2D([],[],ls="none",marker="^",ms=4,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),label=r"BOSS-EUVLG1 (MC+20; $z = 2.469$)"),
-			Line2D([],[],ls="none",marker="v",ms=4,mec=tableau20("Red"),mfc=tableau20("Light Red"),label=r"\textrm{Ion2} (deB+16; $z = 3.216$)")
 			]		
 
-leg = ax.legend(handles=handles,loc="upper right",frameon=False,ncol=2,numpoints=1,fontsize=5,labelspacing=1.0,columnspacing=0.075)
+leg = ax.legend(handles=handles,loc="upper left",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=1.0,columnspacing=0.075)
 plt.gca().add_artist(leg)	
 
+handles = [	
+			Line2D([],[],ls="none",marker="p",ms=4,mec="darkred",mfc="darkred",label=r"\texttt{EIGER} (Ma+23; $z \sim 5 - 7$)"),
+            Line2D([],[],ls="none",marker="H",ms=4,mec=tableau20("Pink"),mfc="none",label=r"\texttt{JADES} (Bo+24; $z \sim 3 - 9$)"),
+			Line2D([],[],ls="none",marker="^",ms=4,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),label=r"\textrm{\texttt{BOSS-EUVLG1}} (MC+20; $z \sim 2.5$)"),
+			Line2D([],[],ls="none",marker="v",ms=4,mec=tableau20("Red"),mfc=tableau20("Light Red"),label=r"\textrm{\textit{Ion2}} (deB+16; $z \sim 3.2$)")
+			]		
+
+leg = ax.legend(handles=handles,loc="upper right",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=1.0,handletextpad=0.1)
+plt.gca().add_artist(leg)	
 
 handles = [	Line2D([],[],ls="--",marker="none",color=tableau20("Blue"),label =r"$z \sim 0.84$"),
 			Line2D([],[],ls="--",marker="none",color=tableau20("Green"),label =r"$z \sim 1.42$"),
@@ -183,7 +209,7 @@ plt.gca().add_artist(leg2)
 leg2.get_title().set_fontsize('5')
 
 plt.xlim(7,11.)
-plt.ylim(10.,3e4)
+plt.ylim(10.,5e4)
 plt.yscale("log")
 plt.savefig("../../plots/EW_OIII_distrib.png",format="png",dpi=300,bbox_inches="tight")
 

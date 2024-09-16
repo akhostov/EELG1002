@@ -39,15 +39,30 @@ def LyC_Leakers(ax,mfc,mec,marker,ms,zorder=98,alpha=1):
     
     return ax
 
+def Izotov2006(ax,mfc,mec,marker,ms,zorder=98,alpha=1):
+    # Load in Izotov et al. (2006)
+    data = fits.open("../../data/literature_measurements/Izotov_et_al_2006.fits")[1].data
+
+    # Plot
+    ax.plot(data["_12_logO_H"],data["logNe_O"],ls="none",
+                    marker=marker,ms=ms,mfc=mfc,mec=mec,
+                    mew=0.5,zorder=zorder,alpha=alpha)
+
+    return ax
 
 def Guseva(ax,mfc,mec,marker,ms,zorder=98,alpha=1):
     # Load in Guseva et al. (2011)
     OH,OH_err,NeO,NeO_err = np.loadtxt("../../data/literature_measurements/Guseva_et_al_2011.txt",unpack=True,usecols=(1,2,3,4))
 
     # Plot
+    ax.plot(OH,NeO,ls="none",
+                    marker=marker,ms=ms,mfc=mfc,mec=mec,
+                    mew=0.5,zorder=zorder,alpha=alpha)
+    """
     ax.errorbar(OH,NeO,xerr=OH_err,yerr=NeO_err,ls="none",
                     marker=marker,ms=ms,mfc=mfc,mec=mec,ecolor=mec,
                     mew=0.5,capsize=1,capthick=0.5,elinewidth=0.5,zorder=zorder,alpha=alpha)
+    """
 
     return ax
 def EMPGs(ax,mfc,mec,marker,ms,zorder=98,alpha=1):
@@ -132,7 +147,7 @@ ax = fig.add_subplot(111)
 
 # Define Labels
 ax.set_ylabel(r"$\log_{10}$ (Ne/O)",fontsize=8)
-ax.set_xlabel(r"$\log_{10}$ $12+\log_{10}$(O/H)",fontsize=8)
+ax.set_xlabel(r"$12+\log_{10}$(O/H)",fontsize=8)
 
 
 # Define Limits
@@ -150,6 +165,8 @@ ax.errorbar(data["12+log10(O/H)_med"],data["log10(Ne/O)_med"],
 				ls="none",mec=tableau20("Blue"),mfc=tableau20("Light Blue"),ecolor=tableau20("Blue"),\
                 marker="*",ms=12,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=99)
 
+# Izotov et al. (2006)
+ax = Izotov2006(ax,mec=tableau20("Grey"),mfc=tableau20("Light Grey"),marker="o",ms=2, alpha=0.5)
 
 # Guseva et al. (2011) 
 ax = Guseva(ax,mec=tableau20("Grey"),mfc=tableau20("Light Grey"),marker="o",ms=2,zorder=1, alpha=0.8)
@@ -170,9 +187,13 @@ ax = Arellano(ax,mec=tableau20("Brown"),mfc=tableau20("Light Brown"),marker="^",
 ax = CEERS_1019(ax,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),marker="o",ms=4, alpha=0.8)
 
 
+# Plot the Solar Metallicity (Asplund et al. 2021)
+plt.plot([6.,10.],[-0.63,-0.63],ls="--",color="royalblue",lw=1.)
+plt.fill_between([6.,10.],-0.63-0.06,-0.63+0.06,facecolor="royalblue",alpha=0.2)
+
 handles = [	Line2D([],[],ls="none",ms=10,mec=tableau20("Blue"),mfc=tableau20("Light Blue"),marker="*",label=r"\textbf{\textit{EELG1002 (This Work)}}"),
 			Line2D([],[],ls="none",ms=4,mec=tableau20("Red"),mfc=tableau20("Light Red"),marker="p",label=r"$z \sim 0$ EMPGs (Be+21,Ko+21,Is+22,Wa+24)"),
-			Line2D([],[],ls="none",ms=4,mec=tableau20("Grey"),mfc=tableau20("Light Grey"),marker="o",label=r"$z \sim 0$ low-metallicity ELGs (Gus+11)"),
+			Line2D([],[],ls="none",ms=4,mec=tableau20("Grey"),mfc=tableau20("Light Grey"),marker="o",label=r"$z \sim 0$ low-metallicity ELGs (Iz+06,Gu+11)"),
 			Line2D([],[],ls="none",ms=4,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),marker="s",label=r"$z \sim 0 - 0.3$ LyC Leakers (Ja+13,Iz+16,18)"),
 			Line2D([],[],ls="none",ms=4,mec=tableau20("Green"),mfc=tableau20("Light Green"),marker="<",label=r"$z \sim 0.3$ GPs (Am+12)"),
             Line2D([],[],ls="none",ms=4,mec=tableau20("Brown"),mfc=tableau20("Light Brown"),marker="^",label=r"$z \sim 7.7 - 8.5$ SFGs (Ar+22)"),

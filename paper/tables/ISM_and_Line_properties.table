@@ -1,7 +1,7 @@
 \multicolumn{2}{l}{\textbf{Electron Temperature \& Density}} \\
-$T_e(\textrm{O}^{++})$ & $19507^{+1581}_{-1426}$ \\
-$T_e(\textrm{O}^{+})$ & $15535^{+91}_{-268}$ \\
-$n_e$ & $488^{+340}_{-247}$ \\
+$T_e(\textrm{O}^{++})$ (K) & $19507^{+1581}_{-1426}$ \\
+$T_e(\textrm{O}^{+})$ (K) & $15535^{+91}_{-268}$ \\
+$n_e$ (cm$^{-3}$) & $488^{+340}_{-247}$ \\
 \multicolumn{2}{l}{\textbf{Oxygen Abundance}} \\
 $12+\log_{10}(\rm{O}^{++}/\rm{H})$ & $7.456^{+0.073}_{-0.072}$ \\
 $12+\log_{10}(\rm{O}^{+}/\rm{H})$ & $6.559^{+0.046}_{-0.041}$ \\
@@ -18,15 +18,13 @@ $\log_{10}(\rm{Ne}/\rm{O})$ & $-0.589^{+0.027}_{-0.026}$ \\
 \texttt{Cigale} + \texttt{BC03} & $-2.23\pm0.06$ \\
 \multicolumn{2}{l}{\textbf{Balmer Decrement}} \\
 \hbeta/\hgamma & $1.936^{+0.154}_{-0.145}$ \\
-\hbeta/\hdelta & $4.641^{+0.437}_{-0.441}$ \\
-\hbeta/H$\epsilon$ & $8.283^{+1.624}_{-1.224}$ \\
-$E(B-V)$ -- (H$\beta$/H$\gamma$) &  $0.00^{+0.00}_{-0.00}$ mag\\
+$E(B-V)$ via H$\beta$/H$\gamma$ (mag) &  $0.00^{+0.00}_{-0.00}$\\
 \multicolumn{2}{l}{\textbf{Line ratios}} \\
-$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $4.929^{+0.242}_{-0.229}$ \\
-$\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & $11.142^{+0.607}_{-0.580}$ \\
-$\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $0.444^{+0.030}_{-0.028}$ \\
-$\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}/\textrm{\hbeta}$ & $6.556^{+0.323}_{-0.316}$\\
-$(\textrm{\oiii}_{5007,4959\textrm{\scriptsize\AA}}  + \textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}})/\textrm{\hbeta}$ & $6.994^{+0.350}_{-0.327}$ \\
+O3HB & $4.929^{+0.242}_{-0.229}$ \\
+O32 & $11.142^{+0.607}_{-0.580}$ \\
+$R2$ & $0.444^{+0.030}_{-0.028}$ \\
+$R3$ & $6.556^{+0.323}_{-0.316}$\\
+$R23$ & $6.994^{+0.350}_{-0.327}$ \\
 $\textrm{\oiii}_{4363\textrm{\scriptsize\AA}}/\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}$ & $0.032^{+0.004}_{-0.004}$ \\
-$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oii}_{3726,3729\textrm{\scriptsize\AA}}$ & $1.347^{+0.094}_{-0.084}$ \\
-$\textrm{\neiii}_{3869\textrm{\scriptsize\AA}}/\textrm{\oiii}5007\textrm{\AA}$ & $0.121^{+0.007}_{-0.006}$ \\
+Ne3O2 & $1.347^{+0.094}_{-0.084}$ \\
+Ne3O3 & $0.121^{+0.007}_{-0.006}$ \\

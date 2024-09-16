@@ -198,7 +198,7 @@ ax.plot(Iz18_R23, Iz18_O32,\
                 marker="d",ms=3,mew=0.5,zorder=98)
 
 
-# Izotov et al. (2016) LyC Leakers z ~ 0 # https://ui.adsabs.harvard.edu/abs/2019MNRAS.483.5491I/abstract
+# Izotov et al. (2016) LyC Leakers z ~ 0 # https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3683I/abstract
 Iz16_O3_5007 = np.array([571.1,623.2,624.4,653.8])
 Iz16_O3_4959 = np.array([189.1,208.7,205.7,221.1])
 Iz16_O2_3727 = np.array([105.8,130.2,93.6,134.3])
