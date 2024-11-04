@@ -1,0 +1,17 @@
+# Paper: Schaerer et al. (2016)
+# URL: https://ui.adsabs.harvard.edu/abs/2016A%26A...591L...8S/abstract
+# IMF: Salpeter
+# Note that Mass and EWs are from:
+#       Izotov et al. (2016) -- https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3683I/abstract
+#       Izotov et al. (2016) -- https://ui.adsabs.harvard.edu/abs/2016Natur.529..178I/abstract (J0925+1403)
+# Note Schaerer only provides an adopted typical error of 0.15 dex for xi_ion_0 (corrected for attenuation)
+
+# Data columns
+# ID            zspec       xi_ion_0        err_xi_ion_0    SFR     Mass           EW_Hbeta        EW_[OIII]4959       EW_[OIII]5007
+J0925+1403      0.3013      25.39           0.15            52.2    8.91           177             306                 1174
+J1152+3400      0.3419      25.35           0.15            39      9.59           198             407                 1230
+J1333+6246      0.3181      25.07           0.15            14      8.50           194             434                 1230
+J1442-0209      0.2937      25.38           0.15            36      8.96           312             494                 1626
+J1503+3644      0.3557      25.53           0.15            37      8.22           297             544                 1403
+
+

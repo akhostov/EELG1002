@@ -87,9 +87,34 @@ def Tang_2019(ax):
 
 def Tang_2023(ax):
 
+	# Initialize lists to store data
+	Ta23_EW,Ta23_xi_ion = [],[]
+
+	# Read the file line by line
+	with open("../../data/literature_measurements/Tang_et_al_2023.txt", "r") as file:
+		for line in file:
+			# Skip comment lines or empty lines
+			if line.startswith("#") or not line.strip():
+				continue
+			# Stop reading when reaching the second table
+			if "Next Table" in line:
+				break
+
+			# Store the data
+			columns = line.split()
+			Ta23_EW.append(float(columns[5]))
+			Ta23_xi_ion.append(float(columns[8]))
+
+	# close the file
+	file.close()
+
+	# Convert the lists to numpy arrays
+	Ta23_EW = np.array(Ta23_EW)
+	Ta23_xi_ion = np.array(Ta23_xi_ion)
+
 	# Load in the Data
-	Ta23_EW, Ta23_EW_elow, Ta23_EW_eupp, \
-		Ta23_xi_ion, Ta23_xi_ion_elow, Ta23_xi_ion_eupp = np.loadtxt("../../data/literature_measurements/Tang_et_al_2023.txt",unpack=True,usecols=(5,6,7,8,9,10))
+	#Ta23_EW, Ta23_EW_elow, Ta23_EW_eupp, \
+	#	Ta23_xi_ion, Ta23_xi_ion_elow, Ta23_xi_ion_eupp = np.loadtxt("../../data/literature_measurements/Tang_et_al_2023.txt",unpack=True,usecols=(5,6,7,8,9,10))
 
 	ax.plot(Ta23_EW,Ta23_xi_ion,marker="^",ls="none",ms=3,
 							mfc="none",mec=tableau20("Green"),mew=0.2)
@@ -192,6 +217,46 @@ def Castellano_2023(ax):
 
 	return ax
 
+def Schaerer2016(ax,EW=False,sSFR=False):
+
+	# Load in the data
+	xi_ion_0, err_xi_ion_0, SFR, Mass, EW_Hbeta, EW_O3_4959, EW_O3_5007 = np.loadtxt("../../data/literature_measurements/Schaerer_et_al_2016.txt",unpack=True,usecols=(2,3,4,5,6,7,8))
+
+	if EW:
+		ax.errorbar(EW_Hbeta+EW_O3_4959+EW_O3_5007, xi_ion_0, yerr=err_xi_ion_0, ls="none",marker="H",ms=6,mfc=tableau20("Light Grey"),mec=tableau20("Grey"),mew=1.0,capsize=2,capthick=1,elinewidth=0.5)
+
+	if sSFR:
+		ax.errorbar(np.log10(SFR) - Mass - 0.20, xi_ion_0, yerr=err_xi_ion_0, ls="none",marker="H",ms=6,mfc=tableau20("Light Grey"),mec=tableau20("Grey"),mew=1.0,capsize=2,capthick=1,elinewidth=0.5)
+
+	return ax
+
+
+def Onodera_2020(ax,EW=False,sSFR=False):
+
+	# Load in the data
+	F_HB, E_HB, F_O3, EW_O3, err_EW_O3, xi_ion_0, err_xi_ion_0, log10_mass, err_log10_mass, log10_SFR_UV , err_log10_SFR_UV = np.loadtxt("../../data/literature_measurements/Onodera_et_al_2020.txt",unpack=True,usecols=(2,3,4,6,7,12,13,14,15,18,19))
+
+	# Calculate how much to increase the EW_O3 to convert to [OIII]+Hbeta
+	frac_HB  = F_HB/(F_HB+F_O3)
+	EW_O3_HB = (1.+frac_HB)*EW_O3
+	sSFR_UV = log10_SFR_UV - log10_mass
+
+	if EW:
+		det = (np.abs(E_HB) < 99.) & (np.abs(err_xi_ion_0) < 99.)
+		ax.errorbar(EW_O3_HB[det], xi_ion_0[det], yerr=err_xi_ion_0[det], ls="none",marker="<",ms=3,mfc="none",mec=tableau20("Light Pink"),ecolor=tableau20("Light Pink"),mew=0.5,capsize=2,capthick=1,elinewidth=0.5)
+
+		uplims = (E_HB > 100.) & (err_xi_ion_0 > 100.)
+		ax.errorbar(EW_O3_HB[uplims], xi_ion_0[uplims], xerr=EW_O3_HB[uplims]*0.1, yerr=xi_ion_0[uplims]*0.0025, xuplims=True, uplims=True, ls="none",marker="<",ms=3,mfc="none",mec=tableau20("Light Pink"),ecolor=tableau20("Light Pink"),mew=0.5,capsize=1.5,capthick=1,elinewidth=0.5)
+
+	if sSFR:
+		det = (err_xi_ion_0 < 99.)
+		ax.errorbar(sSFR_UV[det], xi_ion_0[det], yerr=err_xi_ion_0[det], ls="none",marker="<",ms=6,mfc=tableau20("Light Pink"),mec=tableau20("Pink"),mew=1.0,capsize=2,capthick=1,elinewidth=0.5,zorder=1)
+
+		uplims = (err_xi_ion_0 > 100.)
+		ax.errorbar(sSFR_UV[uplims], xi_ion_0[uplims], yerr=0.1, uplims=True, ls="none",marker="<",ms=6,mfc=tableau20("Light Pink"),mec=tableau20("Pink"),ecolor=tableau20("Pink"),mew=1.0,capsize=2,capthick=1,elinewidth=0.5,zorder=1)
+
+	return ax
+
 
 cosmo = FlatLambdaCDM(H0=70.,Om0=0.3)
 
@@ -238,6 +303,11 @@ ax1 = Matthee_2023(ax1,EW=True)
 # CEERS (Chen et al. 2024)
 ax1 = Chen_2024(ax1)
 
+# Schaerer et al. (2016)
+ax1 = Schaerer2016(ax1,EW=True)
+
+# Onodera et al. (2020)
+ax1 = Onodera_2020(ax1,EW=True)
 
 ##############################
 ##### EELG1002
@@ -284,7 +354,9 @@ handles = [ Line2D([],[],ls="none",marker="o",ms=4,mec=tableau20("Red"),mfc=tabl
 			Line2D([],[],ls="none",marker="s",ms=4,mec=tableau20("Purple"),mfc="none",label=r"EELGs (Ta+19; $z \sim 1.3 - 2.4$)"),
 			Line2D([],[],ls="none",marker="^",ms=4,mec=tableau20("Green"),mfc="none",label=r"CEERS (Ta+23; $z \sim 7 - 9$)"),
 			Line2D([],[],ls="none",marker="v",ms=4,mec=tableau20("Brown"),mfc="none",label=r"En+21 ($z \sim 7$)"),
-			Line2D([],[],ls="none",marker=">",ms=4,mec=tableau20("Sky Blue"),mfc="none",label=r"St+17 ($z \sim 7 - 9$)")]
+			Line2D([],[],ls="none",marker=">",ms=4,mec=tableau20("Sky Blue"),mfc="none",label=r"St+17 ($z \sim 7 - 9$)"),
+			Line2D([],[],ls="none",marker="<",ms=4,mec=tableau20("Pink"),mfc=tableau20("Light Pink"),label=r"On+20 ($z \sim 3 - 3.7$)"),
+			Line2D([],[],ls="none",marker="H",ms=4,mec=tableau20("Grey"),mfc=tableau20("Light Grey"),label=r"LyC Leakers (Sc+16; $z \sim 0.3$)")]
 
 leg2 = ax1.legend(handles=handles,loc="lower right",frameon=False,ncol=1,numpoints=1,fontsize=6,columnspacing=0.075)
 plt.gca().add_artist(leg2)	
@@ -294,7 +366,7 @@ ax1.set_yticks(np.arange(23.5,27.,0.1),minor=True)
 ax1.set_yticklabels([23.5,24.0,24.5,25.0,25.5,26.0,26.5])
 
 
-ax1.set_ylim(23.8,26.3)
+ax1.set_ylim(23.6,26.3)
 ax1.set_xlim(100.,6000.)
 ax1.set_xscale("log")
 
@@ -341,7 +413,11 @@ ax2 = Castellano_2023(ax2)
 # Sun et al. (2023) -- # https://iopscience.iop.org/article/10.3847/1538-4357/acd53c/pdf
 ax2 = Sun_2023(ax2,sSFR=True)
 
+# Schaerer et al. (2016)
+ax2 = Schaerer2016(ax2,sSFR=True)
 
+# Onodera et al. (2020)
+ax2 = Onodera_2020(ax2,sSFR=True)
 
 ##############################
 ##### EELG1002
@@ -419,7 +495,9 @@ handles = [ Line2D([],[],ls="none",marker="o",ms=4,mec=tableau20("Red"),mfc=tabl
 			Line2D([],[],ls="none",marker="d",ms=4,mec=tableau20("Brown"),mfc=tableau20("Light Brown"),label=r"Su+23 ($z \sim 6.2$)"),			
 			Line2D([],[],ls="none",marker="p",ms=4,mec=tableau20("Green"),mfc=tableau20("Light Green"),label=r"MIDIS (Ri+23; $z \sim 7 - 8$)"),
 			Line2D([],[],ls="none",marker="d",ms=4,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),label=r"CEERS (Wh+23; $z \sim 7 - 9$)"),
-			Line2D([],[],ls="none",marker="s",ms=4,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),label=r"VANDELS (Ca+23; $z \sim 2 - 5$)")]
+			Line2D([],[],ls="none",marker="s",ms=4,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),label=r"VANDELS (Ca+23; $z \sim 2 - 5$)"),
+			Line2D([],[],ls="none",marker="<",ms=4,mec=tableau20("Pink"),mfc=tableau20("Light Pink"),label=r"On+20 ($z \sim 3 - 3.7$)"),
+			Line2D([],[],ls="none",marker="H",ms=4,mec=tableau20("Grey"),mfc=tableau20("Light Grey"),label=r"LyC Leakers (Sc+16; $z \sim 0.3$)")]
 
 		
 leg2 = ax2.legend(handles=handles,loc="lower right",frameon=False,ncol=1,numpoints=1,fontsize=6,columnspacing=0.075)
@@ -430,7 +508,7 @@ ax2.set_yticks(np.arange(23.5,27.,0.1),minor=True)
 ax2.set_yticklabels([])
 
 
-ax2.set_ylim(23.8,26.3)
+ax2.set_ylim(ax1.get_ylim())
 ax2.set_xlim(-10.2,-6.)
 
 ax2.set_xlabel(r"$\log_{10}$ sSFR (yr$^{-1}$)",fontsize=8)#, **hfont)
