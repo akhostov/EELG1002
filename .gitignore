@@ -4,7 +4,7 @@ data/specpro/*
 .vscode
 
 # Ignore Depreciated Files
-code/depreciated
+code/depreciated/
 code/plot_scripts/depreciated
 data/cutouts/ACS/depreciated
 data/added_F140W_hst_data/F140W_HST_15115/depreciated
