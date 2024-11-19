@@ -1,26 +1,10 @@
 # EELG1002 -- A Unique Extreme Emission Line Galaxy
-<style>
-  .responsive {
-    max-width: 41.7%;
-    height: 25%;
-    margin: 5px;
-  }
+<div style="display: flex; justify-content: space-around; gap: 10px; flex-wrap: wrap;">
 
-  .responsive-large {
-    max-width: 52%;
-    height: 25%;
-  }
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 5px;
-  }
-</style>
+  <img src="./paper/figures/slit_pos.png" alt="Image 1" style="max-width: 45%; height: auto;"/>
 
-<div class="responsive-images">
-  <img src="./paper/figures/slit_pos.png" alt="Image 1" class="responsive">
-  <img src="./paper/figures/EELG1002_SED.png" alt="Image 2" class="responsive-large">
+  <img src="./paper/figures/EELG1002_SED.png" alt="Image 2" style="max-width: 45%; height: auto;"/>
+
 </div>
 
 
