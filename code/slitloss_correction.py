@@ -16,7 +16,6 @@ def get_fluxcorr():
 
 	# Load the image
 	data = fits.open("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_sci.fits")
-	wht = fits.open("../data/cutouts/ACS/1002_HST_ACS_F814W_10arcsec_unrot_RMS.fits")
 
 	# Now let's do Aperture Photometry with Sextractor
 	os.system("cd ../data/cutouts/ACS/; sex 1002_HST_ACS_F814W_10arcsec_unrot_sci.fits -c original_HST.sex")

@@ -199,35 +199,6 @@ with open("../../paper/tables/SED_fit_properties.table","w") as table:
                                                                                                                                 bagpipes_sSFR100Myrs,bagpipes_sSFR100Myrs_err_up,bagpipes_sSFR100Myrs_err_low))
 
 
-    """
-    ################# Metallicity
-    # Get Cigale Stellar Metallicity
-    cigale_metal = cigale["bayes.stellar.metallicity"]/0.02; cigale_metal_err = cigale["bayes.stellar.metallicity_err"]/0.02
-
-    # Note Bagpipes does not differentiate gas-phase and stellar metallicity. We use the gas-phase metallicity instead
-    util.write_with_newline(table,r"$Z_\star$ ($Z_\odot$) & $%0.3f\pm%0.3f$ & $%0.3f$ (fixed) & -- \\" % (cigale_metal,cigale_metal_err,
-                                                                                    pow(10,pyneb_stats["12+log10(O/H)_med"]-8.69))) # The value of 8.69 is from Asplund et al. (2009) for Zsol
-    """
-
-    """
-    ################# Dust Attenuation
-    # Get Cigale
-    cigale_EBV = cigale["bayes.attenuation.E_BV_lines"]; cigale_EBV_err = cigale["bayes.attenuation.E_BV_lines_err"]
-
-    # Bagpipes has it in A_V which can be converted to E(B-V) assuming Calzetti et al. (2000) where k(lambda) at V-band is R_V = 4.05
-    bagpipes_AV = bagpipes["median"][11]
-    bagpipes_AV_elow,bagpipes_AV_eupp = bagpipes_AV - bagpipes["conf_int"][0][11], bagpipes["conf_int"][1][11] - bagpipes_AV
-
-    calzetti_RV = 4.05
-    bagpipes_EBV = bagpipes_AV/calzetti_RV
-    bagpipes_EBV_elow = bagpipes_AV_elow/calzetti_RV
-    bagpipes_EBV_eupp = bagpipes_AV_eupp/calzetti_RV
-
-    util.write_with_newline(table,r"$E(B-V)$ (mag) & $%0.3f\pm%0.2f$ & $%0.3f^{+%0.3f}_{-%0.3f}$ & $%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (cigale_EBV,cigale_EBV_err,
-                                                                                                            bagpipes_EBV,bagpipes_EBV_eupp,bagpipes_EBV_elow,
-                                                                                                            pyneb_stats["EBV_hghb_med"],pyneb_stats["EBV_hghb_err_up"],pyneb_stats["EBV_hghb_err_low"]))
-    """
-
     ################# Ionizing Photon Production Efficency    
     cigale_xi_ion = uv_measurements["cigale_xi_ion"][0]
     cigale_xi_ion_err_low,cigale_xi_ion_err_up = uv_measurements["cigale_xi_ion"][1:3]/(np.log(10.)*cigale_xi_ion)

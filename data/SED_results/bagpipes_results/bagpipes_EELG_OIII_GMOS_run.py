@@ -140,7 +140,7 @@ fit_info["veldisp"] = (1., 1000.)   #km/s
 # Nonparamteric SFH similar to Leja et al. (2019)
 continuity = {}
 continuity["massformed"] = (1., 13.)
-continuity["metallicity"] = 0.065 
+continuity["metallicity"] = 0.065 # fixed to direct T_e measurement
 continuity["bin_edges"] = [0., 3., 10., 30., 100., 300.,
                            1000., 3000., 6000.]
 

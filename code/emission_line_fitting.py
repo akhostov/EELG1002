@@ -55,14 +55,6 @@ class physical_PyQSOfit():
 		self.lflux = simps(yy,x=np.exp(self.xx))
 		return (self.lflux)
 
-	""""
-	def line_flux_EW(self,cont_fx):
-		yy = self.gaussian()
-		self.lflux = simps(yy,x=np.exp(self.xx))
-		ew = simps(yy/cont_fx(np.exp(self.xx)),x=np.exp(self.xx))
-		return (self.lflux,ew)
-	"""
-
 	# Measure the Dispersion
 	def line_sigma(self,kms=True):
 		lambda1 = simps(self.gaussian()*np.exp(self.xx),x=np.exp(self.xx))

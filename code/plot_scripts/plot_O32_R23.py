@@ -35,11 +35,6 @@ ax.set_ylabel(r"$\log_{10}$ [O{\sc iii}]5007\AA/[O{\sc ii}]3727\AA",fontsize=8)
 # Define Limits
 ax.set_xlim(0.0,1.2)
 ax.set_ylim(-1.0,2.0)
-#ax.set_yscale("log")
-
-#ax.set_yticks([1,2,3,4,6,10])
-#ax.set_yticks([1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10],minor=True)
-#ax.set_yticklabels(["1","2","3","4","6","10"])
 
 
 
@@ -70,30 +65,6 @@ ax.errorbar(r23,o32,
 				ls="none",mec=tableau20("Blue"),mfc=tableau20("Light Blue"),ecolor=tableau20("Blue"),\
                 marker="*",ms=12,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=99)
 
-
-###### SPECIAL SOURCES
-## BOSS-EUVLG1 (Marques-Chaves et al. 2020) # 
-#BOSS_O3HB = 562/61.
-#BOSS_O3HB_err = 562/61. * np.sqrt( (7/562.)**2. + (5./61.)**2. )
-#BOSS_O3HB_err = BOSS_O3HB_err/(np.log(10.)*BOSS_O3HB_err)
-#BOSS_O3HB = np.log10(BOSS_O3HB)
-#
-#BOSS_N2HA = np.log10(12./190.)
-#BOSS_N2HA_err = [0.2]
-#ax.errorbar(BOSS_N2HA,BOSS_O3HB,xerr=(BOSS_N2HA_err),yerr=(BOSS_O3HB_err),xuplims=[True],\
-#				ls="none",mec=tableau20("Green"),mfc=tableau20("Light Green"),ecolor=tableau20("Green"),\
-#                marker="d",ms=8,mew=1,capsize=2,capthick=1,elinewidth=0.5)
-#
-#
-### Ion2 (de Barros et al. 2016)
-#mass = [9.5]
-#err_mass = [0.2]
-#Ion2_O32 = np.log10([22.1/1.5])
-#Ion2_R23 = np.log10([ (22.1 + 7.4 + 1.5)/1.5 ])
-#
-#ax.plot(Ion2_R23,Ion2_O32,				
-#				ls="none",mec=tableau20("Red"),mfc="none",\
-#                marker="p",ms=3,mew=0.5)
 
 #### Low-z Analogs
 # Blueberries (Yang et al. 2017) -- # https://ui.adsabs.harvard.edu/abs/2018yCat..18470038Y/abstract
@@ -259,29 +230,6 @@ Ta23_R32_eupp = np.array([0.36])/(np.log(10.)*Ta23_R32)
 ax.errorbar(np.log10(Ta23_R32),np.log10(Ta23_O32),xerr=(Ta23_R32_elow,Ta23_R32_eupp),yerr=(Ta23_O32_elow,Ta23_O32_eupp),\
 			ls="none",mec=tableau20("Pink"),mfc=tableau20("Light Pink"),ecolor=tableau20("Grey"),\
                 marker="p",ms=5,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=98)
-
-#Ta23_O32 = np.array([8.12,18.06,4.81,18.77,2.80,10.13,14.72,5.96,2.12,5.58,14.46])
-#Ta23_O32_err = np.array([3.15,5.99,1.25,6.06,1.25,2.67,4.40,3.91,0.26,2.76,5.70])/(np.log(10.)*Ta23_O32); Ta23_O32 = np.log10(Ta23_O32)
-#Ta23_R23 = np.array([7.09,8.98,8.02,9.81,7.97,8.84,9.03,10.00,8.01,9.19,14.25])
-#Ta23_R23_err = np.array([2.50,1.42,3.71,1.92,4.12,1.48,0.88,3.13,1.16,3.06,2.15])/(np.log(10.)*Ta23_R23); Ta23_R23 = np.log10(Ta23_R23)
-
-#ax.errorbar(Ta23_R23,Ta23_O32,xerr=(Ta23_R23_err),yerr=(Ta23_O32_err),\
-#			ls="none",mec=tableau20("Purple"),mfc=tableau20("Light Purple"),ecolor=tableau20("Grey"),\
-#                marker="d",ms=3,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=99)
-
-"""
-# Mascia et al. (2023) -- # https://www.aanda.org/articles/aa/pdf/2023/04/aa45866-23.pdf
-
-Ma23_O32 = np.array([8,8,3.4,4.1,5,5,7,12,12,10,12,2.5,10,11,21,9,8,5])
-Ma23_O32_err = np.array([])/(np.log(10.)*Ta23_O32); Ta23_O32 = np.log10(Ta23_O32)
-Ma23_R23 = np.array([])
-Ma23_R23_err = np.array([])/(np.log(10.)*Ta23_R23); Ta23_R23 = np.log10(Ta23_R23)
-
-ax.errorbar(Ta23_R23,Ta23_O32,xerr=(Ta23_R23_err),yerr=(Ta23_O32_err),\
-			ls="none",mec=tableau20("Purple"),mfc=tableau20("Light Purple"),ecolor=tableau20("Grey"),\
-                marker="d",ms=3,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=99)
-"""
-
 
 # JADES (Cameron et al. 2023) -- # https://www.aanda.org/articles/aa/pdf/2023/09/aa46107-23.pdf
 Ca23_O32 = np.array([1.21]); Ca23_O32_err = np.array([0.16])

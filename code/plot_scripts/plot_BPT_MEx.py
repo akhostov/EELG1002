@@ -454,14 +454,5 @@ leg3 = ax_MEx.legend(handles=handles,loc="upper right",frameon=False,ncol=1,nump
 plt.gca().add_artist(leg3)	
 
 plt.savefig("../../plots/BPT_MEx.png",format="png",dpi=300,bbox_inches="tight")
-#plt.savefig("../../plots/O3HB_mass.png",format="png",dpi=300,bbox_inches="tight")
-
-
-
-
-
-#plt.savefig("../../plots/BPT.png",format="png",dpi=300,bbox_inches="tight")
-
-
 
 

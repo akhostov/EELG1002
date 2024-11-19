@@ -29,9 +29,6 @@ def table_emission_line_fits():
 
 		for ff in range(len(data["line_id"])):
 
-			#data['linez_eupp'][ff] = np.sqrt( (data['linez_eupp'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
-			#data['linez_elow'][ff] = np.sqrt( (data['linez_elow'][ff])**2. + (2.*(1.+data['linez_med'][ff])/631.)**2. )
-
 			str_lflux = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineflux_med'][ff]*1e17,data['lineflux_eupp'][ff]*1e17,data['lineflux_elow'][ff]*1e17)
 			str_lEW_Cigale   = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Cigale_med'][ff],data['lineEW_Cigale_eupp'][ff],data['lineEW_Cigale_elow'][ff])	
 			str_lEW_Bagpipes = "$%0.2f^{+%0.2f}_{-%0.2f}$" % (data['lineEW_Bagpipes_med'][ff],data['lineEW_Bagpipes_eupp'][ff],data['lineEW_Bagpipes_elow'][ff])	
@@ -126,22 +123,9 @@ def table_emission_line_ratios():
 		index = line_ratio["name"].index("Hb/Hg")
 		Hbg_measured = "\hbeta/\hgamma & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
 		util.write_with_newline(table,Hbg_measured)
-		"""
-		# Hb/Hd
-		index = line_ratio["name"].index("Hb/Hd")
-		Hbd_measured = "\hbeta/\hdelta & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
-		util.write_with_newline(table,Hbd_measured)
 
-		# Hb/Hep
-		index = line_ratio["name"].index("Hb/Hep")
-		Hbep_measured =  "\hbeta/H$\epsilon$ & " +r"$%0.3f^{+%0.3f}_{-%0.3f}$ \\" % (line_ratio["median"][index],line_ratio["upp_1sigma"][index],line_ratio["low_1sigma"][index])
-		util.write_with_newline(table,Hbep_measured)
-		"""
 
 		util.write_with_newline(table,r"$E(B-V)$ via H$\beta$/H$\gamma$ (mag) &  $%0.2f^{+%0.2f}_{-%0.2f}$\\" % (pyneb_stat["EBV_hghb_med"], pyneb_stat["EBV_hghb_err_up"], pyneb_stat["EBV_hghb_err_low"])  )
-		#util.write_with_newline(table,r"								 &  $%0.2f$ mag ($<2\sigma$) \\" % (pyneb_stat["EBV_hghb_2sig_limit"]) )
-		#util.write_with_newline(table,r"$E(B-V)$ -- (H$\beta$/H$\delta$) & $%0.2f^{+%0.2f}_{-%0.2f}$ mag\\" % (pyneb_stat["EBV_hdhb_med"], pyneb_stat["EBV_hdhb_err_up"], pyneb_stat["EBV_hdhb_err_low"])  )
-
 
 
 

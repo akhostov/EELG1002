@@ -124,21 +124,6 @@ plt.gca().add_artist(leg1)
 
 
 
-
-
-
-
-
-
-# Tremonti et al. (2004) #https://ui.adsabs.harvard.edu/abs/2004ApJ...613..898T/abstract
-#conversion = 1.5/1.64 #Kroupa to Chabrier
-#mass = np.arange(8.5,11.6,0.1)+np.log10(conversion)
-
-#Tr04_zgas = -1.492+1.847*mass-0.08026*mass**2.
-
-#ax.plot(mass,Tr04_zgas,ls="--")
-
-
 ############## FITS GO HERE
 ### Andrews & Martini et al. (2013) #https://ui.adsabs.harvard.edu/abs/2013ApJ...765..140A/abstract
 mass = np.arange(7.4,10.5,0.1)
@@ -241,11 +226,7 @@ ax.plot(Bo24_mass[keep],Bo24_OH[keep],\
 			ls="none",mec=tableau20("Pink"),mfc=tableau20("Light Pink"),
             marker="H",ms=2,mew=0.5,zorder=98,alpha=0.5)
 
-"""
-ax.errorbar(Bo24_mass[keep],Bo24_OH[keep],xerr=(Bo24_mass_elow[keep],Bo24_mass_eupp[keep]),yerr=(Bo24_OH_elow[keep],Bo24_OH_eupp[keep]),\
-			ls="none",mec=tableau20("Pink"),mfc=tableau20("Light Pink"),ecolor=tableau20("Pink"),\
-            marker="H",ms=2,mew=0.5,capsize=1,capthick=1,elinewidth=0.5,zorder=98,alpha=0.5)
-"""
+
 
 
 handles = [Line2D([],[],ls="none",marker="d",ms=5,mec="black",mfc=tableau20("Grey"),alpha=0.8,label=r"LyC Leakers (Iz+16,18; $z \sim 0$)"),
@@ -257,39 +238,6 @@ handles = [Line2D([],[],ls="none",marker="d",ms=5,mec="black",mfc=tableau20("Gre
 
 leg3 = ax.legend(handles=handles,loc="lower right",frameon=False,ncol=1,numpoints=1,fontsize=5,handletextpad=0.02)
 plt.gca().add_artist(leg3)
-
-
-
-"""
-# Curti et al. (2023) JADES 6 < z < 10 # https://arxiv.org/pdf/2304.08516.pdf
-mass = np.array([6.,7.75,8.5,10.])
-err_mass = np.diff(mass)/2.
-mass = 0.5*(mass[1:] + mass[:-1])
-Cu23_zgas = np.array([7.64,7.67,7.73])
-Cu23_zgas_err = np.array([0.07,0.06,0.08])
-
-plt.errorbar(mass,Cu23_zgas,xerr=(err_mass),yerr=(Cu23_zgas_err),marker="s",ls="none")
-"""
-
-
-
-
-## CLEAR #https://iopscience.iop.org/article/10.3847/1538-4357/ac8058/pdf
-## 1.1 < z < 2.3
-#mass = np.array([9.0,9.5,10.,10.5])
-#err_mass = np.array([0.25,0.25,0.25,0.25])
-#uplims = np.array([False,False,False,True])
-#CLEAR_zgas = np.array([8.42,8.55,8.65,8.83])
-#CLEAR_zgas_err = np.array([0.03,0.02,0.03,0.05])
-#
-#ax.errorbar(mass,CLEAR_zgas,xerr=(err_mass,err_mass),yerr=(CLEAR_zgas_err),xuplims=np.repeat(False,len(mass)),xlolims=uplims,\
-#			ls="none",mec="black",mfc=tableau20("Green"),ecolor=tableau20("Grey"),\
-#            marker="o",ms=3,mew=0.2,capsize=2,capthick=1,elinewidth=0.5)
-
-
-
-
-
 
 
 

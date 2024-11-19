@@ -41,12 +41,6 @@ def load_catalog_and_upper_limits():
 			("SC_ip_FLUX_AUTO","SC_ip_FLUXERR_AUTO","subaru.suprime.i",26.7),
 			("SC_zp_FLUX_AUTO","SC_zp_FLUXERR_AUTO","SUBARU_z",25.7),
 			("SC_zpp_FLUX_AUTO","SC_zpp_FLUXERR_AUTO","subaru.suprime.zpp",26.3),
-			#("GALEX_NUV_FLUX","GALEX_NUV_FLUXERR","galex.NUV",26.0),
-			#("GALEX_FUV_FLUX","GALEX_FUV_FLUXERR","galex.FUV",26.0),
-			#("SPLASH_CH1_FLUX","SPLASH_CH1_FLUXERR","spitzer.irac.ch1",26.4),
-			#("SPLASH_CH2_FLUX","SPLASH_CH2_FLUXERR","spitzer.irac.ch2",26.3),
-			#("SPLASH_CH3_FLUX","SPLASH_CH3_FLUXERR","spitzer.irac.ch3",23.2),
-			#("SPLASH_CH4_FLUX","SPLASH_CH4_FLUXERR","spitzer.irac.ch4",23.1),
 			("ACS_F814W_FLUX","ACS_F814W_FLUXERR","hst.wfc.F814W",27.8)]
 
 	return (cat,info)
@@ -115,14 +109,6 @@ def load_linefluxes_for_cigale(data):
 	this = spec["line_ID"] == "OII3726_1"
 	data.append(spec["lineflux_med"][this]*1e-20)
 	data.append(spec["lineflux_elow"][this]*1e-20)
-
-	#### NEON LINES -- Not Supported in Cigale
-	# TODO: May explore how to update Cigale to support this line
-	#header = header + " line.NeIII-386.9 line.NeIII-386.9_err"
-	#this = spec["line_ID"] == "NeIII3869_1"
-	#data.append(spec["lineflux_med"][this]*1e-20)
-	#data.append(spec["lineflux_elow"][this]*1e-20)
-	#"""
 
 	return data
 

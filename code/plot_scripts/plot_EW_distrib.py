@@ -67,25 +67,12 @@ JADES = ax.plot(JADES_mass,JADES_EW,\
 					ls="none",mec=tableau20("Pink"),mfc="none",mew=0.5,alpha=0.8,\
 					marker="H",ms=5,label=r"$z \sim 3 - 9$ (JADES)")
 
-
-
-# J0925+1403 (Izotov et al. 2016)
-#J0925, = ax.plot([np.log10(8.2e8)-0.21],[1174.],marker="s",ms=5,mec=tableau20("Purple"),mfc=tableau20("Light Purple"),alpha=0.8,ls="none",label=r"$z = 0.301$ (J0925+1403)",zorder=99)
-
 # BOSS-EUVLG1 (Marques-Chaves et al. 2020)
 BOSS, = ax.plot([10.0-0.21],[1125.],marker="^",ms=5,mec=tableau20("Orange"),mfc=tableau20("Light Orange"),alpha=0.8,ls="none",label=r"$z = 2.469$ (BOSS-EUVLG1)")
-
-# AUDFs01 (Saha et al. 2020)
-#AUDF, = ax.plot([np.log10(1.45e9)-0.21],[680.],marker="s",ms=5,mec=tableau20("Green"),mfc=tableau20("Light Green"),alpha=0.8,ls="none",label=r"$z = 1.42$ (AUDFs01)")
 
 # Ion 2 (de Barros et al. 2016)
 Ion2, = ax.plot([9.2-0.21],[1103.],marker="v",ms=5,mec=tableau20("Red"),mfc=tableau20("Light Red"),alpha=0.8,ls="none",label=r"$z = 3.216$ (Ion2)")
 
-#lgd2 = ax.legend(handles=[Ma14,AUDF,Ta21,BOSS,Tr20,Ion2,EIGER,Tang],loc="upper right",ncol=1,fontsize=7.,frameon=False,handletextpad=0.025,columnspacing=0.05)
-#plt.gca().add_artist(lgd2)
-#
-#lgd3 = ax.legend(handles=[Ca09,JPLUS,Iz21],loc="upper left",ncol=1,fontsize=7.,frameon=False,handletextpad=0.025,columnspacing=0.05,bbox_to_anchor=(0.0,0.85))
-#plt.gca().add_artist(lgd3)
 
 
 
@@ -143,7 +130,9 @@ ax.errorbar(hizels_mass_z3p24,hizels_EW_z3p24,yerr=(hizels_EW_z3p24_elow,hizels_
 			ls="none",mec=tableau20("Red"),mfc=tableau20("Light Red"),ecolor=tableau20("Grey"),\
                 marker="o",ms=5,mew=1,capsize=2,capthick=1,elinewidth=0.5,zorder=98)
 
-# Plot in my Source
+##############################################################################
+#######							 PLOT EELG1002						   #######	
+##############################################################################
 
 # Get the Stellar Mass
 sed = fits.open("../../data/SED_results/cigale_results/results.fits")[1].data

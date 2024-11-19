@@ -3,9 +3,22 @@ data/Science_coadd/spec2d*
 data/specpro/*
 .vscode
 
+# Ignore Depreciated Files
+code/depreciated
+code/plot_scripts/depreciated
+data/cutouts/ACS/depreciated
+data/added_F140W_hst_data/F140W_HST_15115/depreciated
+data/catalogs/depreciated
+paper/depreciated
+
 # Remove Large Data Files that are not needed (TODO: Store in Google Drive?)
 data/Science_coadd/spec2d*
+data/Science_coadd/spec1d_4109*
+data/Science_coadd/spec1d_4312*
 data/specpro/*
+
+# Remove the Prelim Plots -- Main Plots in paper/figures
+plots/
 
 # Remove Latex Files that are really not needed
 paper/*.aux
@@ -14,3 +27,4 @@ paper/*.blg
 paper/*.log
 paper/*.out
 paper/*.synctex.gz
+paper/versions

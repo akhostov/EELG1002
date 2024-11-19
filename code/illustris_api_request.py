@@ -72,8 +72,6 @@ def main(simulation):
 
 
     r = get(baseUrl)
-    #subhalo_id = 1212
-    #url = f"{baseUrl}{simulation}/snapshots/55/subhalos/{subhalo_id}/"
 
     # Stellar Mass 
     mass_min = 10**7/  1e10 * 0.704
@@ -166,12 +164,6 @@ def main(simulation):
         print("No subhalos found")
         exit()
 
-    ## Save all the information
-    #with open(f"data/Illustris_Analogs/{simulation}_analogs_with_histories.pkl","wb") as outfile:
-    #    pickle.dump((ids,out), outfile)
-    
-    ## Close the File
-    #outfile.close()
 
 
 if __name__ == "__main__":

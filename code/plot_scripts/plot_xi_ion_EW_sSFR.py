@@ -112,10 +112,6 @@ def Tang_2023(ax):
 	Ta23_EW = np.array(Ta23_EW)
 	Ta23_xi_ion = np.array(Ta23_xi_ion)
 
-	# Load in the Data
-	#Ta23_EW, Ta23_EW_elow, Ta23_EW_eupp, \
-	#	Ta23_xi_ion, Ta23_xi_ion_elow, Ta23_xi_ion_eupp = np.loadtxt("../../data/literature_measurements/Tang_et_al_2023.txt",unpack=True,usecols=(5,6,7,8,9,10))
-
 	ax.plot(Ta23_EW,Ta23_xi_ion,marker="^",ls="none",ms=3,
 							mfc="none",mec=tableau20("Green"),mew=0.2)
 
@@ -195,9 +191,8 @@ def Rinaldi_2024(ax):
 
 
 def Whitler_2023(ax):
-	# ID 	RA				DEC				F200W	F200W_elow	F200_eupp	Beta	Beta_elow Beta_eupp	Redshift	Redshift_elow	Redshift_eupp	Mass	Mass_elow	Mass_eupp	sSFR	sSFR_elow	sSFR_eupp	xi_ion	xi_ion_elow	xi_ion_eupp	
-
 	# Load in the Data
+	# ID 	RA				DEC				F200W	F200W_elow	F200_eupp	Beta	Beta_elow Beta_eupp	Redshift	Redshift_elow	Redshift_eupp	Mass	Mass_elow	Mass_eupp	sSFR	sSFR_elow	sSFR_eupp	xi_ion	xi_ion_elow	xi_ion_eupp	
 	Wh23_sSFR,Wh23_xi_ion = np.loadtxt("../../data/literature_measurements/Whitler_et_al_2023.txt",unpack=True,usecols=(-6,-3))
 
 	Wh23_sSFR = np.log10(Wh23_sSFR)-9.
