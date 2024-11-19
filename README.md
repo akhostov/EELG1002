@@ -2,18 +2,19 @@
 <style>
   .responsive {
     max-width: 41.7%;
-    height: auto;
+    height: 25%;
     margin: 5px;
   }
 
-.responsive-large {
-    max-width: 52%;  /* Larger max-width for this image */
+  .responsive-large {
+    max-width: 52%;
+    height: 25%;
   }
   .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 10px;
+    gap: 5px;
   }
 </style>
 
