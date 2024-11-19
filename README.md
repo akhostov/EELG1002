@@ -1,4 +1,6 @@
-# EELG1002 -- A Unique Extreme Emission Line Galaxy
+# EELG1002
+<i><font size="5">A Unique z ~ 0.8 Extreme Emission Line Galaxy similar to Early Universe Galaxies</font></i>
+
 
 <div>
   <img src="./paper/figures/slit_pos.png" alt="Image 1" style="width: 40%; display: inline-block; margin-right: 10px;">
@@ -20,3 +22,6 @@ All of the raw spectra were reduced with a older development branch of [Pypeit](
 4. [PyQSOFit](https://github.com/legolason/PyQSOFit)
 5. [Pysersic](https://github.com/pysersic/pysersic)
 6. [SpecPro](http://specpro.caltech.edu/)
+
+## Questions, Comments, Suggestions
+Feel free to reach out by opening an [issue](https://github.com/akhostov/EELG1002/issues) for open discussion or reach me: Ali Ahmad Khostovan -- akhostov [at] gmail [dot] com
