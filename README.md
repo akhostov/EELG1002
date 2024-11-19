@@ -7,7 +7,7 @@
 
 **Welcome to our repository focused on EELG1002**: a z = 0.8275 extreme emission line galaxy identified in archival Gemini/GMOS data (PI: Kiyoto Yabe) as part of on-going work on the COSMOS Spectroscopic archive.
 
-The paper draft for associated in this repository is found within "paper/" and it has been submitted to The Astrophysical Journal for peer-review.
+The paper draft for associated in this repository is found within "paper/" and it has been submitted to The Astrophysical Journal for peer-review. You can also find it on [arXiv](https://arxiv.org/abs/2411.10537).
 
 This repository is meant to be a resource for anyone interested in looking with closer detail on what went in our measurements and also for reproducing our results. 
 
