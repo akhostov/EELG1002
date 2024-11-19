@@ -1,9 +1,27 @@
 # EELG1002 -- A Unique Extreme Emission Line Galaxy
+<style>
+  .responsive {
+    max-width: 41.7%;
+    height: auto;
+    margin: 5px;
+  }
 
-<figure>
-    <img src="./paper/figures/slit_pos.png" alt="EELG1002" width="400">
-    <img src="./paper/figures/EELG1002_SED.png" alt="SED" width="495">
-</figure>
+.responsive-large {
+    max-width: 52%;  /* Larger max-width for this image */
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+  }
+</style>
+
+<div class="responsive-images">
+  <img src="./paper/figures/slit_pos.png" alt="Image 1" class="responsive">
+  <img src="./paper/figures/EELG1002_SED.png" alt="Image 2" class="responsive-large">
+</div>
+
 
 **Welcome to our repository focused on EELG1002**: a z = 0.8275 extreme emission line galaxy identified in archival Gemini/GMOS data (PI: Kiyoto Yabe) as part of on-going work on the COSMOS Spectroscopic archive.
 
