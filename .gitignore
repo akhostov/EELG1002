@@ -9,6 +9,9 @@ code/plot_scripts/depreciated
 data/cutouts/ACS/depreciated
 data/added_F140W_hst_data/F140W_HST_15115/depreciated
 data/catalogs/depreciated
+data/SED_results/bagpipes_results/depreciated
+data/SED_results/cigale_results/depreciated
+data/emline_fits/depreciated
 paper/depreciated
 
 # Remove Large Data Files that are not needed (TODO: Store in Google Drive?)
