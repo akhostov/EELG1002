@@ -98,7 +98,7 @@ def main(simulation):
         for ii in trange(subhalos['count'], desc="Going through Subhalos"):
 
             # prepare dict to hold result arrays
-            fields = ['snap','redshift','id','sfr','mass_gas','mass_stars','mass_dm','mass_bhs','halfmassrad_stars','gasmetallicitysfrweighted','bhmdot','starmetallicity','windmass']
+            fields = ['snap','redshift','id','sfr','mass_gas','mass_stars','mass_dm','mass_bhs','halfmassrad_stars','gasmetallicity','bhmdot','starmetallicity','windmass']
             out = {}
             for field in fields:
                 out[field] = []
@@ -140,7 +140,10 @@ def main(simulation):
                     if ind != 0:
                         for field in fields:
                             if field == "redshift":
-                                out[field].append(get(f"https://www.tng-project.org/api/{simulation}/snapshots/{subhalo['snap']}")["redshift"])
+                                try:
+                                    out[field].append(get(f"https://www.tng-project.org/api/{simulation}/snapshots/{subhalo['snap']}")["redshift"])
+                                except:
+                                    import pdb; pdb.set_trace()
                             else:
                                 out[field].append(subhalo[field])
                     # request the full subhalo details of the descendant by following the sublink URL

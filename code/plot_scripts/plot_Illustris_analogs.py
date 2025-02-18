@@ -133,7 +133,7 @@ ax_mass.plot(cosmo.lookback_time(analog["redshift"]).value,mstar,color=tableau20
 ax_mass.plot(cosmo.lookback_time(analog["redshift"]).value,mgas,color=tableau20("Red"),ls="--",alpha=0.5)    
 
 # Metallicity History
-zgas = log10_with_dummy_numbers(analog["gasmetallicitysfrweighted"]/0.02)
+zgas = log10_with_dummy_numbers(analog["gasmetallicity"]/0.02)
 zstar = log10_with_dummy_numbers(analog["starmetallicity"]/0.02)
 ax_metal.plot(cosmo.lookback_time(analog["redshift"]).value,zgas,color=tableau20("Red"))
 ax_metal.plot(cosmo.lookback_time(analog["redshift"]).value,zstar,color=tableau20("Red"),ls="--",alpha=0.5)
@@ -158,7 +158,7 @@ ax_mass.plot(cosmo.lookback_time(analog["redshift"]).value,mstar,color=tableau20
 ax_mass.plot(cosmo.lookback_time(analog["redshift"]).value,mgas,color=tableau20("Green"),ls="--",alpha=0.5)    
 
 # Metallicity History
-zgas = log10_with_dummy_numbers(analog["gasmetallicitysfrweighted"]/0.02)
+zgas = log10_with_dummy_numbers(analog["gasmetallicity"]/0.02)
 zstar = log10_with_dummy_numbers(analog["starmetallicity"]/0.02)
 ax_metal.plot(cosmo.lookback_time(analog["redshift"]).value,zgas,color=tableau20("Green"))
 ax_metal.plot(cosmo.lookback_time(analog["redshift"]).value,zstar,color=tableau20("Green"),ls="--",alpha=0.5)
@@ -211,6 +211,7 @@ handles = [Line2D([],[],ls="-",color=tableau20("Grey"),label=r"Gas"),
             Line2D([],[],ls="--",color=tableau20("Grey"),alpha=0.5,label=r"Stellar")]   	
 
 leg3 = ax_metal.legend(handles=handles,loc="upper right",frameon=False,ncol=1,numpoints=1,fontsize=5,labelspacing=0.8)
+
 
 
 ######## Save the Figure
