@@ -6,11 +6,14 @@
   <img src="./paper/figures/EELG1002_SED.png" alt="Image 2" style="width: 54%; display: inline-block;">
 </div>
 
+[![arXiv](https://img.shields.io/badge/arXiv-2411.10537-green)](https://arxiv.org/abs/2411.10537)
+[![DOI](https://zenodo.org/badge/840830318.svg)](https://doi.org/10.5281/zenodo.16990021)
+
 **Welcome to our repository focused on EELG1002**: a z = 0.8275 extreme emission line galaxy identified in archival Gemini/GMOS data (PI: Kiyoto Yabe) as part of on-going work on the COSMOS Spectroscopic archive.
 
-The paper draft associated with this repository is found within "paper/" and it has been submitted to The Astrophysical Journal for peer-review. You can also find it on [arXiv](https://arxiv.org/abs/2411.10537).
+The paper draft associated with this repository is found within "paper/" and has been accepted for publication in The Astrophysical Journal.
 
-This repository is meant to be a resource for anyone interested in looking with closer detail on what went in our measurements and also for reproducing our results. 
+This repository is meant to be a resource for anyone interested in taking a closer look at our process in making our measurements and also for reproducing our results. 
 
 All of the raw spectra were reduced with an older development branch of [Pypeit](https://pypeit.readthedocs.io/en/stable/) focused on Gemini/GMOS mask ingestion (v1.10 development). This has since been incorporated in the main Pypeit release.
 
