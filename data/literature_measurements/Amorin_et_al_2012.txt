@@ -1,0 +1,10 @@
+# Paper: Amorin et al. (2012)
+# URL: https://ui.adsabs.harvard.edu/abs/2012ApJ...749..185A/abstract
+# Sample: Green Peas
+
+# Taken from Table 4
+# Data columns
+# ID            12+log10(O/H)       12+log10(O/H)_err       log10(Ne/O)     log10(Ne/O)_err
+GP004054        7.98                0.06                    -0.68           0.07
+GP113303        7.91                0.10                    -0.61           0.12
+GP232539        7.81                0.14                    -0.68           0.17

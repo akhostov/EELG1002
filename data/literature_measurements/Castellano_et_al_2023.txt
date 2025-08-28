@@ -1,0 +1,13 @@
+# Paper: Castellano et al. (2023)
+# URL: https://ui.adsabs.harvard.edu/abs/2023A%26A...675A.121C/abstract
+# Survey: VANDELS
+
+# These are from Figure 6 and extracted via WebPlotDigitizer
+# Data columns
+# log10_sSFR  log10_sSFR_elow   log10_sSFR_eup    log10_xi_ion    log10_xi_ion_elow   log10_xi_ion_eupp
+-9.63         0.37              0.13              24.57           0.61                 0.24
+-9.09         0.41              0.09              24.70           0.65                 0.25
+-8.71         0.29              0.21              24.78           0.35                 0.19
+-8.34         0.16              0.34              25.05           0.37                 0.20
+-7.90         0.10              0.40              25.35           0.12                 0.10
+-7.44         0.06              0.44              25.45           0.10                 0.08

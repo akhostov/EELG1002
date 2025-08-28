@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/aahsps/astro_codes/HII-CHI-Mistry/HCm-opt/HCm_v5.3/HCm_v5.3.py", line 284, in <module>
+    with open('Libraries_opt/'+file_lib, 'r') as file7:
+FileNotFoundError: [Errno 2] No such file or directory: 'Libraries_opt/C17_BPASS_IMF135_mup300_1myr.dat'

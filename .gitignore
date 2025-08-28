@@ -1,0 +1,44 @@
+# Ignore the Following
+data/Science_coadd/spec2d*
+data/specpro/*
+.vscode
+EELG_OIII_GMOS.code-workspace
+code/__pycache__
+code/run_pyneb.sh # just a SBATCH script... note really needed for users
+
+# Ignore Depreciated Files
+code/depreciated/
+code/plot_scripts/depreciated
+data/cutouts/ACS/depreciated
+data/added_F140W_hst_data/F140W_HST_15115/depreciated
+data/catalogs/depreciated
+data/SED_results/bagpipes_results/depreciated
+data/SED_results/cigale_results/depreciated
+data/emline_fits/depreciated
+data/harder_ionizing_spectra
+paper/depreciated
+
+# Remove Large Data Files that are not needed (TODO: Store in Google Drive?)
+data/Science_coadd/spec2d*
+data/Science_coadd/spec1d_4109*
+data/Science_coadd/spec1d_4312*
+data/specpro/*
+data/emline_fits/1002_EW_pdfs.pkl
+data/emline_fits/1002_lineflux_pdfs.pkl
+data/emline_fits/1002_pdf.fits
+data/emline_fits/1002_pyneb_pdf.pkl
+
+# Remove the Prelim Plots -- Main Plots in paper/figures
+plots/
+
+# Remove Latex Files that are really not needed
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/versions
+
+# Temporarily as I make updates for the Referee Report
+paper/*

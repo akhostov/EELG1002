@@ -1,0 +1,9 @@
+# HII-CHI-mistry v.5.3 output file
+# Input file: HCM_EELG1002.txt
+# Iterations for MonteCarlo: 100
+# Used models: BPASS v.2.1, a_IMF = 1.35, M_up = 300, age = 1Myr. Interpolation
+# Library file used : C17_BPASS_IMF135_mup300_1myr.dat
+# Template used to constraint grid of models: template_OH_eelg.dat
+# 
+ID          OII_3727    eOII_3727   NeIII_3868  eNeIII_3868  OIII_4363   eOIII_4363  OIII_4959   eOIII_4959  OIII_5007   eOIII_5007  i            O/H          eO/H         N/O          eN/O         logU         elogU     
+1 0.426 0.019 0.576 0.028 0.159 0.022 1.623 0.023 4.906 0.050 1 7.57 0.06 -10.00 0.00 -1.69 0.12

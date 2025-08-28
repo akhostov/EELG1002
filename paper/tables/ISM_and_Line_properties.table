@@ -1,0 +1,29 @@
+\multicolumn{2}{l}{\textbf{Electron Temperature \& Density}} \\
+$T_e(\textrm{O}^{++})$ (K) & $19507^{+1620}_{-1548}$ \\
+$T_e(\textrm{O}^{+})$ (K) & $15536^{+91}_{-297}$ \\
+$n_e$ (cm$^{-3}$) & $779^{+927}_{-487}$ \\
+\multicolumn{2}{l}{\textbf{Oxygen Abundance}} \\
+$12+\log_{10}(\rm{O}^{++}/\rm{H})$ & $7.454^{+0.081}_{-0.074}$ \\
+$12+\log_{10}(\rm{O}^{+}/\rm{H})$ & $6.679^{+0.067}_{-0.051}$ \\
+$12+\log_{10}(\rm{O}/\rm{H})$ & $7.522^{+0.074}_{-0.065}$ \\
+$Z_{gas} (Z_{\odot})$ & $0.068^{+0.013}_{-0.009}$ \\
+\multicolumn{2}{l}{\textbf{Neon Abundance}} \\
+$12+\log_{10}(\rm{Ne}^{++}/\rm{H})$ & $6.897^{+0.092}_{-0.085}$ \\
+$12+\log_{10}(\rm{Ne}/\rm{H})$ & $6.923^{+0.090}_{-0.082}$ \\
+ICF(Ne$^{++}$) & $1.061^{+0.011}_{-0.008}$ \\
+$\log_{10}(\rm{Ne}/\rm{O})$ & $-0.600^{+0.027}_{-0.027}$ \\
+\multicolumn{2}{l}{\textbf{Ionization Parameter} -- $\boldsymbol{\log_{10} U}$} \\
+\texttt{Bagpipes} + \texttt{BPASS} & $-1.96^{+0.06}_{-0.06}$ \\
+\texttt{Cigale} + \texttt{BC03} & $-2.23\pm0.06$ \\
+\multicolumn{2}{l}{\textbf{Balmer Decrement}} \\
+\hbeta/\hgamma & $1.940^{+0.142}_{-0.130}$ \\
+$E(B-V)$ via H$\beta$/H$\gamma$ (mag) &  $0.00^{+0.00}_{-0.00}$\\
+\multicolumn{2}{l}{\textbf{Line ratios}} \\
+O3HB & $4.919^{+0.242}_{-0.222}$ \\
+O32 & $8.917^{+0.438}_{-0.444}$ \\
+$R2$ & $0.554^{+0.037}_{-0.034}$ \\
+$R3$ & $6.541^{+0.323}_{-0.303}$\\
+$R23$ & $7.091^{+0.349}_{-0.320}$ \\
+$\textrm{\oiii}_{4363\textrm{\scriptsize\AA}}/\textrm{\oiii}_{5007\textrm{\scriptsize\AA}}$ & $0.032^{+0.004}_{-0.004}$ \\
+Ne3O2 & $1.076^{+0.069}_{-0.065}$ \\
+Ne3O3 & $0.121^{+0.006}_{-0.005}$ \\

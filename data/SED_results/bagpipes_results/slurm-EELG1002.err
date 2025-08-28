@@ -1,0 +1,1027 @@
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+Traceback (most recent call last):
+  File "/project/rlsa239_uksr/ali_ahmad/EELG1002/data/SED_results/bagpipes_results/bagpipes_EELG_OIII_GMOS_run.py", line 229, in <module>
+    fig = fit.plot_spectrum_posterior(save=True, show=False)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/fitting/fit.py", line 294, in plot_spectrum_posterior
+    return plotting.plot_spectrum_posterior(self, show=show, save=save)
+  File "/project/rlsa239_uksr/ali_ahmad/envs/bagpipes/lib/python3.9/site-packages/bagpipes/plotting/plot_spectrum_posterior.py", line 19, in plot_spectrum_posterior
+    fit.posterior.get_advanced_quantities()
+AttributeError: 'fit' object has no attribute 'posterior'
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[30937,1],87]
+  Exit code:    1
+--------------------------------------------------------------------------

@@ -1,0 +1,8 @@
+# Paper: Stark et al. (2017)
+# URL: https://ui.adsabs.harvard.edu/abs/2017MNRAS.464..469S/abstract
+
+# Data columns
+# ID        Redshift	EW_O3_HB	EW_O3_HB_elow	EW_O3_HB_eupp	xi		xi_elow		xi_eupp
+EGS-zs8-1   7.730		911			122				122				25.59	0.04		0.03
+EGS-zs8-2   7.477		1610		302				302				25.58	0.04		0.04
+COS-zs7-1   7.154		1854		325				325				25.58	0.09		0.04

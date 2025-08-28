@@ -1,0 +1,11 @@
+# Paper: Guseva et al. (2020)
+# URL: https://ui.adsabs.harvard.edu/abs/2020MNRAS.497.4293G/abstract
+# Sample: LyC Leakers
+
+# Data columns
+# ID            zspec       12+log10(O/H)       12+log10(O/H)_err       log10(Ne/O)     log10(Ne/O)_err
+J0901+2119      0.2993      8.048               0.020                   -0.738          0.034
+J0925+1403      0.3010      8.116               0.021                   -0.696          0.038
+J1011+1947      0.3322      7.973               0.022                   -0.874          0.035
+J1154+2443      0.3690      7.749               0.031                   -0.792          0.049
+J1442-0209      0.2937      7.985               0.022                   -0.719          0.038

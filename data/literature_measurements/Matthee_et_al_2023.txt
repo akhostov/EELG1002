@@ -1,0 +1,8 @@
+# Paper: Matthee et al. (2023)
+# URL: https://ui.adsabs.harvard.edu/abs/2023ApJ...950...67M/abstract
+# Survey: EIGER
+# Taken from Table 2 and the Full Sample Measurement Only
+
+# Data columns
+# log10_Mass    log10_Mass_err      EW_0_O3HB       EW_0_O3HB_err       SFR_HB      SFR_HB_err      log10_xi_ion        log10_xi_ion_err    12+log10(O/H)       12+log10(O/H)_err
+8.38            0.07                845             70                  4           1               25.3                0.2                 7.41                0.10
